@@ -6,6 +6,8 @@ target/
 .classpath
 .settings
 
+# Dev work file.
+generate
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
