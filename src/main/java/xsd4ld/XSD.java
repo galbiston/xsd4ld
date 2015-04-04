@@ -16,42 +16,51 @@
  * limitations under the License.
  */
 
-package xsd4ld;
+package xsd4ld ;
 
+import generate.* ;
 import xsd4ld.types.* ;
 
 public class XSD {
-    static public XSD_Simple             xsdSimple             = R1.xsdSimple ;
-    static public XSD_Atomic             xsdAtomic             = R1.xsdAtomic ;
+    static public XSDDatatype xsdSimple             = new XSD_Simple() ;
+    static public XSDDatatype xsdAtomic             = new XSD_Atomic() ;
 
-    static public XSD_Decimal            xsdDecimal            = R1.xsdDecimal ;
-    static public XSD_Integer            xsdInteger            = R1.xsdInteger ;
+    static public XSDDatatype xsdDecimal            = new XSD_Decimal() ;
+    static public XSDDatatype xsdInteger            = new XSD_Integer() ;
 
-    static public XSD_Long               xsdLong               = R1.xsdLong ;
-    static public XSD_Int                xsdInt                = R1.xsdInt ;
-    static public XSD_Short              xsdShort              = R1.xsdShort ;
-    static public XSD_Byte               xsdByte               = R1.xsdByte ;
+    static public XSDDatatype xsdDouble             = new XSD_Double() ;
+    static public XSDDatatype xsdFloat              = new XSD_Float() ;
 
-    static public XSD_NegativeInteger    xsdNegativeInteger    = R1.xsdNegativeInteger ;
-    static public XSD_NonNegativeInteger xsdNonNegativeInteger = R1.xsdNonNegativeInteger ;
-    static public XSD_NonPositiveInteger xsdNonPositiveInteger = R1.xsdNonPositiveInteger ;
-    static public XSD_PositiveInteger    xsdPositiveInteger    = R1.xsdPositiveInteger ;
+    static public XSDDatatype xsdLong               = new XSD_Long() ;
+    static public XSDDatatype xsdInt                = new XSD_Int() ;
+    static public XSDDatatype xsdShort              = new XSD_Short() ;
+    static public XSDDatatype xsdByte               = new XSD_Byte() ;
 
-    static public XSD_UnsignedLong       xsdUnsignedLong       = R1.xsdUnsignedLong ;
-    static public XSD_UnsignedInt        xsdUnsignedInt        = R1.xsdUnsignedInt ;
-    static public XSD_UnsignedShort      xsdUnsignedShort      = R1.xsdUnsignedShort ;
-    static public XSD_UnsignedByte       xsdUnsignedByte       = R1.xsdUnsignedByte ;
+    static public XSDDatatype xsdNegativeInteger    = new XSD_NegativeInteger() ;
+    static public XSDDatatype xsdNonNegativeInteger = new XSD_NonNegativeInteger() ;
+    static public XSDDatatype xsdNonPositiveInteger = new XSD_NonPositiveInteger() ;
+    static public XSDDatatype xsdPositiveInteger    = new XSD_PositiveInteger() ;
 
-    static public XSD_DateTimeStamp      xsdDateTimeStamp      = R1.xsdDateTimeStamp ;
-    static public XSD_DateTime           xsdDateTime           = R1.xsdDateTime ;
-    static public XSD_Date               xsdDate               = R1.xsdDate ;
-    static public XSD_Time               xsdTime               = R1.xsdTime ;
+    static public XSDDatatype xsdUnsignedLong       = new XSD_UnsignedLong() ;
+    static public XSDDatatype xsdUnsignedInt        = new XSD_UnsignedInt() ;
+    static public XSDDatatype xsdUnsignedShort      = new XSD_UnsignedShort() ;
+    static public XSDDatatype xsdUnsignedByte       = new XSD_UnsignedByte() ;
 
-    static public XSD_GYear              xsdGYear              = R1.xsdGYear ;
-    static public XSD_GYearMonth         xsdGYearMonth         = R1.xsdGYearMonth ;
-    static public XSD_GMonthDay          xsdGMonthDay          = R1.xsdGMonthDay ;
-    static public XSD_GDay               xsdGDay               = R1.xsdGDay ;
-    static public XSD_GMonth             xsdGMonth             = R1.xsdGMonth ;
+    static public XSDDatatype xsdDuration           = new XSD_Duration() ;
+    static public XSDDatatype xsdYearMonthDuration  = new XSD_YearMonthDuration() ;
+
+    static public XSDDatatype xsdString             = new XSD_String() ;
+    static public XSDDatatype xsdNormalizedString   = new XSD_NormalizedString(null, null) ;
+    static public XSDDatatype xsdLanguage           = new XSD_Language() ;
+
+    static public XSDDatatype xsdDateTimeStamp      = new XSD_DateTimeStamp() ;
+    static public XSDDatatype xsdDateTime           = new XSD_DateTime() ;
+    static public XSDDatatype xsdDate               = new XSD_Date() ;
+    static public XSDDatatype xsdTime               = new XSD_Time() ;
+
+    static public XSDDatatype xsdGYear              = new XSD_GYear() ;
+    static public XSDDatatype xsdGYearMonth         = new XSD_GYearMonth() ;
+    static public XSDDatatype xsdGMonthDay          = new XSD_GMonthDay() ;
+    static public XSDDatatype xsdGDay               = new XSD_GDay() ;
+    static public XSDDatatype xsdGMonth             = new XSD_GMonth() ;
 }
-
-

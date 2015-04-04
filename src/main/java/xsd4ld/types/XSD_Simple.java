@@ -24,7 +24,7 @@ import xsd4ld.XSDDatatype ;
 
 public class XSD_Simple extends XSDDatatype {
 
-    protected XSD_Simple() {
+    public XSD_Simple() {
         super(C.xsd_atomic, C.xsd_anyType, null) ;
     }
 

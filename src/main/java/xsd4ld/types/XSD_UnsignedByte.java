@@ -23,7 +23,7 @@ import static java.math.BigInteger.ZERO ;
 import xsd4ld.C ;
 
 public class XSD_UnsignedByte extends BaseInteger {
-    XSD_UnsignedByte() {
+    public XSD_UnsignedByte() {
         super("unsignedByte", "unsignedShort", ZERO, C.i(255), true, PLUS) ;
     }
 }

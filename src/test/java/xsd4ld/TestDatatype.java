@@ -16,12 +16,13 @@
  * limitations under the License.
  */
 
-package xsd4ld.types;
+package xsd4ld;
 
-import xsd4ld.C ;
+import org.junit.Test ;
 
-public class XSD_Long extends BaseInteger {
-    public XSD_Long() {
-        super("long", "integer", C.LONG_MIN, C.LONG_MAX, true, SignType.ANY) ;
+public class TestDatatype {
+    @Test public void __init() {
+        XSDDatatype dt = XSD.xsdAtomic ;
     }
 }
+

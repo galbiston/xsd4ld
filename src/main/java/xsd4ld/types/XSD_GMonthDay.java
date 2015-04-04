@@ -21,7 +21,7 @@ package xsd4ld.types;
 import xsd4ld.DateTimeStruct ;
 
 public class XSD_GMonthDay extends BaseDateTime {
-    XSD_GMonthDay() {
+    public XSD_GMonthDay() {
         super("gMonthDay", DateTimeStruct::parseGMonthDay) ;
     }
 }

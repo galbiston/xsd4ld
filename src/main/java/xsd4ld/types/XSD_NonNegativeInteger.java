@@ -22,7 +22,7 @@ import static xsd4ld.types.SignType.PLUS ;
 import static java.math.BigInteger.ZERO ;
 
 public class XSD_NonNegativeInteger extends BaseInteger {
-    XSD_NonNegativeInteger() {
+    public XSD_NonNegativeInteger() {
         super("nonNegativeInteger", "integer", ZERO, null, true, PLUS) ;
     }
 }

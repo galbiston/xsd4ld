@@ -127,7 +127,7 @@ public class Generate {
         String parser = "parse"+string2 ;
         
         System.out.println("    public static class "+cls+" extends BaseDateTime {") ;
-        System.out.println("        "+cls+"() {") ;
+        System.out.println("        public "+cls+"() {") ;
         System.out.println("            super(\""+string+"\", DateTimeStruct::parse"+string2+") ;") ;
         System.out.println("        }") ;
         System.out.println("    }") ;

@@ -22,8 +22,8 @@ import xsd4ld.C ;
 
 public class XSD_String extends BaseString {
 
-    public XSD_String(String shortName, String baseType) {
-        super(C.xsd_string, null) ;
+    public XSD_String() {
+        super(C.xsd_string, C.xsd_atomic) ;
     }
 
 }

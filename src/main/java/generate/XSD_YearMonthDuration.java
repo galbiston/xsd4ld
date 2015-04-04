@@ -1,5 +1,5 @@
 /**
- * Licensed to the Apache Software Foundation (ASF) under one
+public  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
@@ -16,12 +16,15 @@
  * limitations under the License.
  */
 
-package xsd4ld.types;
+package generate;
 
 import xsd4ld.C ;
+import xsd4ld.TypeRegistry ;
 
-public class XSD_Long extends BaseInteger {
-    public XSD_Long() {
-        super("long", "integer", C.LONG_MIN, C.LONG_MAX, true, SignType.ANY) ;
+public class XSD_YearMonthDuration extends BaseDuration {
+    public XSD_YearMonthDuration() {
+        //@@ check regex
+        super(C.xsd_yearMonthDuration, C.xsd_duration, TypeRegistry.getRegex(C.xsd_duration)) ;
     }
 }
+

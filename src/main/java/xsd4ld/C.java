@@ -49,6 +49,7 @@ public class C {
     public static final String xsd_QName = "QName" ;
 
     public static final String xsd_normalizedString = "normalizedString" ;
+    public static final String xsd_token = "token" ;
     public static final String xsd_language = "language" ;
     //public static final String xsd_??Name = "Name" ;
     //public static final String xsd_??NCName = "NCName" ;

@@ -26,7 +26,7 @@ import xsd4ld.XSDDatatype ;
 
 public class XSD_Decimal extends XSDDatatype {
 
-    protected XSD_Decimal() {
+    public XSD_Decimal() {
         super(C.xsd_decimal, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_decimal)) ;
     }
 

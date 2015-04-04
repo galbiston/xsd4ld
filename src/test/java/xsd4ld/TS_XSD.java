@@ -16,12 +16,17 @@
  * limitations under the License.
  */
 
-package xsd4ld.types;
+package xsd4ld;
 
-import xsd4ld.C ;
+import org.junit.runner.RunWith ;
+import org.junit.runners.Suite ;
 
-public class XSD_Long extends BaseInteger {
-    public XSD_Long() {
-        super("long", "integer", C.LONG_MIN, C.LONG_MAX, true, SignType.ANY) ;
-    }
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+    TestDatatype.class,
+    TestInteger.class
+})
+public class TS_XSD {
+
 }
+

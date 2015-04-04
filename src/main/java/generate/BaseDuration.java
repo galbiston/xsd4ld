@@ -1,5 +1,5 @@
 /**
- * Licensed to the Apache Software Foundation (ASF) under one
+public  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
@@ -16,12 +16,32 @@
  * limitations under the License.
  */
 
-package xsd4ld.types;
+package generate;
 
-import xsd4ld.C ;
+import java.util.regex.Pattern ;
 
-public class XSD_Long extends BaseInteger {
-    public XSD_Long() {
-        super("long", "integer", C.LONG_MIN, C.LONG_MAX, true, SignType.ANY) ;
+import xsd4ld.XSDDatatype ;
+
+public class BaseDuration extends XSDDatatype {
+
+    protected BaseDuration(String shortName, String derivedFrom, Pattern regex) {
+        super(shortName, derivedFrom, regex) ;
     }
+
+    @Override
+    public Object value(String lex) {
+        return null ;
+    }
+
+    @Override
+    public boolean parse(String lex) {
+        return false ;
+    }
+
+    @Override
+    public boolean isValid(String lex) {
+        return false ;
+    }
+
 }
+

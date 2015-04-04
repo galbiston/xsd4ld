@@ -22,7 +22,7 @@ import static xsd4ld.types.SignType.MINUS ;
 import xsd4ld.C ;
 
 public class XSD_NegativeInteger extends BaseInteger {
-    XSD_NegativeInteger() {
+    public XSD_NegativeInteger() {
         super("negativeInteger", "nonPositiveInteger", null, C.MINUS_ONE, false, MINUS) ;
     }
 }

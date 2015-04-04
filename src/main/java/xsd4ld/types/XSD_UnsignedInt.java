@@ -23,7 +23,7 @@ import static java.math.BigInteger.ZERO ;
 import xsd4ld.C ;
 
 public class XSD_UnsignedInt extends BaseInteger {
-    XSD_UnsignedInt() {
+    public XSD_UnsignedInt() {
         super("unsignedInt", "unsignedLong", ZERO, C.INT_UMAX, true, PLUS) ;
     }
 }

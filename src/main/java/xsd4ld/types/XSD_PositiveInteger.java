@@ -21,7 +21,7 @@ package xsd4ld.types;
 import static java.math.BigInteger.ONE ;
 
 public class XSD_PositiveInteger extends BaseInteger {
-    XSD_PositiveInteger() {
+    public XSD_PositiveInteger() {
         super("positiveInteger", "nonNegativeInteger", ONE, null, false, SignType.PLUS) ;
     }
 }

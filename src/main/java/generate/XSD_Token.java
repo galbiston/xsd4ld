@@ -23,9 +23,7 @@ import xsd4ld.C ;
 public class XSD_Token extends BaseString {
 
     public XSD_Token(String shortName, String baseType) {
-        super(C.xsd_normalizedString, C.xsd_string) ;
+        super(C.xsd_token, C.xsd_normalizedString) ;
     }
-
-    // No (#xD), line feed (#xA) nor tab (#x9)
 }
 

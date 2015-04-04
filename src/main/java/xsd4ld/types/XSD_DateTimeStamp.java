@@ -21,7 +21,7 @@ package xsd4ld.types;
 import xsd4ld.DateTimeStruct ;
 
 public class XSD_DateTimeStamp extends BaseDateTime {
-    XSD_DateTimeStamp() {
+    public XSD_DateTimeStamp() {
         super("dateTime", DateTimeStruct::parseDateTime) ;
     }
 }

@@ -25,6 +25,9 @@ import xsd4ld.TypeRegistry ;
 import xsd4ld.XSDDatatype ;
 
 class BaseInteger extends XSDDatatype {
+    private final BigInteger minValue ;
+    private final BigInteger maxValue ;
+
     /**
      * @param shortName
      * @param baseType
@@ -37,6 +40,8 @@ class BaseInteger extends XSDDatatype {
                        BigInteger minValue, BigInteger maxValue, 
                        boolean allowZero, SignType signType) {
         super(shortName, baseType, TypeRegistry.getRegex(C.xsd_integer)) ;
+        this.minValue = minValue ;
+        this.maxValue = maxValue ;
     }
 
 
@@ -59,17 +64,23 @@ class BaseInteger extends XSDDatatype {
         return regex.matcher(lex).matches() ;
     }
 
+    //@@ Avoid double parsing.
     @Override
     public boolean isValid(String lex) {
         // No additional restrictions.
         boolean b = regex.matcher(lex).matches() ;
         if ( ! b )
             return false ;
-        return isValidValue() ;
+        return isValidValue(lex) ;
     }
     
-    public boolean isValidValue() {
-        return false ; 
+    public boolean isValidValue(String lex) {
+        BigInteger v = value(lex) ; 
+        if ( minValue != null && minValue.compareTo(v) > 0 )
+            return false ;
+        if ( maxValue != null && maxValue.compareTo(v) < 0 )
+            return false ;
+        return true ; 
     }
 
 //    @Override

@@ -21,7 +21,7 @@ package xsd4ld.types;
 import xsd4ld.DateTimeStruct ;
 
 public class XSD_GYearMonth extends BaseDateTime {
-    XSD_GYearMonth() {
+    public XSD_GYearMonth() {
         super("gYearMonth", DateTimeStruct::parseGYearMonth) ;
     }
 }

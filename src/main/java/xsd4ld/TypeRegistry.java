@@ -23,8 +23,8 @@ import java.util.Map ;
 import java.util.regex.Pattern ;
 
 public class TypeRegistry {
- private static Map<String, String>  regex    = new HashMap<>() ;
- private static Map<String, Pattern> patterns = new HashMap<>() ;
+    private static Map<String, String>  regex    = new HashMap<>() ;
+    private static Map<String, Pattern> patterns = new HashMap<>() ;
     
     static {
         // short name, regex
@@ -102,46 +102,13 @@ public class TypeRegistry {
     
     // Shortname to type
     public static Map<String, XSDDatatype> registry = new HashMap<>() ;
-    static {
-//        static public XSD_Simple             xsdSimple             = R1.xsdSimple ;
-//        static public XSD_Atomic             xsdAtomic             = R1.xsdAtomic ;
-//
-//        static public XSD_Decimal            xsdDecimal            = R1.xsdDecimal ;
-//        static public XSD_Integer            xsdInteger            = R1.xsdInteger ;
-//
-//        static public XSD_Long               xsdLong               = R1.xsdLong ;
-//        static public XSD_Int                xsdInt                = R1.xsdInt ;
-//        static public XSD_Short              xsdShort              = R1.xsdShort ;
-//        static public XSD_Byte               xsdByte               = R1.xsdByte ;
-//
-//        static public XSD_NegativeInteger    xsdNegativeInteger    = R1.xsdNegativeInteger ;
-//        static public XSD_NonNegativeInteger xsdNonNegativeInteger = R1.xsdNonNegativeInteger ;
-//        static public XSD_NonPositiveInteger xsdNonPositiveInteger = R1.xsdNonPositiveInteger ;
-//        static public XSD_PositiveInteger    xsdPositiveInteger    = R1.xsdPositiveInteger ;
-//
-//        static public XSD_UnsignedLong       xsdUnsignedLong       = R1.xsdUnsignedLong ;
-//        static public XSD_UnsignedInt        xsdUnsignedInt        = R1.xsdUnsignedInt ;
-//        static public XSD_UnsignedShort      xsdUnsignedShort      = R1.xsdUnsignedShort ;
-//        static public XSD_UnsignedByte       xsdUnsignedByte       = R1.xsdUnsignedByte ;
-//
-//        static public XSD_DateTimeStamp      xsdDateTimeStamp      = R1.xsdDateTimeStamp ;
-//        static public XSD_DateTime           xsdDateTime           = R1.xsdDateTime ;
-//        static public XSD_Date               xsdDate               = R1.xsdDate ;
-//        static public XSD_Time               xsdTime               = R1.xsdTime ;
-//
-//        static public XSD_GYear              xsdGYear              = R1.xsdGYear ;
-//        static public XSD_GYearMonth         xsdGYearMonth         = R1.xsdGYearMonth ;
-//        static public XSD_GMonthDay          xsdGMonthDay          = R1.xsdGMonthDay ;
-//        static public XSD_GDay               xsdGDay               = R1.xsdGDay ;
-//        static public XSD_GMonth             xsdGMonth             = R1.xsdGMonth ;
-
-    }
-    
-    
     
     
     public static void register(String shortName, String regex) {
-        patterns.put(shortName, Pattern.compile(regex)) ;        
+        Pattern pattern = null ;
+        if ( regex != null )
+            pattern = Pattern.compile(regex) ;
+        patterns.put(shortName, pattern) ;        
     }
     
     public static Pattern getRegex(String shortName) { 
@@ -151,5 +118,7 @@ public class TypeRegistry {
     public static String getRegexStr(String shortName) { 
         return regex.get(shortName) ; 
     }
+
+    public static void init() {}
 }
 

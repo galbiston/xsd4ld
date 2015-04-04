@@ -28,7 +28,12 @@ public class NOTES {
     
     // java.xml
     
+    // Check yearMonth and dayTime duration regexs
+    
     // No extensibility.
+    
+    // Add "not null" tests for initialization. 
+    // Auto generate the TestInteger2 paramertization script ... then check.
     
     /* Support types:
 string

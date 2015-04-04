@@ -19,11 +19,28 @@
 package generate;
 
 import xsd4ld.C ;
+import xsd4ld.TypeRegistry ;
+import xsd4ld.XSDDatatype ;
 
-public class XSD_Float extends BaseString {
+public class XSD_Float extends XSDDatatype {
 
-    public XSD_Float(String shortName, String baseType) {
-        super(C.xsd_string, null) ;
+    public XSD_Float() {
+        super(C.xsd_float, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_float)) ;
+    }
+
+    @Override
+    public Float value(String lex) {
+        return null ;
+    }
+
+    @Override
+    public boolean parse(String lex) {
+        return false ;
+    }
+
+    @Override
+    public boolean isValid(String lex) {
+        return false ;
     }
 
 }

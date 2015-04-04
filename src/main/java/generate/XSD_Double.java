@@ -19,11 +19,28 @@
 package generate;
 
 import xsd4ld.C ;
+import xsd4ld.TypeRegistry ;
+import xsd4ld.XSDDatatype ;
 
-public class XSD_Double extends BaseString {
+public class XSD_Double extends XSDDatatype {
 
-    public XSD_Double(String shortName, String baseType) {
-        super(C.xsd_string, null) ;
+    public XSD_Double() {
+        super(C.xsd_double, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_double)) ;
+    }
+
+    @Override
+    public Double value(String lex) {
+        return null ;
+    }
+
+    @Override
+    public boolean parse(String lex) {
+        return false ;
+    }
+
+    @Override
+    public boolean isValid(String lex) {
+        return false ;
     }
 
 }
