@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-package xsd4ld;
+package xsd4ld.other;
 
-public class XSD4J {
-
+public enum ValueSpace {
+    NUMBER, DATETIME, DURATION
 }
 

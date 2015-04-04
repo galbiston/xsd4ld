@@ -16,9 +16,39 @@
  * limitations under the License.
  */
 
-package xsd4ld;
+package xsd4ld.other;
 
-public class Value {
+import xsd4ld.XSDDatatype ;
+
+public class TypedLiteral {
+    private final String lexicalForm ;
+    private final XSDDatatype datatype ;
+    
+    public TypedLiteral(String lexicalForm, XSDDatatype datatype) {
+        this.lexicalForm = lexicalForm ;
+        this.datatype = datatype ;
+    }
+    
+    public String canonicalForm(String lex) {
+        return null ;
+    }
+
+    public String getLexicalForm() {
+        return lexicalForm ;
+    }
+
+    public XSDDatatype getDatatype() {
+        return datatype ;
+    }
+
+    public boolean isValid() {
+        return datatype.isValid(lexicalForm) ;
+    }
+
+    /** Return the value, or null if not a valid lexical form */
+    public Object value() {
+        return null ;
+    }
 
 }
 

@@ -33,7 +33,7 @@ public class LibTestXSD {
             else
                 fail("Unexpected valid: "+type.getName()+" '"+lex+"'") ;
         }
-        if ( valid )
+        if ( valid && type.getRegex() != null )
             assertTrue("Lex:"+lex+" Regex: "+type.getRegex(), type.getRegex().matcher(lex).matches()) ;
         if ( valid )
             assertTrue(type.parse(lex)) ;

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package xsd4ld;
+package xsd4ld.lib;
 
 /** XSD date/time 7-component model.
  * Includes parsing xsd:dateTime, xsd:date and xsd:g*

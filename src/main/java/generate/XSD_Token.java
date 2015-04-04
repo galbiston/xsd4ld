@@ -19,6 +19,7 @@
 package generate;
 
 import xsd4ld.C ;
+import xsd4ld.types.BaseString ;
 
 public class XSD_Token extends BaseString {
 

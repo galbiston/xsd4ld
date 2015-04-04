@@ -19,13 +19,12 @@
 package generate;
 
 import xsd4ld.C ;
+import xsd4ld.types.BaseString ;
 
 public class XSD_Language extends BaseString {
 
     public XSD_Language() {
         super(C.xsd_token, C.xsd_normalizedString) ;
     }
-
-    // No (#xD), line feed (#xA) nor tab (#x9)
 }
 

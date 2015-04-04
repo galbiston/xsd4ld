@@ -18,7 +18,7 @@
 
 package xsd4ld.types;
 
-import xsd4ld.DateTimeStruct ;
+import xsd4ld.lib.DateTimeStruct ;
 
 public class XSD_DateTimeStamp extends BaseDateTime {
     public XSD_DateTimeStamp() {

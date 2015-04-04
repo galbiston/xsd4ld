@@ -16,12 +16,15 @@
  * limitations under the License.
  */
 
-package xsd4ld;
+package xsd4ld.types;
 
-public class XSDDatatypeFactory {
-    /** Get the datatype by it's short name (e.g. "string") */
-    XSDDatatype getTypeByName(String shorname)  { return null ; }
-    /** Get the datatype by it's URI (e.g. "http://www.w3.org/2001/XMLSchema#string") */
-    XSDDatatype getTypeByURI(String uri)  { return null ; }
+import xsd4ld.C ;
+
+public class XSD_String extends BaseString {
+
+    public XSD_String() {
+        super(C.xsd_string, C.xsd_atomic) ;
+    }
+
 }
 

@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-package generate;
+package xsd4ld.types;
 
 import xsd4ld.XSDDatatype ;
 
-public class BaseString extends XSDDatatype {
+public abstract class BaseString extends XSDDatatype {
 
     public BaseString(String shortName, String baseType) { 
         super(shortName, baseType, null) ;
@@ -42,9 +42,14 @@ public class BaseString extends XSDDatatype {
 
     @Override
     public boolean isValid(String lex) {
-        return true ;
+        return valid_NL_LF_TAB(lex) ;
     }
     
+    protected boolean valid_NL_LF_TAB(String lex) {
+        return true ;
+    }
+
+
     public boolean isValidValue() {
         return true ; 
     }

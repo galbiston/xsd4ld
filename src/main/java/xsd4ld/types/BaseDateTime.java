@@ -19,8 +19,8 @@
 package xsd4ld.types;
 
 import xsd4ld.C ;
-import xsd4ld.DateTimeStruct ;
 import xsd4ld.XSDDatatype ;
+import xsd4ld.lib.DateTimeStruct ;
 
 
 /** The 7 component date/time model. */  

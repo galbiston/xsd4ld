@@ -16,16 +16,23 @@
  * limitations under the License.
  */
 
-package generate;
+package xsd4ld;
 
-import xsd4ld.C ;
+import org.junit.Test ;
 
-public class XSD_NormalizedString extends BaseString {
-
-    public XSD_NormalizedString(String shortName, String baseType) {
-        super(C.xsd_normalizedString, C.xsd_string) ;
-    }
-
-    // No (#xD), line feed (#xA) nor tab (#x9)
+/** Test of the machinary for strings and derived types.
+ * @see TestIntegerRange
+ */
+public class TestString {
+    @Test public void string_01() { LibTestXSD.valid("abc", XSD.xsdString); }  
+    @Test public void string_02() { LibTestXSD.valid("\t", XSD.xsdString); }
+    
+    @Test public void normalizedString_01() { LibTestXSD.valid("abc", XSD.xsdNormalizedString) ; }
+    @Test public void normalizedString_02() { LibTestXSD.invalid("\t", XSD.xsdNormalizedString) ; }
+    @Test public void normalizedString_03() { LibTestXSD.invalid("abc\n", XSD.xsdNormalizedString) ; }
+    @Test public void normalizedString_04() { LibTestXSD.invalid("\rdef", XSD.xsdNormalizedString) ; }
+    
+    // @@ Token
+    // @@ Language
 }
 

@@ -23,19 +23,13 @@ package xsd4ld;
 
 public class NOTES {
 
-        // "Atomic XSD"
-    // datatype avd Values.
-    
-    // java.xml
+    // java.xml mappings.
     
     // Check yearMonth and dayTime duration regexs
     
     // No extensibility.
     
-    // Add "not null" tests for initialization. 
-    // Auto generate the TestInteger2 paramertization script ... then check.
-    
-    /* Support types:
+    /* Supported types:
 string
 boolean 
 decimal
