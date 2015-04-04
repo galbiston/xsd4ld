@@ -16,15 +16,42 @@
  * limitations under the License.
  */
 
-package generate;
+package xsd4ld.types;
+
+import java.util.regex.Pattern ;
 
 import xsd4ld.C ;
-import xsd4ld.types.BaseString ;
+import xsd4ld.TypeRegistry ;
+import xsd4ld.lib.LangTag2 ;
 
 public class XSD_Language extends BaseString {
-
+    private Pattern pattern = TypeRegistry.getRegex(C.xsd_language) ;
+    
     public XSD_Language() {
-        super(C.xsd_token, C.xsd_normalizedString) ;
+        super(C.xsd_language, C.xsd_token) ;
+    }
+    
+    @Override
+    protected String valueOrException(String lex) {
+        if ( isValid(lex) )
+            return LangTag2.canonical(lex) ;
+        return null ;
+    }
+    
+    @Override
+    public boolean parse(String lex) {
+        return true ;
+    }
+
+    @Override
+    public boolean isValid(String lex) {
+        return null != LangTag2.parse(lex) ;
+        //return pattern.matcher(lex).matches() ;
+    }
+    
+    @Override
+    public Pattern getRegex() {
+        return TypeRegistry.getRegex(C.xsd_language) ;
     }
 }
 

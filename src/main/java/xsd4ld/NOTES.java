@@ -29,6 +29,20 @@ public class NOTES {
     
     // No extensibility.
     
+    /*
+xs:date     XMLGregorianCalendar
+xs:dateTime     XMLGregorianCalendar
+xs:duration     Duration
+xs:gDay     XMLGregorianCalendar
+xs:gMonth   XMLGregorianCalendar
+xs:gMonthDay    XMLGregorianCalendar
+xs:gYear    XMLGregorianCalendar
+xs:gYearMonth   XMLGregorianCalendar
+xs:time     XMLGregorianCalendar
+
+xdt:dayTimeDuration     Duration
+xdt:yearMonthDuration   Duration     */
+    
     /* Supported types:
 string
 boolean 

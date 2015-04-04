@@ -37,7 +37,7 @@ public abstract class BaseDoubleFloat extends XSDDatatype {
     @Override
     public boolean isValid(String lex) {
         try {
-            value(lex) ;
+            valueOrException(lex) ;
             return true ;
         } catch (NumberFormatException ex) { return false ; }
     }

@@ -31,7 +31,7 @@ public class XSD_Decimal extends XSDDatatype {
     }
 
     @Override
-    public Object value(String lex) {
+    protected Object valueOrException(String lex) {
         try {
             // This parses it
             return new BigDecimal(lex) ;

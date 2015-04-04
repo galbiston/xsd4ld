@@ -49,7 +49,7 @@ class BaseInteger extends XSDDatatype {
     // XSD_AbstractInteger?
     
     @Override
-    public BigInteger value(String lex) {
+    protected BigInteger valueOrException(String lex) {
         try {
             // This parses it
             return new BigInteger(lex) ;
@@ -75,7 +75,7 @@ class BaseInteger extends XSDDatatype {
     }
     
     public boolean isValidValue(String lex) {
-        BigInteger v = value(lex) ; 
+        BigInteger v = valueOrException(lex) ; 
         if ( minValue != null && minValue.compareTo(v) > 0 )
             return false ;
         if ( maxValue != null && maxValue.compareTo(v) < 0 )

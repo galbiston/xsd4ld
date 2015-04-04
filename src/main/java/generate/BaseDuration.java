@@ -18,6 +18,7 @@ public  * Licensed to the Apache Software Foundation (ASF) under one
 
 package generate;
 
+import java.time.Duration ;
 import java.util.regex.Pattern ;
 
 import xsd4ld.XSDDatatype ;
@@ -29,13 +30,22 @@ public class BaseDuration extends XSDDatatype {
     }
 
     @Override
-    public Object value(String lex) {
-        return null ;
+    protected Duration valueOrException(String lex) {
+        try {
+            return Duration.parse(lex) ;
+        } catch ( Exception ex) {
+            return null ; 
+        }
     }
 
     @Override
     public boolean parse(String lex) {
-        return false ;
+        try {
+            valueOrException(lex) ;
+            return true ;
+        } catch ( Exception ex) {
+            return false ; 
+        }
     }
 
     @Override

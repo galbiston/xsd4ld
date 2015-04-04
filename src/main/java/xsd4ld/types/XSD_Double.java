@@ -27,7 +27,7 @@ public class XSD_Double extends BaseDoubleFloat {
     }
 
     @Override
-    public Double value(String lex) {
+    protected Double valueOrException(String lex) {
         return Double.parseDouble(fix(lex)) ;
     }
 }

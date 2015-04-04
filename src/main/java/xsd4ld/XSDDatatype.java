@@ -43,7 +43,13 @@ public abstract class XSDDatatype {
      * @param lex
      * @return Object
      */
-    public abstract Object value(String lex) ;
+    
+    public Object value(String lex) {
+        try {return valueOrException(lex) ; }
+        catch (Exception ex) { return null; }
+    }
+    
+    protected abstract Object valueOrException(String lex) ;
 
     /** Get the XSD name for this type */
     public String getName() { return shortName ; }

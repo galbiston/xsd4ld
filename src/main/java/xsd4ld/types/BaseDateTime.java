@@ -51,7 +51,7 @@ class BaseDateTime extends XSDDatatype  {
     }
 
     @Override
-    public Object value(String lex) {
+    protected Object valueOrException(String lex) {
         return C.factory.newXMLGregorianCalendar(lex) ;
     }
 

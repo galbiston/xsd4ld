@@ -19,6 +19,7 @@
 package xsd4ld;
 
 import org.junit.Test ;
+import static org.junit.Assert.* ;
 
 /** Test of the machinary for strings and derived types.
  * @see TestIntegerRange
@@ -31,8 +32,55 @@ public class TestString {
     @Test public void normalizedString_02() { LibTestXSD.invalid("\t", XSD.xsdNormalizedString) ; }
     @Test public void normalizedString_03() { LibTestXSD.invalid("abc\n", XSD.xsdNormalizedString) ; }
     @Test public void normalizedString_04() { LibTestXSD.invalid("\rdef", XSD.xsdNormalizedString) ; }
+
+    @Test public void normalizedString_05() { LibTestXSD.valid(" def", XSD.xsdNormalizedString) ; }
+    @Test public void normalizedString_06() { LibTestXSD.valid("def ", XSD.xsdNormalizedString) ; }
+    @Test public void normalizedString_07() { LibTestXSD.valid("abc def", XSD.xsdNormalizedString) ; }
+    @Test public void normalizedString_08() { LibTestXSD.valid("abc  def", XSD.xsdNormalizedString) ; }
     
-    // @@ Token
-    // @@ Language
+    @Test public void token_01() { LibTestXSD.valid("abc", XSD.xsdToken) ; }
+    @Test public void token_02() { LibTestXSD.invalid("\t", XSD.xsdToken) ; }
+    @Test public void token_03() { LibTestXSD.invalid("abc\n", XSD.xsdToken) ; }
+    @Test public void token_04() { LibTestXSD.invalid("\rdef", XSD.xsdToken) ; }
+
+    @Test public void token_05() { LibTestXSD.invalid(" def", XSD.xsdToken) ; }
+    @Test public void token_06() { LibTestXSD.invalid("def ", XSD.xsdToken) ; }
+    @Test public void token_07() { LibTestXSD.valid("abc def", XSD.xsdToken) ; }
+    @Test public void token_08() { LibTestXSD.invalid("abc  def", XSD.xsdToken) ; }
+    
+    // The language tag parser is tested separately.
+    @Test public void language_01() { LibTestXSD.valid("en-uk", XSD.xsdLanguage) ; }
+    @Test public void language_02() { LibTestXSD.valid("en-UK", XSD.xsdLanguage) ; }
+    @Test public void language_10() { LibTestXSD.invalid(" en-UK", XSD.xsdLanguage) ; }
+    @Test public void language_11() { LibTestXSD.invalid("en-UK ", XSD.xsdLanguage) ; }
+    @Test public void language_12() { LibTestXSD.invalid("en UK", XSD.xsdLanguage) ; }
+    @Test public void language_13() { LibTestXSD.invalid("abcdefghijkl-xyz", XSD.xsdLanguage) ; }
+
+
+    // Using spec regex
+    @Test public void language_01a() { 
+        assertTrue(XSD.xsdLanguage.getRegex().matcher("en-UK").matches()) ;
+    }
+    @Test public void language_02a() {
+        assertTrue(XSD.xsdLanguage.getRegex().matcher("en").matches()) ;
+    }
+
+    
+    @Test public void language_10a() { 
+        assertFalse(XSD.xsdLanguage.getRegex().matcher(" en-UK").matches()) ;
+    }
+        
+    @Test public void language_11a() { 
+        assertFalse(XSD.xsdLanguage.getRegex().matcher("en-UK ").matches()) ;
+    }
+    @Test public void language_12a() {
+        assertFalse(XSD.xsdLanguage.getRegex().matcher("en UK").matches()) ;
+    }
+    
+    @Test public void language_13a() {
+        assertFalse(XSD.xsdLanguage.getRegex().matcher("abcdefghijkl-xyz").matches()) ;
+    }
+
+
 }
 

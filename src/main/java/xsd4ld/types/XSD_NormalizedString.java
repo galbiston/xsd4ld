@@ -22,22 +22,12 @@ import xsd4ld.C ;
 
 public class XSD_NormalizedString extends BaseString {
     // No newline (#xD), line feed (#xA) nor tab (#x9)
-    public XSD_NormalizedString(String shortName, String baseType) {
+    public XSD_NormalizedString() {
         super(C.xsd_normalizedString, C.xsd_string) ;
     }
-
-    protected final char NL = '\n' ;    // #xD
-    protected final char LF = '\r' ;    // #xA
-    protected final char TAB = '\u0009' ;
-    
     @Override
     public boolean valid_NL_LF_TAB(String lex) {
-        for ( int i = 0 ; i < lex.length() ; i++ ) {
-            char ch = lex.charAt(i) ;
-            if ( ch == NL || ch == LF || ch == TAB )
-                return false ;
-        }
-        return true ;
+        return test_valid_NL_LF_TAB(lex) ;
     }
 }
 

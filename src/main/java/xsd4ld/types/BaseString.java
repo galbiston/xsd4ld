@@ -31,8 +31,10 @@ public abstract class BaseString extends XSDDatatype {
     // XSD_AbstractInteger?
     
     @Override
-    public String value(String lex) {
-        return lex ;
+    protected String valueOrException(String lex) {
+        if ( isValid(lex) ) 
+            return lex ;
+        return null ;
     }
     
     @Override
@@ -49,9 +51,17 @@ public abstract class BaseString extends XSDDatatype {
         return true ;
     }
 
-
-    public boolean isValidValue() {
-        return true ; 
+    protected static final char NL = '\n' ;    // #xD
+    protected static final char LF = '\r' ;    // #xA
+    protected static final char TAB = '\u0009' ;
+    
+    protected static boolean test_valid_NL_LF_TAB(String lex) {
+        for ( int i = 0 ; i < lex.length() ; i++ ) {
+            char ch = lex.charAt(i) ;
+            if ( ch == NL || ch == LF || ch == TAB )
+                return false ;
+        }
+        return true ;
     }
     
 //    @Override

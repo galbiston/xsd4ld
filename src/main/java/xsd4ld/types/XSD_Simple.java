@@ -29,7 +29,7 @@ public class XSD_Simple extends XSDDatatype {
     }
 
     @Override
-    public Object value(String lex) {
+    protected Object valueOrException(String lex) {
         return lex ;
     }
 

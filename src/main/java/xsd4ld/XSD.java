@@ -50,7 +50,8 @@ public class XSD {
     static public XSDDatatype xsdYearMonthDuration  = new XSD_YearMonthDuration() ;
 
     static public XSDDatatype xsdString             = new XSD_String() ;
-    static public XSDDatatype xsdNormalizedString   = new XSD_NormalizedString(null, null) ;
+    static public XSDDatatype xsdNormalizedString   = new XSD_NormalizedString() ;
+    static public XSDDatatype xsdToken              = new XSD_Token() ;
     static public XSDDatatype xsdLanguage           = new XSD_Language() ;
 
     static public XSDDatatype xsdDateTimeStamp      = new XSD_DateTimeStamp() ;
