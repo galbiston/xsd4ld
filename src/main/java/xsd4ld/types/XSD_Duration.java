@@ -16,15 +16,15 @@ public  * Licensed to the Apache Software Foundation (ASF) under one
  * limitations under the License.
  */
 
-package generate;
+package xsd4ld.types;
 
 import xsd4ld.C ;
 import xsd4ld.TypeRegistry ;
 
-public class XSD_DayTimeDuration extends BaseDuration {
-    public XSD_DayTimeDuration() {
-        //@@ check regex
-        super(C.xsd_yearMonthDuration, C.xsd_duration, TypeRegistry.getRegex(C.xsd_duration)) ;
+public class XSD_Duration extends BaseDuration {
+    public XSD_Duration() {
+        super(C.xsd_duration, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_duration)) ;
     }
+
 }
 

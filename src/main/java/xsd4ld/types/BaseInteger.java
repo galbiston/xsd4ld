@@ -24,7 +24,7 @@ import xsd4ld.C ;
 import xsd4ld.TypeRegistry ;
 import xsd4ld.XSDDatatype ;
 
-class BaseInteger extends XSDDatatype {
+abstract class BaseInteger extends XSDDatatype {
     private final BigInteger minValue ;
     private final BigInteger maxValue ;
 

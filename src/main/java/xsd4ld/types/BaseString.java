@@ -20,7 +20,7 @@ package xsd4ld.types;
 
 import xsd4ld.XSDDatatype ;
 
-public abstract class BaseString extends XSDDatatype {
+abstract class BaseString extends XSDDatatype {
 
     public BaseString(String shortName, String baseType) { 
         super(shortName, baseType, null) ;

@@ -16,14 +16,44 @@ public  * Licensed to the Apache Software Foundation (ASF) under one
  * limitations under the License.
  */
 
-package generate;
+package xsd4ld.types;
+
+import java.util.regex.Pattern ;
+
+import javax.xml.datatype.Duration ;
 
 import xsd4ld.C ;
-import xsd4ld.TypeRegistry ;
+import xsd4ld.XSDDatatype ;
 
-public class XSD_Duration extends BaseDuration {
-    public XSD_Duration() {
-        super(C.xsd_duration, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_duration)) ;
+/** Durations */
+abstract class BaseDuration extends XSDDatatype {
+
+    protected BaseDuration(String shortName, String derivedFrom, Pattern regex) {
+        super(shortName, derivedFrom, regex) ;
+    }
+
+    @Override
+    protected Duration valueOrException(String lex) {
+        try {
+            return C.factory.newDuration(lex) ;
+        } catch ( Exception ex) {
+            return null ; 
+        }
+    }
+
+    @Override
+    public boolean parse(String lex) {
+        try {
+            valueOrException(lex) ;
+            return true ;
+        } catch ( Exception ex) {
+            return false ; 
+        }
+    }
+
+    @Override
+    public boolean isValid(String lex) {
+        return false ;
     }
 
 }

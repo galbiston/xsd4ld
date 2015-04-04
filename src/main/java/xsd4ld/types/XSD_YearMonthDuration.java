@@ -16,7 +16,9 @@ public  * Licensed to the Apache Software Foundation (ASF) under one
  * limitations under the License.
  */
 
-package generate;
+package xsd4ld.types;
+
+import javax.xml.datatype.Duration ;
 
 import xsd4ld.C ;
 import xsd4ld.TypeRegistry ;
@@ -25,6 +27,16 @@ public class XSD_YearMonthDuration extends BaseDuration {
     public XSD_YearMonthDuration() {
         //@@ check regex
         super(C.xsd_yearMonthDuration, C.xsd_duration, TypeRegistry.getRegex(C.xsd_duration)) ;
+    }
+    
+    @Override
+    protected Duration valueOrException(String lex) {
+        Duration obj = super.valueOrException(lex) ;
+        if ( obj == null )
+            return null ;
+        if ( lex.indexOf('D') != -1 || lex.indexOf('T') != -1 )
+            throw new IllegalArgumentException("Not valid as xsd:yearMonthDuration: "+lex) ;
+        return obj ;
     }
 }
 

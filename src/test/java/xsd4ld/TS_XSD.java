@@ -26,7 +26,9 @@ import org.junit.runners.Suite ;
     TestDatatype.class,
     TestNumber.class,
     TestIntegerRange.class,
-    TestString.class
+    TestString.class,
+    TestDuration.class,
+    TestDateTime.class
 })
 public class TS_XSD {
 

@@ -22,8 +22,8 @@ import xsd4ld.C ;
 import xsd4ld.TypeRegistry ;
 import xsd4ld.XSDDatatype ;
 
-/*8 Comonality for XSD_Double and XSD_Float */
-public abstract class BaseDoubleFloat extends XSDDatatype {
+/** Commonality for XSD_Double and XSD_Float */
+abstract class BaseDoubleFloat extends XSDDatatype {
 
     public BaseDoubleFloat(String shortName) {
         super(shortName, C.xsd_atomic, TypeRegistry.getRegex(shortName)) ;

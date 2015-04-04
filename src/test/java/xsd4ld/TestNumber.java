@@ -24,8 +24,7 @@ import org.junit.Test ;
  * @see TestIntegerRange
  */
 public class TestNumber {
-    // @@ Double
-    // @@ Float
+    // @@ PrecisionDecimal
     
     @Test public void double_01() { LibTestXSD.valid("0", XSD.xsdDouble) ; }
     @Test public void double_02() { LibTestXSD.valid("1e0", XSD.xsdDouble) ; }
