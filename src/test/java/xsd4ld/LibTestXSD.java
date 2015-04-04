@@ -16,31 +16,31 @@
  * limitations under the License.
  */
 
-package generate;
+package xsd4ld;
 
-import xsd4ld.C ;
-import xsd4ld.TypeRegistry ;
-import xsd4ld.XSDDatatype ;
+import static org.junit.Assert.* ;
 
-public class XSD_Double extends XSDDatatype {
+public class LibTestXSD {
 
-    public XSD_Double() {
-        super(C.xsd_double, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_double)) ;
+    static void valid(String lex, XSDDatatype type) {
+        test(lex, type, true);
     }
 
-    @Override
-    public Double value(String lex) {
-        return null ;
+    static void test(String lex, XSDDatatype type, boolean valid) {
+        if ( valid != type.isValid(lex) ) {
+            if ( valid ) 
+                fail("Unexpected invalid: "+type.getName()+" '"+lex+"'") ;
+            else
+                fail("Unexpected valid: "+type.getName()+" '"+lex+"'") ;
+        }
+        if ( valid )
+            assertTrue("Lex:"+lex+" Regex: "+type.getRegex(), type.getRegex().matcher(lex).matches()) ;
+        if ( valid )
+            assertTrue(type.parse(lex)) ;
     }
 
-    @Override
-    public boolean parse(String lex) {
-        return false ;
-    }
-
-    @Override
-    public boolean isValid(String lex) {
-        return false ;
+    static void invalid(String lex, XSDDatatype type) {
+        test(lex, type, false);
     }
 
 }

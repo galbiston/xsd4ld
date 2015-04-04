@@ -28,12 +28,11 @@ import org.junit.runners.Parameterized ;
 /** test of integers and all derived types */
 @RunWith(Parameterized.class)
 
-public class TestInteger2 {
+public class TestIntegerRange {
     @Parameterized.Parameters(name="{0}")
     public static Collection<Object[]> parameters() {
        return Arrays.asList(new Object[][] {
            { XSD.xsdInteger.getName(), XSD.xsdInteger, null, null, null, null }
-             
            , { XSD.xsdLong.getName(), XSD.xsdLong, "-9223372036854775809", "-9223372036854775808", "9223372036854775807", "9223372036854775808" }
            , { XSD.xsdInt.getName(), XSD.xsdInt, "-2147483649", "-2147483648", "2147483647", "2147483648" }
            , { XSD.xsdShort.getName(), XSD.xsdShort, "-32769", "-32768", "32767", "32768" }
@@ -52,15 +51,13 @@ public class TestInteger2 {
        });
     }
     
-    // Parameterized:
-    // string, type, minNo, minYes, maxYes, maxNo
     final XSDDatatype type;
     final String minNo; 
     final String minYes; 
     final String maxYes; 
     final String maxNo;
 
-    public TestInteger2(String name, XSDDatatype type, String minNo, String minYes, String maxYes, String maxNo) {
+    public TestIntegerRange(String name, XSDDatatype type, String minNo, String minYes, String maxYes, String maxNo) {
         super() ;
         this.type = type ;
         this.minNo = minNo ;
@@ -72,13 +69,13 @@ public class TestInteger2 {
     
     @Test public void test() {
         if ( minNo != null)
-            TestInteger.invalid(minNo, type) ;
+            LibTestXSD.invalid(minNo, type) ;
         if ( minYes != null)
-            TestInteger.valid(minYes, type) ;
+            LibTestXSD.valid(minYes, type) ;
         if ( maxYes != null)
-            TestInteger.valid(maxYes, type) ;
+            LibTestXSD.valid(maxYes, type) ;
         if ( maxNo != null)
-            TestInteger.invalid(maxNo, type) ;
+            LibTestXSD.invalid(maxNo, type) ;
         
     }
 //    

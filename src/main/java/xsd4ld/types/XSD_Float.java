@@ -16,18 +16,19 @@
  * limitations under the License.
  */
 
-package xsd4ld;
+package xsd4ld.types;
 
-import org.junit.runner.RunWith ;
-import org.junit.runners.Suite ;
+import xsd4ld.C ;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-    TestDatatype.class,
-    TestNumber.class,
-    TestIntegerRange.class,
-})
-public class TS_XSD {
+public class XSD_Float extends BaseDoubleFloat {
 
+    public XSD_Float() {
+        super(C.xsd_float) ;
+    }
+
+    @Override
+    public Double value(String lex) {
+        return Double.parseDouble(fix(lex)) ;
+    }
 }
 

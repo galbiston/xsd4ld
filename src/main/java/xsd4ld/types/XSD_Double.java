@@ -16,32 +16,19 @@
  * limitations under the License.
  */
 
-package generate;
+package xsd4ld.types;
 
 import xsd4ld.C ;
-import xsd4ld.TypeRegistry ;
-import xsd4ld.XSDDatatype ;
 
-public class XSD_Float extends XSDDatatype {
+public class XSD_Double extends BaseDoubleFloat {
 
-    public XSD_Float() {
-        super(C.xsd_float, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_float)) ;
+    public XSD_Double() {
+        super(C.xsd_double) ;
     }
 
     @Override
-    public Float value(String lex) {
-        return null ;
+    public Double value(String lex) {
+        return Double.parseDouble(fix(lex)) ;
     }
-
-    @Override
-    public boolean parse(String lex) {
-        return false ;
-    }
-
-    @Override
-    public boolean isValid(String lex) {
-        return false ;
-    }
-
 }
 
