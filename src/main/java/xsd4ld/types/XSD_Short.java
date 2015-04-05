@@ -22,6 +22,6 @@ import xsd4ld.C ;
 
 public class XSD_Short extends BaseInteger {
     public XSD_Short() {
-        super("short", "int", C.i(-32768), C.i(32767), true, SignType.ANY) ;
+        super("short", "int", C.i(-32768), C.i(32767)) ;
     }
 }

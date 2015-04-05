@@ -18,12 +18,11 @@
 
 package xsd4ld.types;
 
-import static xsd4ld.types.SignType.PLUS ;
 import static java.math.BigInteger.ZERO ;
 import xsd4ld.C ;
 
 public class XSD_UnsignedInt extends BaseInteger {
     public XSD_UnsignedInt() {
-        super("unsignedInt", "unsignedLong", ZERO, C.INT_UMAX, true, PLUS) ;
+        super("unsignedInt", "unsignedLong", ZERO, C.INT_UMAX) ;
     }
 }

@@ -20,6 +20,6 @@ package xsd4ld.types;
 
 public class XSD_Integer extends BaseInteger {
     public XSD_Integer() {
-        super("integer", "decimal", null, null, true, SignType.ANY) ;
+        super("integer", "decimal", null, null) ;
     }
 }

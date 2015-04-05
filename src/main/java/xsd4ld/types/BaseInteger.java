@@ -33,12 +33,9 @@ abstract class BaseInteger extends XSDDatatype {
      * @param baseType
      * @param minValue
      * @param maxValue
-     * @param allowZero Is zero allow as a value?
-     * @param signType  For non-zero values, what is the allowed sign? 
      */
     public BaseInteger(String shortName, String baseType, 
-                       BigInteger minValue, BigInteger maxValue, 
-                       boolean allowZero, SignType signType) {
+                       BigInteger minValue, BigInteger maxValue) {
         super(shortName, baseType, TypeRegistry.getRegex(C.xsd_integer)) ;
         this.minValue = minValue ;
         this.maxValue = maxValue ;

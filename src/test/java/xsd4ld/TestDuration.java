@@ -18,7 +18,6 @@
 
 package xsd4ld;
 
-import static org.junit.Assert.assertTrue ;
 import static xsd4ld.XSD.* ;
 import static xsd4ld.LibTestXSD.* ;
 import org.junit.Test ;
@@ -26,7 +25,42 @@ import org.junit.Test ;
 public class TestDuration {
 
     // @@ Coverage
+
+    @Test public void duration_01() {
+        valid("P1Y", xsdDuration) ;
+    }
+
+    @Test public void duration_02() {
+        valid("-P1Y", xsdDuration) ;
+    }
+
+    @Test public void duration_03() {
+        invalid("1Y", xsdDuration) ;
+    }
     
+    @Test public void duration_04() {
+        invalid("-1Y", xsdDuration) ;
+    }
+    
+    @Test public void duration_05() {
+        invalid("P", xsdDuration) ;
+    }
+    
+    @Test public void duration_06() {
+        invalid("", xsdDuration) ;
+    }
+    
+    @Test public void duration_07() {
+        invalid("P1Y ", xsdDuration) ;
+    }
+
+    @Test public void duration_08() {
+        invalid(" P1Y", xsdDuration) ;
+    }
+
+    @Test public void duration_09() {
+        invalid("P 1Y", xsdDuration) ;
+    }
     // xsd:yearMonthDuration
     @Test public void yearMonthDuration_01() {
         valid("P1Y", xsdDuration) ;

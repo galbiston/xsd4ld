@@ -22,6 +22,6 @@ import static java.math.BigInteger.ONE ;
 
 public class XSD_PositiveInteger extends BaseInteger {
     public XSD_PositiveInteger() {
-        super("positiveInteger", "nonNegativeInteger", ONE, null, false, SignType.PLUS) ;
+        super("positiveInteger", "nonNegativeInteger", ONE, null) ;
     }
 }

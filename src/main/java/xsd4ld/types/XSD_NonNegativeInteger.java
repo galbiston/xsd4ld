@@ -18,11 +18,10 @@
 
 package xsd4ld.types;
 
-import static xsd4ld.types.SignType.PLUS ;
 import static java.math.BigInteger.ZERO ;
 
 public class XSD_NonNegativeInteger extends BaseInteger {
     public XSD_NonNegativeInteger() {
-        super("nonNegativeInteger", "integer", ZERO, null, true, PLUS) ;
+        super("nonNegativeInteger", "integer", ZERO, null) ;
     }
 }

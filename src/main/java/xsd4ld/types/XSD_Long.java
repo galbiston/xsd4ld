@@ -22,6 +22,6 @@ import xsd4ld.C ;
 
 public class XSD_Long extends BaseInteger {
     public XSD_Long() {
-        super("long", "integer", C.LONG_MIN, C.LONG_MAX, true, SignType.ANY) ;
+        super("long", "integer", C.LONG_MIN, C.LONG_MAX) ;
     }
 }

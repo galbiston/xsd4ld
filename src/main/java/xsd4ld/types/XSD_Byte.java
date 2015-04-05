@@ -22,6 +22,6 @@ import xsd4ld.C ;
 
 public class XSD_Byte extends BaseInteger {
     public XSD_Byte() {
-        super("byte", "short", C.i(-128), C.i(127), true, SignType.ANY) ;
+        super("byte", "short", C.i(-128), C.i(127)) ;
     }
 }

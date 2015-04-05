@@ -18,11 +18,10 @@
 
 package xsd4ld.types;
 
-import static xsd4ld.types.SignType.MINUS ;
 import xsd4ld.C ;
 
 public class XSD_NegativeInteger extends BaseInteger {
     public XSD_NegativeInteger() {
-        super("negativeInteger", "nonPositiveInteger", null, C.MINUS_ONE, false, MINUS) ;
+        super("negativeInteger", "nonPositiveInteger", null, C.MINUS_ONE) ;
     }
 }
