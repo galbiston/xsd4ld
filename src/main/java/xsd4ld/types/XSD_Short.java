@@ -22,6 +22,6 @@ import xsd4ld.XSDConst ;
 
 public class XSD_Short extends BaseInteger {
     public XSD_Short() {
-        super("short", "int", XSDConst.i(-32768), XSDConst.i(32767)) ;
+        super(XSDConst.xsd_short, XSDConst.xsd_int, XSDConst.i(-32768), XSDConst.i(32767)) ;
     }
 }

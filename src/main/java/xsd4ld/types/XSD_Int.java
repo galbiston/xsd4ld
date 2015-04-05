@@ -22,6 +22,6 @@ import xsd4ld.XSDConst ;
 
 public class XSD_Int extends BaseInteger {
     public XSD_Int() {
-        super("int", "long", XSDConst.INT_MIN, XSDConst.INT_MAX) ;
+        super(XSDConst.xsd_int, XSDConst.xsd_long, XSDConst.INT_MIN, XSDConst.INT_MAX) ;
     }
 }

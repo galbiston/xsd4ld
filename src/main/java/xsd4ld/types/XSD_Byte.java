@@ -22,6 +22,6 @@ import xsd4ld.XSDConst ;
 
 public class XSD_Byte extends BaseInteger {
     public XSD_Byte() {
-        super("byte", "short", XSDConst.i(-128), XSDConst.i(127)) ;
+        super(XSDConst.xsd_byte, XSDConst.xsd_short, XSDConst.i(-128), XSDConst.i(127)) ;
     }
 }

@@ -18,10 +18,11 @@
 
 package xsd4ld.types;
 
+import xsd4ld.XSDConst ;
 import xsd4ld.lib.DateTimeStruct ;
 
 public class XSD_Date extends BaseDateTime {
     public XSD_Date() {
-        super("date", DateTimeStruct::parseDate) ;
+        super(XSDConst.xsd_date, DateTimeStruct::parseDate) ;
     }
 }

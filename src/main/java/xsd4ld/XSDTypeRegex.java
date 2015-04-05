@@ -19,6 +19,7 @@
 package xsd4ld;
 
 import java.util.HashMap ;
+import static xsd4ld.XSDConst.* ;
 import java.util.Map ;
 import java.util.regex.Pattern ;
 
@@ -27,51 +28,45 @@ public class XSDTypeRegex {
     private static Map<String, Pattern> patterns = new HashMap<>() ;
     
     static {
-        // short name, regex
-        register("string",      null) ;
-        register("decimal",     "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)") ;
-        register("integer",        "(\\+|-)?([0-9]+)") ;
-        
-        String x  = "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" ;
-        
-        register("float",       x) ;
-        register("double",      x) ;
-        register("precisionDecimal", x) ;
-        
-        
-        // dateTime
         /* Cut-and-paste from spec, \ => \\ and wrapped as a string. */
+        // short name, regex
+        register(xsd_string,        null) ;
+        register(xsd_decimal,       "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)") ;
+        register(xsd_integer,       "(\\+|-)?([0-9]+)") ;
+
+        String x  = "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" ;
+        register(xsd_float,       x) ;
+        register(xsd_double,      x) ;
+        register(xsd_precisionDecimal, x) ;
+        
+        
         String datetimepattern =
             "-?([1-9][0-9]{3,}|0[0-9]{3})"
             +"-(0[1-9]|1[0-2])"
             +"-(0[1-9]|[12][0-9]|3[01])"
             +"T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))"
             +"(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" ;
-        register("dateTime",       datetimepattern) ;
+        register(xsd_dateTime,       datetimepattern) ;
 
         // dateTimeStamp : additional:
         //'.*(Z|(\+|-)[0-9][0-9]:[0-9][0-9])'.
 
-        register("gYear",       "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
-        register("gYearMonth",  "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
-        register("gMonthDay",   "--(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
-        register("gMonth",      "--(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
-        register("gDay",        "---(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;      
+        register(xsd_gYear,         "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
+        register(xsd_gYearMonth,    "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
+        register(xsd_gMonthDay,     "--(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
+        register(xsd_gMonth,        "--(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
+        register(xsd_gDay,          "---(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;      
+        register(xsd_language,      "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*") ;
 
-        register("hexBinary",   "([0-9a-fA-F]{2})*") ;
+
+        register(xsd_hexBinary,     "([0-9a-fA-F]{2})*") ;
         // Notes spaces.
-        register("base64Binary", "((([A-Za-z0-9+/] ?){4})*(([A-Za-z0-9+/] ?){3}[A-Za-z0-9+/]|([A-Za-z0-9+/] ?){2}[AEIMQUYcgkosw048] ?=|[A-Za-z0-9+/] ?[AQgw] ?= ?=))?") ;
+        register(xsd_base64Binary,  "((([A-Za-z0-9+/] ?){4})*(([A-Za-z0-9+/] ?){3}[A-Za-z0-9+/]|([A-Za-z0-9+/] ?){2}[AEIMQUYcgkosw048] ?=|[A-Za-z0-9+/] ?[AQgw] ?= ?=))?") ;
 
         //anyURI
         //QName 
-
-        // Simple duration.
-        // -?P[0-9]+Y?([0-9]+M)?([0-9]+D)?(T([0-9]+H)?([0-9]+M)?([0-9]+(\.[0-9]+)?S)?)?
-        // '.*[YMDHS].*'
-        // '.*[^T]' 
         
-        /* Cut-and-paste from spec, \ => \\ and wrapped as a string. */
-        String durationpattern =
+        String durationPattern =
             "-?P( ( ( [0-9]+Y([0-9]+M)?([0-9]+D)?"
                 + "       | ([0-9]+M)([0-9]+D)?"
                 + "       | ([0-9]+D)"
@@ -88,20 +83,21 @@ public class XSDTypeRegex {
                 + "       )"
                 + "    )"
                 + "  )" ;
-        durationpattern = durationpattern.replace(" ", "") ;                
-        register("duration",       durationpattern) ;
-
+        durationPattern = durationPattern.replace(" ", "") ;                
+        register(xsd_duration,              durationPattern) ;
+        register(xsd_yearMonthDuration,     "-?P((([0-9]+Y)([0-9]+M)?)|([0-9]+M))") ;
         
-        register("language",        "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*") ;
-
-        /* yearMonthDuration
-         * But duration + checking is better?
-        '-?P((([0-9]+Y)([0-9]+M)?)|([0-9]+M))' or the expression '-?P[0-9]+(Y([0-9]+M)?|M)'
-        ie. additonal'[^DT]*'
-        */
-        /*
-          Additonal: '[^YM]*[DT].*'
-         */
+        // duDayTimeFrag ::= (duDayFrag duTimeFrag?) | duTimeFrag
+        String duTimeFrag =  
+            "(T (  ([0-9]+H)([0-9]+M)?([0-9]+(\\.[0-9]+)?S)?"
+            +"  | ([0-9]+M)([0-9]+(\\.[0-9]+)?S)?"
+            +"  | ([0-9]+(\\.[0-9]+)?S)"
+            +"  )" 
+            +")" ;
+        duTimeFrag = duTimeFrag.replace(" ", "") ;
+            
+        String dayTimePattern = "-?P((([0-9]+D)("+duTimeFrag+")?)|("+duTimeFrag+"))" ;
+        register(xsd_dayTimeDuration,       dayTimePattern) ;
     }
     
     // Shortname to type

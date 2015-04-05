@@ -24,7 +24,6 @@ import xsd4ld.XSDConst ;
 import xsd4ld.XSDDatatype ;
 import xsd4ld.lib.DateTimeStruct ;
 
-
 /** The 7 component date/time model.
  *  year / month / day / hour / minute / second / timezone
  */

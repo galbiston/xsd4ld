@@ -18,8 +18,10 @@
 
 package xsd4ld.types;
 
+import xsd4ld.XSDConst ;
+
 public class XSD_Integer extends BaseInteger {
     public XSD_Integer() {
-        super("integer", "decimal", null, null) ;
+        super(XSDConst.xsd_integer, XSDConst.xsd_decimal, null, null) ;
     }
 }

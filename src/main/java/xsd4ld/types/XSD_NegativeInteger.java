@@ -22,6 +22,6 @@ import xsd4ld.XSDConst ;
 
 public class XSD_NegativeInteger extends BaseInteger {
     public XSD_NegativeInteger() {
-        super("negativeInteger", "nonPositiveInteger", null, XSDConst.MINUS_ONE) ;
+        super(XSDConst.xsd_negativeInteger, XSDConst.xsd_nonPositiveInteger, null, XSDConst.MINUS_ONE) ;
     }
 }

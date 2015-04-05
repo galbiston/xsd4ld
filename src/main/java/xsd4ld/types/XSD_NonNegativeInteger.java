@@ -19,9 +19,10 @@
 package xsd4ld.types;
 
 import static java.math.BigInteger.ZERO ;
+import xsd4ld.XSDConst ;
 
 public class XSD_NonNegativeInteger extends BaseInteger {
     public XSD_NonNegativeInteger() {
-        super("nonNegativeInteger", "integer", ZERO, null) ;
+        super(XSDConst.xsd_nonNegativeInteger, XSDConst.xsd_integer, ZERO, null) ;
     }
 }

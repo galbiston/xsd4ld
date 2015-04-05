@@ -25,8 +25,7 @@ import xsd4ld.XSDTypeRegex ;
 
 public class XSD_YearMonthDuration extends BaseDuration {
     public XSD_YearMonthDuration() {
-        //@@ check regex
-        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegex.getRegex(XSDConst.xsd_duration)) ;
+        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegex.getRegex(XSDConst.xsd_yearMonthDuration)) ;
     }
     
     @Override

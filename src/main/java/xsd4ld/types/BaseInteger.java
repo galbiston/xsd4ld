@@ -28,26 +28,16 @@ abstract class BaseInteger extends XSDDatatype {
     private final BigInteger minValue ;
     private final BigInteger maxValue ;
 
-    /**
-     * @param shortName
-     * @param baseType
-     * @param minValue
-     * @param maxValue
-     */
-    public BaseInteger(String shortName, String baseType, 
-                       BigInteger minValue, BigInteger maxValue) {
+    protected BaseInteger(String shortName, String baseType, 
+                          BigInteger minValue, BigInteger maxValue) {
         super(shortName, baseType, XSDTypeRegex.getRegex(XSDConst.xsd_integer)) ;
         this.minValue = minValue ;
         this.maxValue = maxValue ;
     }
 
-    // Extra validate.
-    // XSD_AbstractInteger?
-    
     @Override
     protected BigInteger valueOrException(String lex) {
         try {
-            // This parses it
             BigInteger integer = new BigInteger(lex) ;
             if ( minValue != null && minValue.compareTo(integer) > 0 )
                 return null ;
@@ -59,14 +49,5 @@ abstract class BaseInteger extends XSDDatatype {
             return null ;
         }
     }
-//    
-//    public boolean isValidValue(String lex) {
-//        BigInteger v = valueOrException(lex) ; 
-//    }
-
-//    @Override
-//  public abstract int hashCode( );
-//  @Override
-//  public abstract boolean equals(Object other) ;
 }
 

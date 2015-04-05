@@ -20,11 +20,12 @@ package xsd4ld.types;
 
 import javax.xml.datatype.XMLGregorianCalendar ;
 
+import xsd4ld.XSDConst ;
 import xsd4ld.lib.DateTimeStruct ;
 
 public class XSD_DateTimeStamp extends BaseDateTime {
     public XSD_DateTimeStamp() {
-        super("dateTime", DateTimeStruct::parseDateTimeStamp) ;
+        super(XSDConst.xsd_dateTime, DateTimeStruct::parseDateTimeStamp) ;
     }
     
     @Override

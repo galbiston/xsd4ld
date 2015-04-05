@@ -23,6 +23,6 @@ import xsd4ld.XSDConst ;
 
 public class XSD_UnsignedShort extends BaseInteger {
     public XSD_UnsignedShort() {
-        super("unsignedShort", "unsignedInt", ZERO, XSDConst.i(65535)) ;
+        super(XSDConst.xsd_unsignedShort, XSDConst.xsd_unsignedInt, ZERO, XSDConst.i(65535)) ;
     }
 }

@@ -23,6 +23,6 @@ import xsd4ld.XSDConst ;
 
 public class XSD_UnsignedLong extends BaseInteger {
     public XSD_UnsignedLong() {
-        super("unsignedLong", "nonNegativeInteger", ZERO, XSDConst.LONG_UMAX) ;
+        super(XSDConst.xsd_unsignedLong, XSDConst.xsd_nonNegativeInteger, ZERO, XSDConst.LONG_UMAX) ;
     }
 }

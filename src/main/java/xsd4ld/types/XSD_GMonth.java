@@ -18,10 +18,11 @@
 
 package xsd4ld.types;
 
+import xsd4ld.XSDConst ;
 import xsd4ld.lib.DateTimeStruct ;
 
 public class XSD_GMonth extends BaseDateTime {
     public XSD_GMonth() {
-        super("gMonth", DateTimeStruct::parseGMonth) ;
+        super(XSDConst.xsd_gMonth, DateTimeStruct::parseGMonth) ;
     }
 }
