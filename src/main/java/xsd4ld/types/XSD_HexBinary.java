@@ -31,7 +31,6 @@ public class XSD_HexBinary extends BaseBinary {
     
     @Override
     protected byte[] valueOrException(String lex) {
-        lex = collapse(lex) ;
         return DatatypeConverter.parseHexBinary(lex) ;
     }
 

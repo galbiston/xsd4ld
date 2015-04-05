@@ -32,8 +32,6 @@ public class XSD_Base64Binary extends BaseBinary {
     
     @Override
     protected byte[] valueOrException(String lex) {
-        // Collapse facet.
-        lex = collapse(lex) ;
         return DatatypeConverter.parseBase64Binary(lex) ;
     }
 }

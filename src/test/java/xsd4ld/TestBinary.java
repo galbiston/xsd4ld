@@ -22,9 +22,15 @@ import static xsd4ld.LibTestXSD.* ;
 import org.junit.Test ;
 
 public class TestBinary {
+    // No whitespace allowed
+    @Test public void hexBinary_00() { valid("", XSD.xsdHexBinary) ; }
     @Test public void hexBinary_01() { valid("ABCD", XSD.xsdHexBinary) ; }
-    
+    @Test public void hexBinary_02() { invalid("X01", XSD.xsdHexBinary) ; }
+    @Test public void hexBinary_03() { invalid("FG", XSD.xsdHexBinary) ; }
+    @Test public void hexBinary_04() { invalid("ABC", XSD.xsdHexBinary) ; }
+    @Test public void hexBinary_05() { invalid(" AB ", XSD.xsdHexBinary) ; }
 
+    @Test public void base64Binary_00() { valid("", XSD.xsdBase64Binary) ; }
     @Test public void base64Binary_01() { valid("0F+40A==", XSD.xsdBase64Binary) ; }
     @Test public void base64Binary_02() { valid("0 F + 4 0 A = =", XSD.xsdBase64Binary) ; }
     @Test public void base64Binary_03() { valid(" 0F+40A==", XSD.xsdBase64Binary) ; }
