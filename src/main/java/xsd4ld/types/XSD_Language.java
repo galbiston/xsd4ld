@@ -20,15 +20,15 @@ package xsd4ld.types;
 
 import java.util.regex.Pattern ;
 
-import xsd4ld.C ;
-import xsd4ld.TypeRegistry ;
+import xsd4ld.XSDConst ;
+import xsd4ld.XSDTypeRegex ;
 import xsd4ld.lib.LangTag2 ;
 
 public class XSD_Language extends BaseString {
-    private Pattern pattern = TypeRegistry.getRegex(C.xsd_language) ;
+    private Pattern pattern = XSDTypeRegex.getRegex(XSDConst.xsd_language) ;
     
     public XSD_Language() {
-        super(C.xsd_language, C.xsd_token) ;
+        super(XSDConst.xsd_language, XSDConst.xsd_token) ;
     }
     
     @Override
@@ -46,7 +46,7 @@ public class XSD_Language extends BaseString {
     
     @Override
     public Pattern getRegex() {
-        return TypeRegistry.getRegex(C.xsd_language) ;
+        return XSDTypeRegex.getRegex(XSDConst.xsd_language) ;
     }
 }
 

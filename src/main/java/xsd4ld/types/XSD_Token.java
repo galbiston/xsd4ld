@@ -18,7 +18,7 @@
 
 package xsd4ld.types;
 
-import xsd4ld.C ;
+import xsd4ld.XSDConst ;
 
 public class XSD_Token extends BaseString {
     /*
@@ -32,7 +32,7 @@ public class XSD_Token extends BaseString {
      * type of token is normalizedString.
      */
     public XSD_Token() {
-        super(C.xsd_token, C.xsd_normalizedString) ;
+        super(XSDConst.xsd_token, XSDConst.xsd_normalizedString) ;
     }
     
     @Override

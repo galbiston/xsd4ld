@@ -22,7 +22,7 @@ import java.util.HashMap ;
 import java.util.Map ;
 import java.util.regex.Pattern ;
 
-public class TypeRegistry {
+public class XSDTypeRegex {
     private static Map<String, String>  regex    = new HashMap<>() ;
     private static Map<String, Pattern> patterns = new HashMap<>() ;
     
@@ -51,7 +51,6 @@ public class TypeRegistry {
 
         // dateTimeStamp : additional:
         //'.*(Z|(\+|-)[0-9][0-9]:[0-9][0-9])'.
-        
 
         register("gYear",       "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
         register("gYearMonth",  "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
@@ -93,8 +92,7 @@ public class TypeRegistry {
 
         
         register("language",        "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*") ;
-        
-        
+
         /* yearMonthDuration
          * But duration + checking is better?
         '-?P((([0-9]+Y)([0-9]+M)?)|([0-9]+M))' or the expression '-?P[0-9]+(Y([0-9]+M)?|M)'
@@ -102,29 +100,31 @@ public class TypeRegistry {
         */
         /*
           Additonal: '[^YM]*[DT].*'
-          
          */
     }
     
     // Shortname to type
-    public static Map<String, XSDDatatype> registry = new HashMap<>() ;
-    
-    
-    public static void register(String shortName, String regex) {
-        Pattern pattern = null ;
-        if ( regex != null )
-            pattern = Pattern.compile(regex) ;
+    private static Map<String, XSDDatatype> registry = new HashMap<>() ;
+
+    private static void register(String shortName, String regex) {
+        if ( regex == null )
+            return ; 
+        Pattern pattern = Pattern.compile(regex) ;
         patterns.put(shortName, pattern) ;        
     }
     
+    /** Get the XSD regex associated with the name (stort name , not URI).
+     * Maybe null.
+     */
     public static Pattern getRegex(String shortName) { 
         return patterns.get(shortName) ; 
     }
 
+    /** Get the XSD regex associated with the name (stort name , not URI).
+     * Maybe null.
+     */
     public static String getRegexStr(String shortName) { 
         return regex.get(shortName) ; 
     }
-
-    public static void init() {}
 }
 

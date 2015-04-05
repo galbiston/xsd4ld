@@ -20,13 +20,13 @@ package xsd4ld.types;
 
 import javax.xml.datatype.Duration ;
 
-import xsd4ld.C ;
-import xsd4ld.TypeRegistry ;
+import xsd4ld.XSDConst ;
+import xsd4ld.XSDTypeRegex ;
 
 public class XSD_DayTimeDuration extends BaseDuration {
     public XSD_DayTimeDuration() {
         //@@ check regex
-        super(C.xsd_yearMonthDuration, C.xsd_duration, TypeRegistry.getRegex(C.xsd_duration)) ;
+        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegex.getRegex(XSDConst.xsd_duration)) ;
     }
     
     @Override

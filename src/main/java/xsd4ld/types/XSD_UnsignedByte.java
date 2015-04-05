@@ -19,10 +19,10 @@
 package xsd4ld.types;
 
 import static java.math.BigInteger.ZERO ;
-import xsd4ld.C ;
+import xsd4ld.XSDConst ;
 
 public class XSD_UnsignedByte extends BaseInteger {
     public XSD_UnsignedByte() {
-        super("unsignedByte", "unsignedShort", ZERO, C.i(255)) ;
+        super("unsignedByte", "unsignedShort", ZERO, XSDConst.i(255)) ;
     }
 }

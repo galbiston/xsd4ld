@@ -20,7 +20,7 @@ package xsd4ld.types;
 
 import javax.xml.datatype.XMLGregorianCalendar ;
 
-import xsd4ld.C ;
+import xsd4ld.XSDConst ;
 import xsd4ld.XSDDatatype ;
 import xsd4ld.lib.DateTimeStruct ;
 
@@ -33,7 +33,7 @@ abstract class BaseDateTime extends XSDDatatype  {
     protected final Parser parser ;
     
     public BaseDateTime(String shortName, Parser parser) {
-        super(shortName, C.xsd_atomic, null) ;
+        super(shortName, XSDConst.xsd_atomic, null) ;
         this.parser = parser ;
     }
 
@@ -43,7 +43,7 @@ abstract class BaseDateTime extends XSDDatatype  {
         if ( parse(lex) == null )
             return null ;
         // Checks values. 
-        return C.factory.newXMLGregorianCalendar(lex) ;
+        return XSDConst.factory.newXMLGregorianCalendar(lex) ;
     }
 
     protected DateTimeStruct parse(String lex) {

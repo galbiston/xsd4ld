@@ -18,12 +18,12 @@
 
 package xsd4ld.types;
 
-import xsd4ld.C ;
+import xsd4ld.XSDConst ;
 
 public class XSD_Float extends BaseDoubleFloat {
 
     public XSD_Float() {
-        super(C.xsd_float) ;
+        super(XSDConst.xsd_float) ;
     }
 
     @Override

@@ -21,8 +21,8 @@ package xsd4ld.types;
 import java.math.BigDecimal ;
 import java.util.regex.Pattern ;
 
-import xsd4ld.C ;
-import xsd4ld.TypeRegistry ;
+import xsd4ld.XSDConst ;
+import xsd4ld.XSDTypeRegex ;
 import xsd4ld.XSDDatatype ;
 
 /** Precision Decimal : 
@@ -31,7 +31,7 @@ import xsd4ld.XSDDatatype ;
 public class XSD_PrecisionDecimal extends XSDDatatype {
 
     public XSD_PrecisionDecimal() {
-        super(C.xsd_precisionDecimal, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_precisionDecimal)) ;
+        super(XSDConst.xsd_precisionDecimal, XSDConst.xsd_atomic, XSDTypeRegex.getRegex(XSDConst.xsd_precisionDecimal)) ;
     }
 
     Pattern exceptions = Pattern.compile("(\\+|-)?INF|NaN") ;

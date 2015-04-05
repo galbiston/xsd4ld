@@ -19,10 +19,10 @@
 package xsd4ld.types;
 
 import static java.math.BigInteger.ZERO ;
-import xsd4ld.C ;
+import xsd4ld.XSDConst ;
 
 public class XSD_UnsignedLong extends BaseInteger {
     public XSD_UnsignedLong() {
-        super("unsignedLong", "nonNegativeInteger", ZERO, C.LONG_UMAX) ;
+        super("unsignedLong", "nonNegativeInteger", ZERO, XSDConst.LONG_UMAX) ;
     }
 }

@@ -20,14 +20,14 @@ package xsd4ld.types;
 
 import java.math.BigDecimal ;
 
-import xsd4ld.C ;
-import xsd4ld.TypeRegistry ;
+import xsd4ld.XSDConst ;
+import xsd4ld.XSDTypeRegex ;
 import xsd4ld.XSDDatatype ;
 
 public class XSD_Decimal extends XSDDatatype {
 
     public XSD_Decimal() {
-        super(C.xsd_decimal, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_decimal)) ;
+        super(XSDConst.xsd_decimal, XSDConst.xsd_atomic, XSDTypeRegex.getRegex(XSDConst.xsd_decimal)) ;
     }
 
     @Override

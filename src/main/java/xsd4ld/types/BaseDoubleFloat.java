@@ -18,15 +18,15 @@
 
 package xsd4ld.types;
 
-import xsd4ld.C ;
-import xsd4ld.TypeRegistry ;
+import xsd4ld.XSDConst ;
+import xsd4ld.XSDTypeRegex ;
 import xsd4ld.XSDDatatype ;
 
 /** Commonality for XSD_Double and XSD_Float */
 abstract class BaseDoubleFloat extends XSDDatatype {
 
     public BaseDoubleFloat(String shortName) {
-        super(shortName, C.xsd_atomic, TypeRegistry.getRegex(shortName)) ;
+        super(shortName, XSDConst.xsd_atomic, XSDTypeRegex.getRegex(shortName)) ;
     }
 
     // Used by the 2 subclasses.

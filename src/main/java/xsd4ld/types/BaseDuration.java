@@ -22,7 +22,7 @@ import java.util.regex.Pattern ;
 
 import javax.xml.datatype.Duration ;
 
-import xsd4ld.C ;
+import xsd4ld.XSDConst ;
 import xsd4ld.XSDDatatype ;
 
 /** Durations */
@@ -35,7 +35,7 @@ abstract class BaseDuration extends XSDDatatype {
     @Override
     protected Duration valueOrException(String lex) {
         try {
-            return C.factory.newDuration(lex) ;
+            return XSDConst.factory.newDuration(lex) ;
         } catch ( Exception ex) {
             return null ; 
         }

@@ -18,14 +18,13 @@
 
 package xsd4ld.types;
 
-import xsd4ld.C ;
+import xsd4ld.XSDConst ;
 import xsd4ld.XSDDatatype ;
-
 
 public class XSD_Simple extends XSDDatatype {
 
     public XSD_Simple() {
-        super(C.xsd_atomic, C.xsd_anyType, null) ;
+        super(XSDConst.xsd_atomic, XSDConst.xsd_anyType, null) ;
     }
 
     @Override

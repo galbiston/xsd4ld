@@ -18,34 +18,34 @@
 
 package xsd4ld;
 
-//import javax.xml.datatype.XMLGregorianCalendar; 
-//import javax.xml.datatype.Duration;
-
 public class NOTES {
 
+    // README
+    
     // java.xml mappings.
     // check for @@
     // @@ DatetIme - out of range values. 
     
     // Value tests everywhere.
-    
-    // Check yearMonth and dayTime duration regexs
-    
     // No extensibility.
     
     /*
-xs:date     XMLGregorianCalendar
+xs:date         XMLGregorianCalendar
 xs:dateTime     XMLGregorianCalendar
 xs:duration     Duration
-xs:gDay     XMLGregorianCalendar
-xs:gMonth   XMLGregorianCalendar
+xs:gDay         XMLGregorianCalendar
+xs:gMonth       XMLGregorianCalendar
 xs:gMonthDay    XMLGregorianCalendar
-xs:gYear    XMLGregorianCalendar
+xs:gYear        XMLGregorianCalendar
 xs:gYearMonth   XMLGregorianCalendar
-xs:time     XMLGregorianCalendar
+xs:time         XMLGregorianCalendar
 
 xdt:dayTimeDuration     Duration
-xdt:yearMonthDuration   Duration     */
+xdt:yearMonthDuration   Duration     
+
+precisionDecimal BigDecimal or Double (for INF and NaN) 
+
+*/
     
     /* Supported types:
 string

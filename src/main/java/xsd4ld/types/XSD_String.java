@@ -18,12 +18,12 @@
 
 package xsd4ld.types;
 
-import xsd4ld.C ;
+import xsd4ld.XSDConst ;
 
 public class XSD_String extends BaseString {
 
     public XSD_String() {
-        super(C.xsd_string, C.xsd_atomic) ;
+        super(XSDConst.xsd_string, XSDConst.xsd_atomic) ;
     }
 
 }
