@@ -16,9 +16,31 @@ public  * Licensed to the Apache Software Foundation (ASF) under one
  * limitations under the License.
  */
 
-package generate;
+package xsd4ld.types;
 
-public class XSD_PrecisionDecimal {
+import java.math.BigDecimal ;
+import java.util.regex.Pattern ;
 
+import xsd4ld.C ;
+import xsd4ld.TypeRegistry ;
+import xsd4ld.XSDDatatype ;
+
+/** Precision Decimal : 
+ *  <a href="http://www.w3.org/TR/xsd-precisionDecimal/">http://www.w3.org/TR/xsd-precisionDecimal/</a>
+ */
+public class XSD_PrecisionDecimal extends XSDDatatype {
+
+    public XSD_PrecisionDecimal() {
+        super(C.xsd_precisionDecimal, C.xsd_atomic, TypeRegistry.getRegex(C.xsd_precisionDecimal)) ;
+    }
+
+    Pattern exceptions = Pattern.compile("(\\+|-)?INF|NaN") ;
+    
+    @Override
+    protected Object valueOrException(String lex) {
+        if ( exceptions.matcher(lex).matches() ) 
+            return new Double(BaseDoubleFloat.fix(lex)) ;
+        return new BigDecimal(lex) ;
+    }
 }
 

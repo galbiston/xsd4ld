@@ -29,7 +29,8 @@ public class XSD {
 
     static public XSDDatatype xsdDouble             = new XSD_Double() ;
     static public XSDDatatype xsdFloat              = new XSD_Float() ;
-
+    static public XSDDatatype xsdPrecisionDecimal   = new XSD_PrecisionDecimal() ;
+    
     static public XSDDatatype xsdLong               = new XSD_Long() ;
     static public XSDDatatype xsdInt                = new XSD_Int() ;
     static public XSDDatatype xsdShort              = new XSD_Short() ;

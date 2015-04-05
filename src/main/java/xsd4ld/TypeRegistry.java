@@ -31,8 +31,14 @@ public class TypeRegistry {
         register("string",      null) ;
         register("decimal",     "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)") ;
         register("integer",        "(\\+|-)?([0-9]+)") ;
-        register("float",       "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN") ;
-        register("double",      "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN") ;
+        
+        String x  = "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" ;
+        
+        register("float",       x) ;
+        register("double",      x) ;
+        register("precisionDecimal", x) ;
+        
+        
         // dateTime
         /* Cut-and-paste from spec, \ => \\ and wrapped as a string. */
         String datetimepattern =

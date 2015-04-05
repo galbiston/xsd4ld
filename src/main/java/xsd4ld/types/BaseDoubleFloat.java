@@ -32,7 +32,7 @@ abstract class BaseDoubleFloat extends XSDDatatype {
     // Used by the 2 subclasses.
     // XSD to Java
     // Java spells "INF" as "Infinity"
-    protected static String fix(String lex) {
+    static String fix(String lex) {
         if ( lex.equals("INF") )
             return "Infinity" ;
         if ( lex.equals("+INF") )

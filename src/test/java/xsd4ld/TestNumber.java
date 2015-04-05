@@ -91,5 +91,17 @@ public class TestNumber {
     @Test public void ubyte_05() { LibTestXSD.valid("-128", XSD.xsdByte) ; }
     @Test public void ubyte_06() { LibTestXSD.invalid("-129", XSD.xsdByte) ; }
     
+    @Test public void precisionDecimal_01()     { LibTestXSD.valid("0.0", XSD.xsdPrecisionDecimal) ; }
+    @Test public void precisionDecimal_02()     { LibTestXSD.invalid("", XSD.xsdPrecisionDecimal) ; }
+    @Test public void precisionDecimal_03()     
+    { LibTestXSD.valid("9999999999999999999999999999999999999999999999999999999.9999999999999999999999999", XSD.xsdPrecisionDecimal) ; }
+    
+    @Test public void precisionDecimal_04()     { LibTestXSD.valid("NaN", XSD.xsdPrecisionDecimal) ; }
+    @Test public void precisionDecimal_05()     { LibTestXSD.valid("-INF", XSD.xsdPrecisionDecimal) ; }
+    @Test public void precisionDecimal_06()     { LibTestXSD.valid("+INF", XSD.xsdPrecisionDecimal) ; }
+    @Test public void precisionDecimal_07()     { LibTestXSD.valid("INF", XSD.xsdPrecisionDecimal) ; }
+
+    @Test public void precisionDecimal_08()     { LibTestXSD.invalid("Infinity", XSD.xsdPrecisionDecimal) ; }
+
 }
 
