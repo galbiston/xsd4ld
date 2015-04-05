@@ -45,7 +45,7 @@ public abstract class XSDDatatype {
      */
     
     public Object value(String lex) {
-        try {return valueOrException(lex) ; }
+        try { return valueOrException(lex) ; }
         catch (Exception ex) { return null; }
     }
     

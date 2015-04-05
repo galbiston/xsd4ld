@@ -25,27 +25,12 @@ import xsd4ld.XSDDatatype ;
 import xsd4ld.lib.DateTimeStruct ;
 
 
-/** The 7 component date/time model. */  
+/** The 7 component date/time model.
+ *  year / month / day / hour / minute / second / timezone
+ */
 abstract class BaseDateTime extends XSDDatatype  {
-    @FunctionalInterface interface Parser { DateTimeStruct parser(String s) ; } 
-    DateTimeStruct struct ;
-//    public String year ;
-//    public String month ;
-//    public String day ;
-//    public String hour ;
-//    public String minute ;
-//    public String second ;  // Include fractional part
-//    public String timezone ;
-    /*
-    year
-    month
-    day
-    hour
-    minute
-    second
-    timezone
-    */
-    private final Parser parser ;
+    @FunctionalInterface interface Parser { DateTimeStruct parse(String s) ; } 
+    protected final Parser parser ;
     
     public BaseDateTime(String shortName, Parser parser) {
         super(shortName, C.xsd_atomic, null) ;
@@ -54,12 +39,18 @@ abstract class BaseDateTime extends XSDDatatype  {
 
     @Override
     protected XMLGregorianCalendar valueOrException(String lex) {
+        // checks syntax.
+        if ( parse(lex) == null )
+            return null ;
+        // Checks values. 
         return C.factory.newXMLGregorianCalendar(lex) ;
     }
 
-    @Override
-    public boolean isValid(String lex) {
-        return parser.parser(lex) != null ;
+    protected DateTimeStruct parse(String lex) {
+        // We use a different parser setup for each derived type. 
+        try {
+            return parser.parse(lex) ; 
+        } catch (Exception ex) { return null ; }
     }
 }
 

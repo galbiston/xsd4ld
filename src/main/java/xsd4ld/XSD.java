@@ -47,6 +47,7 @@ public class XSD {
 
     static public XSDDatatype xsdDuration           = new XSD_Duration() ;
     static public XSDDatatype xsdYearMonthDuration  = new XSD_YearMonthDuration() ;
+    static public XSDDatatype xsdDayTimeDuration    = new XSD_DayTimeDuration() ;
 
     static public XSDDatatype xsdString             = new XSD_String() ;
     static public XSDDatatype xsdNormalizedString   = new XSD_NormalizedString() ;

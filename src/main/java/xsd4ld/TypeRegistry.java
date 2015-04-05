@@ -40,7 +40,7 @@ public class TypeRegistry {
             +"-(0[1-9]|1[0-2])"
             +"-(0[1-9]|[12][0-9]|3[01])"
             +"T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))"
-            +"(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?".replace(" ", "") ;
+            +"(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" ;
         register("dateTime",       datetimepattern) ;
 
         // dateTimeStamp : additional:
@@ -81,7 +81,8 @@ public class TypeRegistry {
                 + "       | ([0-9]+(\\.[0-9]+)?S)"
                 + "       )"
                 + "    )"
-                + "  )".replace(" ", "") ;
+                + "  )" ;
+        durationpattern = durationpattern.replace(" ", "") ;                
         register("duration",       durationpattern) ;
 
         

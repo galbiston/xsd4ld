@@ -24,15 +24,16 @@ import xsd4ld.lib.DateTimeStruct ;
 
 public class XSD_DateTimeStamp extends BaseDateTime {
     public XSD_DateTimeStamp() {
-        super("dateTime", DateTimeStruct::parseDateTime) ;
+        super("dateTime", DateTimeStruct::parseDateTimeStamp) ;
     }
     
     @Override
     protected XMLGregorianCalendar valueOrException(String lex) {
+        //@@ What about invalids? e.g. gMonth
         XMLGregorianCalendar obj = super.valueOrException(lex) ;
         if ( obj == null )
             return null ;
-        // Ok as an xsd:dateTime - check it has a timezone.
+        // OK as an xsd:dateTime - check it has a timezone.
         //  timezoneFrag ::= 'Z' | ('+' | '-') (('0' digit | '1' [0-3]) ':' minuteFrag | '14:00')
         if ( lex.indexOf('Z') != -1 ) 
             return obj ;
@@ -45,9 +46,5 @@ public class XSD_DateTimeStamp extends BaseDateTime {
         if ( z != '+' && z != '-' )
             throw new IllegalArgumentException("Not valid as xsd:dateTimeStamp: "+lex) ;
         return obj ;
-
-        // Alternative:
-        //static Pattern p = Pattern.compile("\\d\\d:\\d\\d$") ;
-        //return p.matcher(x).find() ;
     }
 }

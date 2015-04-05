@@ -18,87 +18,80 @@
 
 package xsd4ld;
 
+import static org.junit.Assert.assertTrue ;
+import static xsd4ld.XSD.* ;
+import static xsd4ld.LibTestXSD.* ;
+import org.junit.Test ;
 
 public class TestDuration {
-    //@@
+
+    // @@ Coverage
     
-//    public XSDDatatype xsdDuration = (XSDDatatype)NodeFactory.getType(XSD.getURI()+"duration") ;
-//    public XSDDatatype xsdYearMonthDuration = new XSDYearMonthDurationType() ;
-//    public XSDDatatype xsdDayTimeDuration = new XSDDayTimeDurationType() ;
-//
-//    // xsd:yearMonthDuration
-//    @Test public void yearMonthDuration_01() {
-//        valid(xsdDuration, "P1Y") ;
-//        valid(xsdYearMonthDuration, "P1Y") ;
-//    }
-//
-//    @Test public void yearMonthDuration_02() {
-//        valid(xsdDuration, "-P1M") ;
-//        valid(xsdYearMonthDuration, "-P1M") ;
-//    }
-//
-//    @Test public void yearMonthDuration_03() {
-//        valid(xsdYearMonthDuration, "P9Y10M") ;
-//        valid(xsdYearMonthDuration, "P9Y10M") ;
-//    }
-//
-//    @Test public void yearMonthDuration_04() {
-//        valid(xsdDuration, "P1Y1D") ;
-//        invalid(xsdYearMonthDuration, "P1Y1D") ;
-//    }
-//
-//    @Test public void yearMonthDuration_05() {
-//        valid(xsdDuration, "P1YT1M") ;
-//        invalid(xsdYearMonthDuration, "P1YT1M") ;
-//    }
-//
-//    @Test public void yearMonthDuration_06() {
-//        valid(xsdDuration, "P1D") ;
-//        invalid(xsdYearMonthDuration, "P1D") ;
-//    }
-//
-//    // xsd:dayTimeDuration
-//    @Test public void dayTimeDuration_01() {
-//        valid(xsdDuration, "PT0S") ;
-//        valid(xsdDayTimeDuration, "PT0S") ;
-//    }
-//
-//    @Test public void dayTimeDuration_02() {
-//        invalid(xsdDuration, "PT") ;
-//        invalid(xsdDayTimeDuration, "PT") ;
-//    }
-//
-//    @Test public void dayTimeDuration_03() {
-//        valid(xsdDuration, "P1D") ;
-//        valid(xsdDayTimeDuration, "P1D") ;
-//    }
-//
-//    @Test public void dayTimeDuration_04() {
-//        valid(xsdDuration, "PT1M") ;
-//        valid(xsdDayTimeDuration, "PT1M") ;
-//    }
-//
-//    @Test public void dayTimeDuration_05() {
-//        valid(xsdDuration, "PT1S") ;
-//        valid(xsdDayTimeDuration, "PT1S") ;
-//    }
-//
-//    @Test public void dayTimeDuration_06() {
-//        valid(xsdDuration, "PT1M") ;
-//        invalid(xsdDayTimeDuration, "P1M") ;
-//    }
-//
-//    @Test public void dayTimeDuration_07() {
-//        invalid(xsdDuration, "P1DT") ;
-//        invalid(xsdDayTimeDuration, "P1DT") ;
-//    }
-//
-//    private void valid(XSDDatatype xsddatatype, String string) {
-//        assertTrue("Expected valid: "+string, xsddatatype.isValid(string)) ;
-//    }
-//
-//    private void invalid(XSDDatatype xsddatatype, String string) {
-//        assertFalse("Expected invalid: "+string, xsddatatype.isValid(string)) ;
-//    }
+    // xsd:yearMonthDuration
+    @Test public void yearMonthDuration_01() {
+        valid("P1Y", xsdDuration) ;
+        valid("P1Y", xsdYearMonthDuration) ;
+    }
+
+    @Test public void yearMonthDuration_02() {
+        valid("-P1M", xsdDuration) ;
+        valid("-P1M", xsdYearMonthDuration) ;
+    }
+
+    @Test public void yearMonthDuration_03() {
+        valid("P9Y10M", xsdYearMonthDuration) ;
+        valid("P9Y10M", xsdYearMonthDuration) ;
+    }
+
+    @Test public void yearMonthDuration_04() {
+        valid("P1Y1D", xsdDuration) ;
+        invalid("P1Y1D", xsdYearMonthDuration) ;
+    }
+
+    @Test public void yearMonthDuration_05() {
+        valid("P1YT1M", xsdDuration) ;
+        invalid("P1YT1M", xsdYearMonthDuration) ;
+    }
+
+    @Test public void yearMonthDuration_06() {
+        valid("P1D", xsdDuration) ;
+        invalid("P1D", xsdYearMonthDuration) ;
+    }
+
+    // xsd:dayTimeDuration
+    @Test public void dayTimeDuration_01() {
+        valid("PT0S", xsdDuration) ;
+        valid("PT0S", xsdDayTimeDuration) ;
+    }
+
+    @Test public void dayTimeDuration_02() {
+        invalid("PT", xsdDuration) ;
+        invalid("PT", xsdDayTimeDuration) ;
+    }
+
+    @Test public void dayTimeDuration_03() {
+        valid("P1D", xsdDuration) ;
+        valid("P1D", xsdDayTimeDuration) ;
+    }
+
+    @Test public void dayTimeDuration_04() {
+        valid("PT1M", xsdDuration) ;
+        valid("PT1M", xsdDayTimeDuration) ;
+    }
+
+    @Test public void dayTimeDuration_05() {
+        valid("PT1S", xsdDuration) ;
+        valid("PT1S", xsdDayTimeDuration) ;
+    }
+
+    @Test public void dayTimeDuration_06() {
+        valid("PT1M", xsdDuration) ;
+        invalid("P1M", xsdDayTimeDuration) ;
+    }
+
+    @Test public void dayTimeDuration_07() {
+        invalid("P1DT", xsdDuration) ;
+        invalid("P1DT", xsdDayTimeDuration) ;
+    }
 }
 

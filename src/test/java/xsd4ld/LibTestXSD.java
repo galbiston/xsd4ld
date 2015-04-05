@@ -27,6 +27,8 @@ public class LibTestXSD {
     }
 
     static void test(String lex, XSDDatatype type, boolean valid) {
+        type.isValid(lex)  ;
+        
         if ( valid != type.isValid(lex) ) {
             if ( valid ) 
                 fail("Unexpected invalid: "+type.getName()+" '"+lex+"'") ;

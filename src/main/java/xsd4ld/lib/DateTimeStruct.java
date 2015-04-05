@@ -60,6 +60,14 @@ public class DateTimeStruct
     public static DateTimeStruct parseDateTime(String str)
     { return _parseYMD(str, true, true, true) ; }
 
+    public static DateTimeStruct parseDateTimeStamp(String str)
+    {
+        DateTimeStruct dts = _parseYMD(str, true, true, true) ; 
+        if ( dts == null || dts.timezone == null )
+            return null ;
+        return dts ;
+    }
+
     public static DateTimeStruct parseTime(String str)
     { return _parseTime(str) ; } 
     

@@ -18,45 +18,59 @@
 
 package xsd4ld;
 
+import static xsd4ld.LibTestXSD.* ;
+import static xsd4ld.XSD.* ;
+import org.junit.Test ;
 
+/** Test for xsd:dateTime etc
+ */
 public class TestDateTime {
-    //@@
 
-//    public XSDDatatype xsdDateTime = (XSDDatatype)NodeFactory.getType(XSD.getURI()+"dateTime") ;
-//    public XSDDatatype xsdDateTimeStamp = new XSDDateTimeStampType() ; 
-//
-//    // xsd:dateTimeStamp
-//    @Test public void dateTimeStamp_01() {
-//        valid(xsdDateTime, "2015-02-23T15:21:18Z") ;
-//        valid(xsdDateTimeStamp, "2015-02-23T15:21:18Z") ;
-//    }
-//
-//    @Test public void dateTimeStamp_02() {
-//        valid(xsdDateTime, "2015-02-23T15:21:18") ;
-//        invalid(xsdDateTimeStamp, "2015-02-23T15:21:18") ;
-//    }
-//
-//    @Test public void dateTimeStamp_03() {
-//        invalid(xsdDateTime, "2015-02-23Z") ;
-//        invalid(xsdDateTimeStamp, "2015-02-23Z") ;
-//    }
-//
-//    @Test public void dateTimeStamp_04() {
-//        valid(xsdDateTime, "2015-02-23T15:21:18.665Z") ;
-//        valid(xsdDateTimeStamp, "2015-02-23T15:21:18.665Z") ;
-//    }
-//
-//    @Test public void dateTimeStamp_05() {
-//        valid(xsdDateTime, "2015-02-23T15:21:18.665+00:00") ;
-//        valid(xsdDateTimeStamp, "2015-02-23T15:21:18.665+00:00") ;
-//    }
-//
-//    @Test public void dateTimeStamp_06() {
-//        invalid(xsdDateTime, "2015-02-23T15:21:18.665+15:00") ;
-//        invalid(xsdDateTimeStamp, "2015-02-23T15:21:18.665+15:00") ;
-//    }
+    // @@ More tests
+    @Test public void dateTimeStamp_01() {
+        valid("2015-02-23T15:21:18Z", xsdDateTime) ;
+        valid("2015-02-23T15:21:18Z", xsdDateTimeStamp) ;
+    }
+
+    @Test public void dateTimeStamp_02() {
+        valid("2015-02-23T15:21:18", xsdDateTime) ;
+        invalid("2015-02-23T15:21:18", xsdDateTimeStamp) ;
+    }
+
+    @Test public void dateTimeStamp_03() {
+        invalid("2015-02-23Z", xsdDateTime) ;
+        invalid("2015-02-23Z", xsdDateTimeStamp) ;
+    }
+
+    @Test public void dateTimeStamp_04() {
+        valid("2015-02-23T15:21:18.665Z", xsdDateTime) ;
+        valid("2015-02-23T15:21:18.665Z", xsdDateTimeStamp) ;
+    }
+
+    @Test public void dateTimeStamp_05() {
+        valid("2015-02-23T15:21:18.665+00:00", xsdDateTime) ;
+        valid("2015-02-23T15:21:18.665+00:00", xsdDateTimeStamp) ;
+    }
+
+    @Test public void dateTimeStamp_06() {
+        invalid("2015-02-23T15:21:18.665+15:00", xsdDateTime) ;
+        invalid("2015-02-23T15:21:18.665+15:00", xsdDateTimeStamp) ;
+    }
     
-    // TestDateTimeParsing does a lot.
+    @Test public void gregorian_01() {
+        valid("2015", xsdGYear) ;
+        invalid("2015-02-23", xsdGYear) ;
+    }
+    
+    @Test public void gregorian_02() {
+        valid("2015-09", xsdGYearMonth) ;
+        invalid("2015-02-23", xsdGYearMonth) ;
+    }
+
+    @Test public void gregorian_03() {
+        invalid("2015-13", xsdGYearMonth) ;
+        invalid("2015-02-23", xsdGYearMonth) ;
+    }
     
 }
 
