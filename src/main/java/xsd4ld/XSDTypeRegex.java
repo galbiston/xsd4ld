@@ -40,13 +40,22 @@ public class XSDTypeRegex {
         register(xsd_precisionDecimal, x) ;
         
         
-        String datetimepattern =
+        String datetimePattern =
             "-?([1-9][0-9]{3,}|0[0-9]{3})"
             +"-(0[1-9]|1[0-2])"
             +"-(0[1-9]|[12][0-9]|3[01])"
             +"T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))"
             +"(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" ;
-        register(xsd_dateTime,       datetimepattern) ;
+        register(xsd_dateTime,       datetimePattern) ;
+        // Mandatory timestamp
+        String datetimestampPattern =
+            "-?([1-9][0-9]{3,}|0[0-9]{3})"
+            +"-(0[1-9]|1[0-2])"
+            +"-(0[1-9]|[12][0-9]|3[01])"
+            +"T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))"
+            // Remove ? at end from the one above. 
+            +"(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))" ;
+        register(xsd_dateTimeStamp,       datetimestampPattern) ;
 
         // dateTimeStamp : additional:
         //'.*(Z|(\+|-)[0-9][0-9]:[0-9][0-9])'.
@@ -57,7 +66,6 @@ public class XSDTypeRegex {
         register(xsd_gMonth,        "--(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
         register(xsd_gDay,          "---(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;      
         register(xsd_language,      "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*") ;
-
 
         register(xsd_hexBinary,     "([0-9a-fA-F]{2})*") ;
         // Notes spaces.

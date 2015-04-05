@@ -25,7 +25,7 @@ import xsd4ld.lib.DateTimeStruct ;
 
 public class XSD_DateTimeStamp extends BaseDateTime {
     public XSD_DateTimeStamp() {
-        super(XSDConst.xsd_dateTime, DateTimeStruct::parseDateTimeStamp) ;
+        super(XSDConst.xsd_dateTimeStamp, XSDConst.xsd_dateTime, DateTimeStruct::parseDateTimeStamp) ;
     }
     
     @Override
