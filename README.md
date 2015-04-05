@@ -38,4 +38,4 @@ As for javax.util.xml
 | xs:yearMonthDuration | Duration |
 | xs:hexBinary         | byte[] |
 | xs:base64Binary      | byte[] |
-| xs;precisionDecimal  | BigDecimal or Double |
+| xs:precisionDecimal  | BigDecimal or Double |
