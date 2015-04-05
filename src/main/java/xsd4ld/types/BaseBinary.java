@@ -16,30 +16,16 @@
  * limitations under the License.
  */
 
-package xsd4ld;
+package xsd4ld.types;
 
-import static org.junit.Assert.* ;
+import java.util.regex.Pattern ;
 
-public class LibTestXSD {
+import xsd4ld.XSDDatatype ;
 
-    static void valid(String lex, XSDDatatype type) {
-        test(lex, type, true);
+abstract class BaseBinary extends XSDDatatype {
+
+    protected BaseBinary(String shortName, String derivedFrom, Pattern regex) {
+        super(shortName, derivedFrom, regex) ;
     }
-
-    static void test(String lex, XSDDatatype type, boolean valid) {
-        if ( valid != type.isValid(lex) ) {
-            if ( valid ) 
-                fail("Unexpected invalid: "+type.getName()+" '"+lex+"'") ;
-            else
-                fail("Unexpected valid: "+type.getName()+" '"+lex+"'") ;
-        }
-        if ( valid && type.getRegex() != null )
-            assertTrue("Lex:"+lex+" Regex: "+type.getRegex(), type.getRegex().matcher(lex).matches()) ;
-    }
-
-    static void invalid(String lex, XSDDatatype type) {
-        test(lex, type, false);
-    }
-
 }
 

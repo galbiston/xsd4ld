@@ -25,9 +25,13 @@ public class NOTES {
     // java.xml mappings.
     // check for @@
     // @@ DatetIme - out of range values. 
+    // facet  collapse (2 spaces->one, then trim.
     
     // Value tests everywhere.
     // No extensibility.
+    
+    // XSD_Base64Binary
+    // XSD_HexBinary
     
     /*
 xs:date         XMLGregorianCalendar

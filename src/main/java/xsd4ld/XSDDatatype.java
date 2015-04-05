@@ -66,6 +66,11 @@ public abstract class XSDDatatype {
      * @return
      */
     protected abstract Object valueOrException(String lex) ;
+    
+    protected String collapse(String lex) {
+        lex = lex.replace("  ", " ") ;
+        return lex.trim() ;
+    }
 
     /** Get the XSD name for this type */
     public String getName() {

@@ -26,6 +26,19 @@ import org.junit.Test ;
 public class TestNumber {
     // @@ PrecisionDecimal
     
+    @Test public void integer_01() { LibTestXSD.valid("0", XSD.xsdInteger) ; }
+    @Test public void integer_02() { LibTestXSD.valid("+0", XSD.xsdInteger) ; }
+    @Test public void integer_03() { LibTestXSD.valid("+0", XSD.xsdInteger) ; }
+    
+    @Test public void integer_04() { LibTestXSD.valid("9999999999999999999999999999999999999999999999999999999", XSD.xsdInteger) ; }
+    @Test public void integer_05() { LibTestXSD.valid("+9999999999999999999999999999999999999999999999999999999", XSD.xsdInteger) ; }
+    @Test public void integer_06() { LibTestXSD.valid("-9999999999999999999999999999999999999999999999999999999", XSD.xsdInteger) ; }
+    
+    @Test public void integer_10() { LibTestXSD.invalid("1.1", XSD.xsdInteger) ; }
+    @Test public void integer_11() { LibTestXSD.invalid("1e0", XSD.xsdInteger) ; }
+    @Test public void integer_12() { LibTestXSD.invalid("", XSD.xsdInteger) ; }
+    @Test public void integer_13() { LibTestXSD.invalid(" 1 ", XSD.xsdInteger) ; }
+
     @Test public void double_01() { LibTestXSD.valid("0", XSD.xsdDouble) ; }
     @Test public void double_02() { LibTestXSD.valid("1e0", XSD.xsdDouble) ; }
     @Test public void double_03() { LibTestXSD.valid("1.1e1", XSD.xsdDouble) ; }
@@ -63,20 +76,6 @@ public class TestNumber {
     @Test public void decimal_10() { LibTestXSD.valid("1.", XSD.xsdDecimal) ; }
     @Test public void decimal_11() { LibTestXSD.invalid("1e0", XSD.xsdDecimal) ; }
 
-    //@@ Canonical.
-    
-    @Test public void integer_01() { LibTestXSD.valid("0", XSD.xsdInteger) ; }
-    @Test public void integer_02() { LibTestXSD.valid("+0", XSD.xsdInteger) ; }
-    @Test public void integer_03() { LibTestXSD.valid("+0", XSD.xsdInteger) ; }
-    
-    @Test public void integer_04() { LibTestXSD.valid("9999999999999999999999999999999999999999999999999999999", XSD.xsdInteger) ; }
-    @Test public void integer_05() { LibTestXSD.valid("+9999999999999999999999999999999999999999999999999999999", XSD.xsdInteger) ; }
-    @Test public void integer_06() { LibTestXSD.valid("-9999999999999999999999999999999999999999999999999999999", XSD.xsdInteger) ; }
-    
-    @Test public void integer_10() { LibTestXSD.invalid("1.1", XSD.xsdInteger) ; }
-    @Test public void integer_11() { LibTestXSD.invalid("1e0", XSD.xsdInteger) ; }
-
-    
     @Test public void byte_01() { LibTestXSD.valid("0", XSD.xsdByte) ; }
     @Test public void byte_02() { LibTestXSD.invalid("999", XSD.xsdByte) ; }
     @Test public void byte_03() { LibTestXSD.valid("127", XSD.xsdByte) ; }

@@ -32,7 +32,8 @@ import xsd4ld.lib.TestLangTag2 ;
     TestIntegerRange.class,
     TestString.class,
     TestDuration.class,
-    TestDateTime.class
+    TestDateTime.class,
+    TestBinary.class
 })
 public class TS_XSD {
 

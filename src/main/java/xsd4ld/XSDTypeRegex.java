@@ -59,6 +59,7 @@ public class XSDTypeRegex {
         register("gDay",        "---(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;      
 
         register("hexBinary",   "([0-9a-fA-F]{2})*") ;
+        // Notes spaces.
         register("base64Binary", "((([A-Za-z0-9+/] ?){4})*(([A-Za-z0-9+/] ?){3}[A-Za-z0-9+/]|([A-Za-z0-9+/] ?){2}[AEIMQUYcgkosw048] ?=|[A-Za-z0-9+/] ?[AQgw] ?= ?=))?") ;
 
         //anyURI

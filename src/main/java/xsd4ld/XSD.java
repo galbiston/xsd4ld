@@ -65,4 +65,7 @@ public class XSD {
     static public XSDDatatype xsdGMonthDay          = new XSD_GMonthDay() ;
     static public XSDDatatype xsdGDay               = new XSD_GDay() ;
     static public XSDDatatype xsdGMonth             = new XSD_GMonth() ;
+
+    static public XSDDatatype xsdHexBinary          = new XSD_HexBinary() ;
+    static public XSDDatatype xsdBase64Binary       = new XSD_Base64Binary() ;
 }

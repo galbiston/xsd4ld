@@ -16,30 +16,23 @@
  * limitations under the License.
  */
 
-package xsd4ld;
+package xsd4ld.types;
 
-import static org.junit.Assert.* ;
+import javax.xml.bind.DatatypeConverter ;
 
-public class LibTestXSD {
+import xsd4ld.XSDConst ;
 
-    static void valid(String lex, XSDDatatype type) {
-        test(lex, type, true);
+public class XSD_Base64Binary extends BaseBinary {
+
+    public XSD_Base64Binary() {
+        // @@ Collapse not handled by regex.
+        super(XSDConst.xsd_base64Binary, XSDConst.xsd_atomic, null /*XSDTypeRegex.getRegex(XSDConst.xsd_base64Binary)*/) ;
     }
-
-    static void test(String lex, XSDDatatype type, boolean valid) {
-        if ( valid != type.isValid(lex) ) {
-            if ( valid ) 
-                fail("Unexpected invalid: "+type.getName()+" '"+lex+"'") ;
-            else
-                fail("Unexpected valid: "+type.getName()+" '"+lex+"'") ;
-        }
-        if ( valid && type.getRegex() != null )
-            assertTrue("Lex:"+lex+" Regex: "+type.getRegex(), type.getRegex().matcher(lex).matches()) ;
+    
+    @Override
+    protected byte[] valueOrException(String lex) {
+        // Collapse facet.
+        lex = collapse(lex) ;
+        return DatatypeConverter.parseBase64Binary(lex) ;
     }
-
-    static void invalid(String lex, XSDDatatype type) {
-        test(lex, type, false);
-    }
-
 }
-

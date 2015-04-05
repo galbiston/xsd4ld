@@ -18,28 +18,17 @@
 
 package xsd4ld;
 
-import static org.junit.Assert.* ;
+import static xsd4ld.LibTestXSD.* ;
+import org.junit.Test ;
 
-public class LibTestXSD {
+public class TestBinary {
+    @Test public void hexBinary_01() { valid("ABCD", XSD.xsdHexBinary) ; }
+    
 
-    static void valid(String lex, XSDDatatype type) {
-        test(lex, type, true);
-    }
-
-    static void test(String lex, XSDDatatype type, boolean valid) {
-        if ( valid != type.isValid(lex) ) {
-            if ( valid ) 
-                fail("Unexpected invalid: "+type.getName()+" '"+lex+"'") ;
-            else
-                fail("Unexpected valid: "+type.getName()+" '"+lex+"'") ;
-        }
-        if ( valid && type.getRegex() != null )
-            assertTrue("Lex:"+lex+" Regex: "+type.getRegex(), type.getRegex().matcher(lex).matches()) ;
-    }
-
-    static void invalid(String lex, XSDDatatype type) {
-        test(lex, type, false);
-    }
+    @Test public void base64Binary_01() { valid("0F+40A==", XSD.xsdBase64Binary) ; }
+    @Test public void base64Binary_02() { valid("0 F + 4 0 A = =", XSD.xsdBase64Binary) ; }
+    @Test public void base64Binary_03() { valid(" 0F+40A==", XSD.xsdBase64Binary) ; }
+    @Test public void base64Binary_04() { valid("0F+40A== ", XSD.xsdBase64Binary) ; }
 
 }
 
