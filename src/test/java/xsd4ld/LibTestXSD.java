@@ -33,8 +33,12 @@ public class LibTestXSD {
             else
                 fail("Unexpected valid: "+type.getName()+" '"+lex+"'") ;
         }
-        if ( valid && type.getRegex() != null )
+        if ( valid && type.getRegex() != null ) {
+            // Collapse
+            lex = lex.replace("  ", " ") ;
+            lex = lex.trim();       
             assertTrue("Lex:"+lex+" Regex: "+type.getRegex(), type.getRegex().matcher(lex).matches()) ;
+        }
     }
 
     static void invalid(String lex, XSDDatatype type) {

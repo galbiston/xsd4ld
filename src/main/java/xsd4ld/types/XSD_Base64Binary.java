@@ -21,12 +21,13 @@ package xsd4ld.types;
 import javax.xml.bind.DatatypeConverter ;
 
 import xsd4ld.XSDConst ;
+import xsd4ld.XSDTypeRegex ;
 
 public class XSD_Base64Binary extends BaseBinary {
 
     public XSD_Base64Binary() {
         // @@ Collapse not handled by regex.
-        super(XSDConst.xsd_base64Binary, XSDConst.xsd_atomic, null /*XSDTypeRegex.getRegex(XSDConst.xsd_base64Binary)*/) ;
+        super(XSDConst.xsd_base64Binary, XSDConst.xsd_atomic, XSDTypeRegex.getRegex(XSDConst.xsd_base64Binary)) ;
     }
     
     @Override

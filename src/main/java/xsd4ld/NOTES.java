@@ -25,7 +25,18 @@ public class NOTES {
     // java.xml mappings.
     // check for @@
     // @@ DatetIme - out of range values. 
-    // facet  collapse (2 spaces->one, then trim.
+    // facet collapse (2 spaces->one, then trim)
+    
+    /*
+     * For all ·atomic· datatypes other than string (and types ·derived· by
+     * ·facet-based restriction· from it) the value of whiteSpace is collapse
+     * and cannot be changed by a schema author; for string the value of
+     * whiteSpace is preserve; for any type ·derived· by ·facet-based
+     * restriction· from string the value of whiteSpace can be any of the three
+     * legal values (as long as the value is at least as restrictive as the
+     * value of the ·base type·; see Constraints on whiteSpace Schema Components
+     * (§4.3.6.4)).
+     */
     
     // Value tests everywhere.
     // No extensibility.

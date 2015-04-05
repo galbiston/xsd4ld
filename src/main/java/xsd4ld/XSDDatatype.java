@@ -67,8 +67,17 @@ public abstract class XSDDatatype {
      */
     protected abstract Object valueOrException(String lex) ;
     
-    protected String collapse(String lex) {
+    /** Full facet collapse. Usually not needed because 
+     * internal whitespace is illegal.  
+     * @param lex
+     * @return
+     */
+    static protected String collapse(String lex) {
         lex = lex.replace("  ", " ") ;
+        return trim(lex) ;
+    }
+
+    static protected String trim(String lex) {
         return lex.trim() ;
     }
 
