@@ -18,10 +18,10 @@
 
 package xsd4ld.types;
 
-import xsd4ld.XSDConst ;
+import static xsd4ld.XSDConst.* ;
 
 public class XSD_Long extends BaseInteger {
     public XSD_Long() {
-        super(XSDConst.xsd_long, XSDConst.xsd_integer, XSDConst.LONG_MIN, XSDConst.LONG_MAX) ;
+        super(xsd_long, xsd_integer, LONG_MIN, LONG_MAX) ;
     }
 }

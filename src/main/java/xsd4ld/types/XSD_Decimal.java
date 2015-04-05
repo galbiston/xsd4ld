@@ -18,16 +18,18 @@
 
 package xsd4ld.types;
 
+import static xsd4ld.XSDConst.xsd_atomic ;
+import static xsd4ld.XSDConst.xsd_decimal ;
+
 import java.math.BigDecimal ;
 
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegex ;
 import xsd4ld.XSDDatatype ;
+import xsd4ld.XSDTypeRegex ;
 
 public class XSD_Decimal extends XSDDatatype {
 
     public XSD_Decimal() {
-        super(XSDConst.xsd_decimal, XSDConst.xsd_atomic, XSDTypeRegex.getRegex(XSDConst.xsd_decimal)) ;
+        super(xsd_decimal, xsd_atomic, XSDTypeRegex.getRegex(xsd_decimal)) ;
     }
 
     @Override

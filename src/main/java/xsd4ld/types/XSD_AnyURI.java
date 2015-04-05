@@ -16,27 +16,23 @@
  * limitations under the License.
  */
 
-package xsd4ld;
+package xsd4ld.types;
 
-import org.junit.runner.RunWith ;
-import org.junit.runners.Suite ;
-import xsd4ld.lib.TestDateTimeParsing ;
-import xsd4ld.lib.TestLangTag2 ;
+import static xsd4ld.XSDConst.* ;
+import xsd4ld.XSDDatatype ;
+import xsd4ld.XSDTypeRegex ;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-    TestDateTimeParsing.class,
-    TestLangTag2.class,
-    TestDatatype.class,
-    TestNumber.class,
-    TestIntegerRange.class,
-    TestString.class,
-    TestDuration.class,
-    TestDateTime.class,
-    TestBinary.class,
-    TestAnyURI.class
-})
-public class TS_XSD {
+public class XSD_AnyURI extends XSDDatatype {
 
+    public XSD_AnyURI() {
+        super(xsd_anyURI, xsd_atomic, XSDTypeRegex.getRegex(xsd_anyURI)) ;
+    }
+
+    @Override
+    protected Object valueOrException(String lex) {
+        if ( getRegex().matcher(lex).matches() )
+            return lex ;
+        return null ;
+    }
 }
 

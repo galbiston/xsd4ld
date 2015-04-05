@@ -71,9 +71,6 @@ public class XSDTypeRegex {
         // Notes spaces.
         register(xsd_base64Binary,  "((([A-Za-z0-9+/] ?){4})*(([A-Za-z0-9+/] ?){3}[A-Za-z0-9+/]|([A-Za-z0-9+/] ?){2}[AEIMQUYcgkosw048] ?=|[A-Za-z0-9+/] ?[AQgw] ?= ?=))?") ;
 
-        //anyURI
-        //QName 
-        
         String durationPattern =
             "-?P( ( ( [0-9]+Y([0-9]+M)?([0-9]+D)?"
                 + "       | ([0-9]+M)([0-9]+D)?"
@@ -106,6 +103,41 @@ public class XSDTypeRegex {
             
         String dayTimePattern = "-?P((([0-9]+D)("+duTimeFrag+")?)|("+duTimeFrag+"))" ;
         register(xsd_dayTimeDuration,       dayTimePattern) ;
+
+        // [2]      Char       ::=      [#x1-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
+        // Java can't deal with characters outside the basic plane directly
+        // It uses surrogates so we need to put the surrogate blocks back in.
+        //String xmlChar = "[\u0001-\uD7FF]|[\uE000-\uFFFD]" ; // |[\U00010000-\U0010FFFF]" ;
+        
+        String xmlChar = "[^\uFFFE\uFFFF\u0000]" ;
+//        String xmlRestrictedChar = "[\u0001-\u0008]|[\u000B-\u000C]|[\u000E-\u001F]|[\u007F-\u0084]|[\u0086-\u009F]" ;
+//        // Not u000D u000A - they break the line! 
+//        String xmlS = "(\u0020|\u0009|\r|\n)" ; 
+        
+        register(xsd_anyURI, "((" + xmlChar + ")*)") ;
+        
+        /*
+// any Unicode character, excluding the surrogate blocks, FFFE, and FFFF. 
+[2]     Char               ::=      [#x1-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
+[2a]    RestrictedChar     ::=      [#x1-#x8] | [#xB-#xC] | [#xE-#x1F] | [#x7F-#x84] | [#x86-#x9F]
+[4]     NameStartChar      ::=      ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
+[4a]    NameChar           ::=      NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] | [#x203F-#x2040]
+[5]     Name               ::=      NameStartChar (NameChar)*
+[6]     Names              ::=      Name (#x20 Name)*
+[7]     Nmtoken            ::=      (NameChar)+
+[8]     Nmtokens           ::=      Nmtoken (#x20 Nmtoken)*
+ */
+        
+        /* Discouraged:
+[#x1-#x8], [#xB-#xC], [#xE-#x1F], [#x7F-#x84], [#x86-#x9F], [#xFDD0-#xFDDF],
+[#x1FFFE-#x1FFFF], [#x2FFFE-#x2FFFF], [#x3FFFE-#x3FFFF],
+[#x4FFFE-#x4FFFF], [#x5FFFE-#x5FFFF], [#x6FFFE-#x6FFFF],
+[#x7FFFE-#x7FFFF], [#x8FFFE-#x8FFFF], [#x9FFFE-#x9FFFF],
+[#xAFFFE-#xAFFFF], [#xBFFFE-#xBFFFF], [#xCFFFE-#xCFFFF],
+[#xDFFFE-#xDFFFF], [#xEFFFE-#xEFFFF], [#xFFFFE-#xFFFFF],
+[#x10FFFE-#x10FFFF].
+         */
+        
     }
     
     // Shortname to type

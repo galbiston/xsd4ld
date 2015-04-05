@@ -18,25 +18,21 @@
 
 package xsd4ld;
 
-import org.junit.runner.RunWith ;
-import org.junit.runners.Suite ;
-import xsd4ld.lib.TestDateTimeParsing ;
-import xsd4ld.lib.TestLangTag2 ;
+import static xsd4ld.LibTestXSD.invalid ;
+import static xsd4ld.LibTestXSD.valid ;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-    TestDateTimeParsing.class,
-    TestLangTag2.class,
-    TestDatatype.class,
-    TestNumber.class,
-    TestIntegerRange.class,
-    TestString.class,
-    TestDuration.class,
-    TestDateTime.class,
-    TestBinary.class,
-    TestAnyURI.class
-})
-public class TS_XSD {
+import org.junit.Test ;
 
+public class TestAnyURI {
+    
+    @Test public void anyURI_01() { valid("", XSD.xsdAnyURI) ; }
+    @Test public void anyURI_02() { valid("abc def", XSD.xsdAnyURI) ; }
+    
+    // Includes surrogate
+    @Test public void anyURI_03() { valid("abc\uDE00def", XSD.xsdAnyURI) ; }
+    
+    @Test public void anyURI_04() { invalid("\u0000", XSD.xsdAnyURI) ; }
+    @Test public void anyURI_05() { invalid("\uFFFF", XSD.xsdAnyURI) ; }
+    @Test public void anyURI_06() { invalid("\uFFFE", XSD.xsdAnyURI) ; }
 }
 

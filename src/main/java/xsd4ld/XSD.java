@@ -20,6 +20,15 @@ package xsd4ld ;
 
 import xsd4ld.types.* ;
 
+/**
+ * The atomic datatypes, except those specific to XML.
+ *  
+ * @see <a href="http://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>
+ * @see <a href="http://www.w3.org/TR/xsd-precisionDecimal/">An XSD datatype for IEEE floating-point decimal</a>
+ */
+ 
+// Not: Name, NCName, ENTITY, ID IDREF, NMTOKEN, NOTATION, QName  
+
 public class XSD {
     static public XSDDatatype xsdSimple             = new XSD_Simple() ;
     static public XSDDatatype xsdAtomic             = new XSD_Atomic() ;
@@ -54,6 +63,7 @@ public class XSD {
     static public XSDDatatype xsdNormalizedString   = new XSD_NormalizedString() ;
     static public XSDDatatype xsdToken              = new XSD_Token() ;
     static public XSDDatatype xsdLanguage           = new XSD_Language() ;
+    static public XSDDatatype xsdAnyURI             = new XSD_AnyURI() ;
 
     static public XSDDatatype xsdDateTimeStamp      = new XSD_DateTimeStamp() ;
     static public XSDDatatype xsdDateTime           = new XSD_DateTime() ;
