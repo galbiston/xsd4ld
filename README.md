@@ -1,4 +1,4 @@
-== XSD4LD
+# XSD4LD
 
 XSD4LD is a package to handle the atomic XSD datatypes (except those
 specific to XML). It provides validation and production of values for valid
@@ -21,25 +21,21 @@ As for javax.util.xml
   when it is mapped to a Double.
 
 
-| Datatype | Java Type |
-|----------|-----------|
-| xs:integer |      BigInteger |
-| Derived from xs:integer |      BigInteger |
-| xs:decimal |      BigDecimal|
-| xs:double |       Double|
-| xs:float |        Float|
-| xs:date |         XMLGregorianCalendar|
-| xs:dateTime |         XMLGregorianCalendar|
-| xs:dateTimeStamp |    XMLGregorianCalendar|
-| xs:time |         XMLGregorianCalendar|
-| xs:gDay |         XMLGregorianCalendar|
-| xs:gMonth |       XMLGregorianCalendar|
-| xs:gMonthDay |    XMLGregorianCalendar|
-| xs:gYear |        XMLGregorianCalendar|
-| xs:gYearMonth |   XMLGregorianCalendar|
-| xs:duration |     Duration|
-| xs:dayTimeDuration |     Duration|
-| xs:yearMonthDuration |   Duration     |
-| xs:hexBinary |     byte[]|
-| xs:base64Binary |  byte[]|
-| xs;precisionDecimal | BigDecimal or Double
+| Datatype             | Java Type |
+|----------------------|-----------|
+| xs:integer           | BigInteger           |
+| Derived from xs:integer | BigInteger        |
+| xs:decimal           | BigDecimal           |
+| xs:double            | Double               |
+| xs:float             | Float                |
+| xs:date              | XMLGregorianCalendar |
+| xs:dateTime          | XMLGregorianCalendar |
+| xs:dateTimeStamp     | XMLGregorianCalendar |
+| xs:time              | XMLGregorianCalendar |
+| xs:g*                | XMLGregorianCalendar|
+| xs:duration          | Duration |
+| xs:dayTimeDuration   | Duration |
+| xs:yearMonthDuration | Duration |
+| xs:hexBinary         | byte[] |
+| xs:base64Binary      | byte[] |
+| xs;precisionDecimal  | BigDecimal or Double |
