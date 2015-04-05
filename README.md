@@ -28,6 +28,7 @@ As for javax.util.xml
 | xs:decimal           | BigDecimal           |
 | xs:double            | Double               |
 | xs:float             | Float                |
+| xs:precisionDecimal  | BigDecimal or Double |
 | xs:date              | XMLGregorianCalendar |
 | xs:dateTime          | XMLGregorianCalendar |
 | xs:dateTimeStamp     | XMLGregorianCalendar |
@@ -38,4 +39,3 @@ As for javax.util.xml
 | xs:yearMonthDuration | Duration |
 | xs:hexBinary         | byte[] |
 | xs:base64Binary      | byte[] |
-| xs:precisionDecimal  | BigDecimal or Double |
