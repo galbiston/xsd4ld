@@ -32,16 +32,5 @@ public class XSD_Simple extends XSDDatatype {
     protected Object valueOrException(String lex) {
         return lex ;
     }
-
-    @Override
-    public boolean parse(String lex) {
-        return true ;
-    }
-
-    @Override
-    public boolean isValid(String lex) {
-        return true ;
-    }
-
 }
 

@@ -20,9 +20,13 @@ package xsd4ld;
 
 import org.junit.runner.RunWith ;
 import org.junit.runners.Suite ;
+import xsd4ld.lib.TestDateTimeParsing ;
+import xsd4ld.lib.TestLangTag2 ;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+    TestDateTimeParsing.class,
+    TestLangTag2.class,
     TestDatatype.class,
     TestNumber.class,
     TestIntegerRange.class,

@@ -58,13 +58,8 @@ abstract class BaseDateTime extends XSDDatatype  {
     }
 
     @Override
-    public boolean parse(String lex) {
-        return parser.parser(lex) != null ;
-    }
-
-    @Override
     public boolean isValid(String lex) {
-        return false ;
+        return parser.parser(lex) != null ;
     }
 }
 

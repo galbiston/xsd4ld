@@ -36,11 +36,6 @@ abstract class BaseString extends XSDDatatype {
             return lex ;
         return null ;
     }
-    
-    @Override
-    public boolean parse(String lex) {
-        return true ;
-    }
 
     @Override
     public boolean isValid(String lex) {

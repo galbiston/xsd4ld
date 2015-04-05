@@ -40,21 +40,5 @@ abstract class BaseDuration extends XSDDatatype {
             return null ; 
         }
     }
-
-    @Override
-    public boolean parse(String lex) {
-        try {
-            valueOrException(lex) ;
-            return true ;
-        } catch ( Exception ex) {
-            return false ; 
-        }
-    }
-
-    @Override
-    public boolean isValid(String lex) {
-        return false ;
-    }
-
 }
 

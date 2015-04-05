@@ -44,7 +44,6 @@ abstract class BaseInteger extends XSDDatatype {
         this.maxValue = maxValue ;
     }
 
-
     // Extra validate.
     // XSD_AbstractInteger?
     
@@ -52,36 +51,21 @@ abstract class BaseInteger extends XSDDatatype {
     protected BigInteger valueOrException(String lex) {
         try {
             // This parses it
-            return new BigInteger(lex) ;
+            BigInteger integer = new BigInteger(lex) ;
+            if ( minValue != null && minValue.compareTo(integer) > 0 )
+                return null ;
+            if ( maxValue != null && maxValue.compareTo(integer) < 0 )
+                return null ;
+            return integer ; 
         }
         catch (NumberFormatException ex) {
             return null ;
         }
     }
-    
-    @Override
-    public boolean parse(String lex) {
-        return regex.matcher(lex).matches() ;
-    }
-
-    //@@ Avoid double parsing.
-    @Override
-    public boolean isValid(String lex) {
-        // No additional restrictions.
-        boolean b = regex.matcher(lex).matches() ;
-        if ( ! b )
-            return false ;
-        return isValidValue(lex) ;
-    }
-    
-    public boolean isValidValue(String lex) {
-        BigInteger v = valueOrException(lex) ; 
-        if ( minValue != null && minValue.compareTo(v) > 0 )
-            return false ;
-        if ( maxValue != null && maxValue.compareTo(v) < 0 )
-            return false ;
-        return true ; 
-    }
+//    
+//    public boolean isValidValue(String lex) {
+//        BigInteger v = valueOrException(lex) ; 
+//    }
 
 //    @Override
 //  public abstract int hashCode( );

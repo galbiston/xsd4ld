@@ -24,6 +24,7 @@ package xsd4ld;
 public class NOTES {
 
     // java.xml mappings.
+    // check for @@
     
     // Check yearMonth and dayTime duration regexs
     

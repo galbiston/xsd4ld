@@ -29,19 +29,7 @@ abstract class BaseDoubleFloat extends XSDDatatype {
         super(shortName, C.xsd_atomic, TypeRegistry.getRegex(shortName)) ;
     }
 
-    @Override
-    public boolean parse(String lex) {
-        return getRegex().matcher(lex).matches() ;
-    }
-
-    @Override
-    public boolean isValid(String lex) {
-        try {
-            valueOrException(lex) ;
-            return true ;
-        } catch (NumberFormatException ex) { return false ; }
-    }
-    
+    // Used by the 2 subclasses.
     // XSD to Java
     // Java spells "INF" as "Infinity"
     protected static String fix(String lex) {

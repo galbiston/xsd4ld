@@ -31,24 +31,13 @@ public class XSD_Decimal extends XSDDatatype {
     }
 
     @Override
-    protected Object valueOrException(String lex) {
-        try {
-            // This parses it
-            return new BigDecimal(lex) ;
-        }
-        catch (NumberFormatException ex) {
+    protected BigDecimal valueOrException(String lex) {
+        // This parses it
+        BigDecimal decimal = new BigDecimal(lex) ;
+        // Java allows "1e0" as a BigDecimal.
+        if ( lex.indexOf('e') != -1 || lex.indexOf('E') != -1 )
             return null ;
-        }
-    }
-
-    @Override
-    public boolean parse(String lex) {
-        return regex.matcher(lex).matches() ;
-    }
-
-    @Override
-    public boolean isValid(String lex) {
-        return parse(lex) ;
+        return decimal ; 
     }
 }
 

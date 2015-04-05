@@ -37,16 +37,11 @@ public class XSD_Language extends BaseString {
             return LangTag2.canonical(lex) ;
         return null ;
     }
-    
-    @Override
-    public boolean parse(String lex) {
-        return true ;
-    }
 
     @Override
     public boolean isValid(String lex) {
-        return null != LangTag2.parse(lex) ;
-        //return pattern.matcher(lex).matches() ;
+        //return null != LangTag2.parse(lex) ;
+        return pattern.matcher(lex).matches() ;
     }
     
     @Override

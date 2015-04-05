@@ -40,8 +40,8 @@ public abstract class XSDDatatype {
     
     /** Return a value object if the lexical form is valid
      * for the type else return null. 
-     * @param lex
-     * @return Object
+     * @param lex   lexcial form
+     * @return Object ornull, if the lexcial form is not valid for this datatype.
      */
     
     public Object value(String lex) {
@@ -49,20 +49,37 @@ public abstract class XSDDatatype {
         catch (Exception ex) { return null; }
     }
     
+    /** Test the lexical form and the value it represents.
+     * This involves calculating the value, so calling {@link #value}
+     * and testign for {@code null}
+     * is more efficient if the value obkect is required. 
+     * @param lex
+     * @return boolean
+     */
+    public boolean isValid(String lex) {
+        return value(lex) != null ;
+    }
+
+    /** Return the value, null or throw an exception.
+     * Exceptions are converted to nulls by {@link #value}  
+     * @param lex
+     * @return
+     */
     protected abstract Object valueOrException(String lex) ;
 
     /** Get the XSD name for this type */
-    public String getName() { return shortName ; }
-    
+    public String getName() {
+        return shortName ;
+    }
+
     /** Get the URI for this type */
-    public String getURIName() { return uri ; }
-    
-    public final String isDerivedFrom() { return derivedFrom ; }
-    
-    /** Just the lexical form tested */
-    public abstract boolean parse(String lex) ;
-    /** lexical form and value */
-    public abstract boolean isValid(String lex) ;
+    public String getURIName() {
+        return uri ;
+    }
+
+    public final String isDerivedFrom() {
+        return derivedFrom ;
+    }
     
     /** Get the "best" regex for this type.
      *  "Best" is the regex of this type or the first "derived from"
@@ -86,13 +103,6 @@ public abstract class XSDDatatype {
 //    public abstract int hashCode( );
 //    @Override
 //    public abstract boolean equals(Object other) ;
-    
-
-    //public XSDatatype getBaseType();
-    //public XSDatatype getAncestorBuiltinType();
-
-    //public boolean isDerivedTypeOf( XSDatatype baseType, boolean restrictionAllowed );
-    
 }
 
 

@@ -18,7 +18,6 @@
 
 package xsd4ld ;
 
-import generate.* ;
 import xsd4ld.types.* ;
 
 public class XSD {

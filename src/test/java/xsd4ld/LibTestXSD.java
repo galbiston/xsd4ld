@@ -35,8 +35,6 @@ public class LibTestXSD {
         }
         if ( valid && type.getRegex() != null )
             assertTrue("Lex:"+lex+" Regex: "+type.getRegex(), type.getRegex().matcher(lex).matches()) ;
-        if ( valid )
-            assertTrue(type.parse(lex)) ;
     }
 
     static void invalid(String lex, XSDDatatype type) {
