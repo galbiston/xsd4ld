@@ -22,7 +22,7 @@ As for javax.util.xml
 
 
 | Datatype | Java Type |
-|==========|===========|
+|----------|-----------|
 | xs:integer |      BigInteger |
 | Derived from xs:integer |      BigInteger |
 | xs:decimal |      BigDecimal|
