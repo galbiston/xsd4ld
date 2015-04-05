@@ -6,6 +6,9 @@ target/
 .classpath
 .settings
 
+\#*
+.#*
+
 # Dev work file.
 generate
 
