@@ -29,7 +29,6 @@ public class XSD_DateTimeStamp extends BaseDateTime {
     
     @Override
     protected XMLGregorianCalendar valueOrException(String lex) {
-        //@@ What about invalids? e.g. gMonth
         XMLGregorianCalendar obj = super.valueOrException(lex) ;
         if ( obj == null )
             return null ;

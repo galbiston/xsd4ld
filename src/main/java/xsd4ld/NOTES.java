@@ -21,10 +21,11 @@ package xsd4ld;
 public class NOTES {
 
     // README
-    
     // java.xml mappings.
+
     // check for @@
-    // @@ DatetIme - out of range values. 
+    //   DayTimeDuration
+    //   YearMonthDuration
     // facet collapse (2 spaces->one, then trim)
     
     /*
@@ -41,22 +42,29 @@ public class NOTES {
     // Value tests everywhere.
     // No extensibility.
     
-    // XSD_Base64Binary
-    // XSD_HexBinary
-    
     /*
+xs:integer and derived types       BigInteger 
+xs:decimal      BigDecimal
+xs:double       Double
+xs:float        Float
+
 xs:date         XMLGregorianCalendar
-xs:dateTime     XMLGregorianCalendar
-xs:duration     Duration
+xs:dateTime, xs:dateTimeStamp     XMLGregorianCalendar
+xs:time         XMLGregorianCalendar
+
 xs:gDay         XMLGregorianCalendar
 xs:gMonth       XMLGregorianCalendar
 xs:gMonthDay    XMLGregorianCalendar
 xs:gYear        XMLGregorianCalendar
 xs:gYearMonth   XMLGregorianCalendar
-xs:time         XMLGregorianCalendar
 
-xdt:dayTimeDuration     Duration
-xdt:yearMonthDuration   Duration     
+
+xs:duration     Duration
+xs:dayTimeDuration     Duration
+xs:yearMonthDuration   Duration     
+
+xs:hexBinary     byte[]
+xs:base64Binary  byte[]
 
 precisionDecimal BigDecimal or Double (for INF and NaN) 
 

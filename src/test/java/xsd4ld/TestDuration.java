@@ -24,8 +24,6 @@ import org.junit.Test ;
 
 public class TestDuration {
 
-    // @@ Coverage
-
     @Test public void duration_01() {
         valid("P1Y", xsdDuration) ;
     }

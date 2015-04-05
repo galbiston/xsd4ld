@@ -26,7 +26,6 @@ import org.junit.Test ;
  */
 public class TestDateTime {
 
-    // @@ More tests
     @Test public void dateTimeStamp_01() {
         valid("2015-02-23T15:21:18Z", xsdDateTime) ;
         valid("2015-02-23T15:21:18Z", xsdDateTimeStamp) ;
