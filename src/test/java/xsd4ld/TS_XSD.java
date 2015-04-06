@@ -28,6 +28,7 @@ import xsd4ld.lib.TestLangTag2 ;
     TestDateTimeParsing.class,
     TestLangTag2.class,
     TestDatatype.class,
+    TestBoolean.class,
     TestNumber.class,
     TestIntegerRange.class,
     TestString.class,

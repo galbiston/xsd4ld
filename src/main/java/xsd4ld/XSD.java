@@ -44,6 +44,8 @@ public class XSD {
     static public XSDDatatype xsdSimple             = new XSD_Simple() ;
     static public XSDDatatype xsdAtomic             = new XSD_Atomic() ;
 
+    static public XSDDatatype xsdBoolean            = new XSD_Boolean() ;
+    
     static public XSDDatatype xsdDecimal            = new XSD_Decimal() ;
     static public XSDDatatype xsdInteger            = new XSD_Integer() ;
 

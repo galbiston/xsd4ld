@@ -18,26 +18,7 @@
 
 package xsd4ld;
 
-import static xsd4ld.XSDConst.xsd_anyURI ;
-import static xsd4ld.XSDConst.xsd_base64Binary ;
-import static xsd4ld.XSDConst.xsd_dateTime ;
-import static xsd4ld.XSDConst.xsd_dateTimeStamp ;
-import static xsd4ld.XSDConst.xsd_dayTimeDuration ;
-import static xsd4ld.XSDConst.xsd_decimal ;
-import static xsd4ld.XSDConst.xsd_double ;
-import static xsd4ld.XSDConst.xsd_duration ;
-import static xsd4ld.XSDConst.xsd_float ;
-import static xsd4ld.XSDConst.xsd_gDay ;
-import static xsd4ld.XSDConst.xsd_gMonth ;
-import static xsd4ld.XSDConst.xsd_gMonthDay ;
-import static xsd4ld.XSDConst.xsd_gYear ;
-import static xsd4ld.XSDConst.xsd_gYearMonth ;
-import static xsd4ld.XSDConst.xsd_hexBinary ;
-import static xsd4ld.XSDConst.xsd_integer ;
-import static xsd4ld.XSDConst.xsd_language ;
-import static xsd4ld.XSDConst.xsd_precisionDecimal ;
-import static xsd4ld.XSDConst.xsd_string ;
-import static xsd4ld.XSDConst.xsd_yearMonthDuration ;
+import static xsd4ld.XSDConst.* ;
 
 import java.util.Collection ;
 import java.util.Collections ;
@@ -81,7 +62,7 @@ public class XSDTypeRegistry {
 
     /** Get the XSDDatatype for a given URI */
     public static XSDDatatype getDerivedFrom(XSDDatatype datatype) {
-        String x = datatype.isDerivedFrom() ;
+        String x = datatype.derivedFrom() ;
         if ( x == null )
             return null ;
         return getType(x) ;
@@ -106,6 +87,7 @@ public class XSDTypeRegistry {
         registerRegex(xsd_string,        null) ;
         registerRegex(xsd_decimal,       "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)") ;
         registerRegex(xsd_integer,       "(\\+|-)?([0-9]+)") ;
+        registerRegex(xsd_boolean,       "(true|false|1|0)") ;
 
         String x  = "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" ;
         registerRegex(xsd_float,       x) ;

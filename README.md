@@ -33,13 +33,14 @@ As for javax.util.xml
 | xs:double            | Double               |
 | xs:float             | Float                |
 | xs:precisionDecimal  | BigDecimal or Double |
+| xs:boolean           | Boolean              |
 | xs:date              | XMLGregorianCalendar |
 | xs:dateTime          | XMLGregorianCalendar |
 | xs:dateTimeStamp     | XMLGregorianCalendar |
 | xs:time              | XMLGregorianCalendar |
-| xs:g*                | XMLGregorianCalendar|
-| xs:duration          | Duration |
-| xs:dayTimeDuration   | Duration |
-| xs:yearMonthDuration | Duration |
-| xs:hexBinary         | byte[] |
-| xs:base64Binary      | byte[] |
+| xs:g*                | XMLGregorianCalendar |
+| xs:duration          | Duration             |
+| xs:dayTimeDuration   | Duration             |
+| xs:yearMonthDuration | Duration             |
+| xs:hexBinary         | byte[]               |
+| xs:base64Binary      | byte[]               |

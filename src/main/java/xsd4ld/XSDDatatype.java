@@ -91,7 +91,7 @@ public abstract class XSDDatatype {
         return uri ;
     }
 
-    /*package*/ final String isDerivedFrom() {
+    /*package*/ final String derivedFrom() {
         return derivedFrom ;
     }
     
