@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-/* This is a copy of the source code from Xerces 2.11.0
- * Apache Licesne.
+package xsd4ld.lib ;
+/* This is a copy of the source code from Xerces 2.11.0.
+ * Apache License v2. 
  */
 //package org.apache.xerces.util;
-package xsd4ld.lib ;
 
 import java.util.Arrays;
 
