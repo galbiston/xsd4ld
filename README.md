@@ -7,6 +7,7 @@ specific to XML). It provides validation and production of values for valid
 lexical forms.
 
 License: Apache License
+
 See [LICENSE](LICENSE) and [NOTICE](NOTICE) for details.
 
 Notes:
