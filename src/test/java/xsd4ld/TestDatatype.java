@@ -19,10 +19,40 @@
 package xsd4ld;
 
 import org.junit.Test ;
+import static org.junit.Assert.* ;
 
 public class TestDatatype {
     @Test public void __init() {
         XSDDatatype dt = XSD.xsdAtomic ;
+    }
+    
+    @Test public void datatype_01() {
+        XSDDatatype dt = XSDTypeRegistry.getType("byte") ;
+        assertNotNull(dt) ;
+    }
+    
+    @Test public void datatype_02() {
+        XSDDatatype dt = XSDTypeRegistry.getType("byte") ;
+        XSDDatatype dt2 = XSDTypeRegistry.getDerivedFrom(dt) ;
+        assertEquals(XSDConst.xsd_short, dt2.getName()) ;
+    }
+    
+    @Test public void datatype_03() {
+        assertEquals(XSD.xsdDecimal, XSDTypeRegistry.getType(XSD.xsdDecimal.getName())) ;
+    }
+    
+    @Test public void datatype_04() {
+        XSDTypeRegistry.registeredNames().stream().forEach( n -> {
+            assertEquals(n, XSDTypeRegistry.getType(n).getName()) ;
+            String z = XSD.getURI()+n ;
+            assertEquals(n, XSDTypeRegistry.getTypeByURI(z).getName()) ;
+        });
+    }
+
+    @Test public void datatype_05() {
+        XSDTypeRegistry.registeredTypes().stream().forEach( dt -> {
+            assertEquals(dt, XSDTypeRegistry.getType(dt.getName())) ; 
+        });
     }
 }
 

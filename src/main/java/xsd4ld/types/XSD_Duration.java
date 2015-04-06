@@ -19,11 +19,11 @@ public  * Licensed to the Apache Software Foundation (ASF) under one
 package xsd4ld.types;
 
 import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegex ;
+import xsd4ld.XSDTypeRegistry ;
 
 public class XSD_Duration extends BaseDuration {
     public XSD_Duration() {
-        super(XSDConst.xsd_duration, XSDConst.xsd_atomic, XSDTypeRegex.getRegex(XSDConst.xsd_duration)) ;
+        super(XSDConst.xsd_duration, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_duration)) ;
     }
 
 }

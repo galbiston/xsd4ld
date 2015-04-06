@@ -21,11 +21,11 @@ package xsd4ld.types;
 import java.util.regex.Pattern ;
 
 import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegex ;
+import xsd4ld.XSDTypeRegistry ;
 import xsd4ld.lib.LangTag2 ;
 
 public class XSD_Language extends BaseString {
-    private Pattern pattern = XSDTypeRegex.getRegex(XSDConst.xsd_language) ;
+    private Pattern pattern = XSDTypeRegistry.getRegex(XSDConst.xsd_language) ;
     
     public XSD_Language() {
         super(XSDConst.xsd_language, XSDConst.xsd_token) ;
@@ -46,7 +46,7 @@ public class XSD_Language extends BaseString {
     
     @Override
     public Pattern getRegex() {
-        return XSDTypeRegex.getRegex(XSDConst.xsd_language) ;
+        return XSDTypeRegistry.getRegex(XSDConst.xsd_language) ;
     }
 }
 

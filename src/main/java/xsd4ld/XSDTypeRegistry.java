@@ -18,26 +18,99 @@
 
 package xsd4ld;
 
+import static xsd4ld.XSDConst.xsd_anyURI ;
+import static xsd4ld.XSDConst.xsd_base64Binary ;
+import static xsd4ld.XSDConst.xsd_dateTime ;
+import static xsd4ld.XSDConst.xsd_dateTimeStamp ;
+import static xsd4ld.XSDConst.xsd_dayTimeDuration ;
+import static xsd4ld.XSDConst.xsd_decimal ;
+import static xsd4ld.XSDConst.xsd_double ;
+import static xsd4ld.XSDConst.xsd_duration ;
+import static xsd4ld.XSDConst.xsd_float ;
+import static xsd4ld.XSDConst.xsd_gDay ;
+import static xsd4ld.XSDConst.xsd_gMonth ;
+import static xsd4ld.XSDConst.xsd_gMonthDay ;
+import static xsd4ld.XSDConst.xsd_gYear ;
+import static xsd4ld.XSDConst.xsd_gYearMonth ;
+import static xsd4ld.XSDConst.xsd_hexBinary ;
+import static xsd4ld.XSDConst.xsd_integer ;
+import static xsd4ld.XSDConst.xsd_language ;
+import static xsd4ld.XSDConst.xsd_precisionDecimal ;
+import static xsd4ld.XSDConst.xsd_string ;
+import static xsd4ld.XSDConst.xsd_yearMonthDuration ;
+
+import java.util.Collection ;
+import java.util.Collections ;
 import java.util.HashMap ;
-import static xsd4ld.XSDConst.* ;
 import java.util.Map ;
 import java.util.regex.Pattern ;
 
-public class XSDTypeRegex {
-    private static Map<String, String>  regex    = new HashMap<>() ;
+/** Type registry */
+
+public class XSDTypeRegistry {
+    // Shortname to type
+    private static Map<String, XSDDatatype> registry = new HashMap<>() ;
+
+    // Called from XSD (avoids risk of cirularity in initialization).
+    
+    /*package*/ static void register(String name, XSDDatatype type) {
+        registry.put(name, type) ;
+    }
+
+    /** Get the XSDDatatype for a given name */
+    public static XSDDatatype getType(String shortName) {
+        return registry.get(shortName) ;
+    }
+
+    /** Get the XSDDatatype for a given URI */
+    public static XSDDatatype getTypeByURI(String uriStr) {
+        String ns = XSD.getURI() ;
+        if ( ! uriStr.startsWith(ns) )
+            return null ;
+        String x = uriStr.substring(ns.length()) ;
+        return getType(x) ;
+    }
+
+    /** Get the XSDDatatype for a given URI */
+    public static XSDDatatype getDerivedFrom(String shortName) {
+        XSDDatatype datatype = getType(shortName) ;
+        if ( datatype == null )
+            return null ;
+        return getDerivedFrom(datatype) ;
+    }
+
+    /** Get the XSDDatatype for a given URI */
+    public static XSDDatatype getDerivedFrom(XSDDatatype datatype) {
+        String x = datatype.isDerivedFrom() ;
+        if ( x == null )
+            return null ;
+        return getType(x) ;
+    }
+
+    /** Get the names of all registered types */
+    public static Collection<String> registeredNames() {
+        return Collections.unmodifiableCollection(registry.keySet()) ;
+    }
+
+    /** Get the names of all registered types */
+    public static Collection<XSDDatatype> registeredTypes() {
+        return Collections.unmodifiableCollection(registry.values()) ;
+    }
+    
+    // -- Regular expressions (string and compiled) 
     private static Map<String, Pattern> patterns = new HashMap<>() ;
     
     static {
         /* Cut-and-paste from spec, \ => \\ and wrapped as a string. */
         // short name, regex
-        register(xsd_string,        null) ;
-        register(xsd_decimal,       "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)") ;
-        register(xsd_integer,       "(\\+|-)?([0-9]+)") ;
+        registerRegex(xsd_string,        null) ;
+        registerRegex(xsd_decimal,       "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)") ;
+        registerRegex(xsd_integer,       "(\\+|-)?([0-9]+)") ;
 
         String x  = "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" ;
-        register(xsd_float,       x) ;
-        register(xsd_double,      x) ;
-        register(xsd_precisionDecimal, x) ;
+        registerRegex(xsd_float,       x) ;
+        registerRegex(xsd_double,      x) ;
+        registerRegex(xsd_precisionDecimal, x) ;
         
         
         String datetimePattern =
@@ -46,7 +119,7 @@ public class XSDTypeRegex {
             +"-(0[1-9]|[12][0-9]|3[01])"
             +"T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))"
             +"(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" ;
-        register(xsd_dateTime,       datetimePattern) ;
+        registerRegex(xsd_dateTime,       datetimePattern) ;
         // Mandatory timestamp
         String datetimestampPattern =
             "-?([1-9][0-9]{3,}|0[0-9]{3})"
@@ -55,21 +128,21 @@ public class XSDTypeRegex {
             +"T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))"
             // Remove ? at end from the one above. 
             +"(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))" ;
-        register(xsd_dateTimeStamp,       datetimestampPattern) ;
+        registerRegex(xsd_dateTimeStamp,       datetimestampPattern) ;
 
         // dateTimeStamp : additional:
         //'.*(Z|(\+|-)[0-9][0-9]:[0-9][0-9])'.
 
-        register(xsd_gYear,         "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
-        register(xsd_gYearMonth,    "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
-        register(xsd_gMonthDay,     "--(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
-        register(xsd_gMonth,        "--(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
-        register(xsd_gDay,          "---(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;      
-        register(xsd_language,      "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*") ;
+        registerRegex(xsd_gYear,         "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
+        registerRegex(xsd_gYearMonth,    "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
+        registerRegex(xsd_gMonthDay,     "--(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
+        registerRegex(xsd_gMonth,        "--(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;
+        registerRegex(xsd_gDay,          "---(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?") ;      
+        registerRegex(xsd_language,      "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*") ;
 
-        register(xsd_hexBinary,     "([0-9a-fA-F]{2})*") ;
+        registerRegex(xsd_hexBinary,     "([0-9a-fA-F]{2})*") ;
         // Notes spaces.
-        register(xsd_base64Binary,  "((([A-Za-z0-9+/] ?){4})*(([A-Za-z0-9+/] ?){3}[A-Za-z0-9+/]|([A-Za-z0-9+/] ?){2}[AEIMQUYcgkosw048] ?=|[A-Za-z0-9+/] ?[AQgw] ?= ?=))?") ;
+        registerRegex(xsd_base64Binary,  "((([A-Za-z0-9+/] ?){4})*(([A-Za-z0-9+/] ?){3}[A-Za-z0-9+/]|([A-Za-z0-9+/] ?){2}[AEIMQUYcgkosw048] ?=|[A-Za-z0-9+/] ?[AQgw] ?= ?=))?") ;
 
         String durationPattern =
             "-?P( ( ( [0-9]+Y([0-9]+M)?([0-9]+D)?"
@@ -89,8 +162,8 @@ public class XSDTypeRegex {
                 + "    )"
                 + "  )" ;
         durationPattern = durationPattern.replace(" ", "") ;                
-        register(xsd_duration,              durationPattern) ;
-        register(xsd_yearMonthDuration,     "-?P((([0-9]+Y)([0-9]+M)?)|([0-9]+M))") ;
+        registerRegex(xsd_duration,              durationPattern) ;
+        registerRegex(xsd_yearMonthDuration,     "-?P((([0-9]+Y)([0-9]+M)?)|([0-9]+M))") ;
         
         // duDayTimeFrag ::= (duDayFrag duTimeFrag?) | duTimeFrag
         String duTimeFrag =  
@@ -102,7 +175,7 @@ public class XSDTypeRegex {
         duTimeFrag = duTimeFrag.replace(" ", "") ;
             
         String dayTimePattern = "-?P((([0-9]+D)("+duTimeFrag+")?)|("+duTimeFrag+"))" ;
-        register(xsd_dayTimeDuration,       dayTimePattern) ;
+        registerRegex(xsd_dayTimeDuration,       dayTimePattern) ;
 
         // [2]      Char       ::=      [#x1-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
         // Java can't deal with characters outside the basic plane directly
@@ -114,7 +187,7 @@ public class XSDTypeRegex {
 //        // Not u000D u000A - they break the line! 
 //        String xmlS = "(\u0020|\u0009|\r|\n)" ; 
         
-        register(xsd_anyURI, "((" + xmlChar + ")*)") ;
+        registerRegex(xsd_anyURI, "((" + xmlChar + ")*)") ;
         
         /*
 // any Unicode character, excluding the surrogate blocks, FFFE, and FFFF. 
@@ -140,14 +213,11 @@ public class XSDTypeRegex {
         
     }
     
-    // Shortname to type
-    private static Map<String, XSDDatatype> registry = new HashMap<>() ;
-
-    private static void register(String shortName, String regex) {
+    private static void registerRegex(String shortName, String regex) {
         if ( regex == null )
             return ; 
         Pattern pattern = Pattern.compile(regex) ;
-        patterns.put(shortName, pattern) ;        
+        patterns.put(shortName, pattern) ;  
     }
     
     /** Get the XSD regex associated with the name (stort name , not URI).
@@ -160,8 +230,11 @@ public class XSDTypeRegex {
     /** Get the XSD regex associated with the name (stort name , not URI).
      * Maybe null.
      */
-    public static String getRegexStr(String shortName) { 
-        return regex.get(shortName) ; 
+    public static String getRegexStr(String shortName) {
+        Pattern p = getRegex(shortName) ;
+        if ( p == null ) 
+            return null ;
+        return p.pattern() ;
     }
 }
 

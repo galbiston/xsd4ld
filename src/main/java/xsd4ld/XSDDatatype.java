@@ -91,7 +91,7 @@ public abstract class XSDDatatype {
         return uri ;
     }
 
-    public final String isDerivedFrom() {
+    /*package*/ final String isDerivedFrom() {
         return derivedFrom ;
     }
     
@@ -112,6 +112,10 @@ public abstract class XSDDatatype {
     public String getRegexStr() {
         return regex.toString() ;
     }
+
+    @Override
+    public String toString() { return "xsd:"+shortName ; }
+
     
 //    @Override
 //    public abstract int hashCode( );

@@ -22,7 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar ;
 
 import xsd4ld.XSDConst ;
 import xsd4ld.XSDDatatype ;
-import xsd4ld.XSDTypeRegex ;
+import xsd4ld.XSDTypeRegistry ;
 import xsd4ld.lib.DateTimeStruct ;
 
 /** The 7 component date/time model.
@@ -37,7 +37,7 @@ abstract class BaseDateTime extends XSDDatatype  {
     }
     
     public BaseDateTime(String shortName, String derivedFrom, Parser parser) {
-        super(shortName, derivedFrom, XSDTypeRegex.getRegex(shortName)) ;
+        super(shortName, derivedFrom, XSDTypeRegistry.getRegex(shortName)) ;
         this.parser = parser ;
     }
 

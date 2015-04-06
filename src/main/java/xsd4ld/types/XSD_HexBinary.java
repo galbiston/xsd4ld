@@ -21,11 +21,11 @@ package xsd4ld.types;
 import javax.xml.bind.DatatypeConverter ;
 
 import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegex ;
+import xsd4ld.XSDTypeRegistry ;
 
 public class XSD_HexBinary extends BaseBinary {
     public XSD_HexBinary() {
-        super(XSDConst.xsd_hexBinary, XSDConst.xsd_atomic, XSDTypeRegex.getRegex(XSDConst.xsd_hexBinary) ) ;
+        super(XSDConst.xsd_hexBinary, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_hexBinary) ) ;
     }
     
     @Override

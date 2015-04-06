@@ -21,11 +21,11 @@ package xsd4ld.types;
 import javax.xml.datatype.Duration ;
 
 import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegex ;
+import xsd4ld.XSDTypeRegistry ;
 
 public class XSD_YearMonthDuration extends BaseDuration {
     public XSD_YearMonthDuration() {
-        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegex.getRegex(XSDConst.xsd_yearMonthDuration)) ;
+        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegistry.getRegex(XSDConst.xsd_yearMonthDuration)) ;
     }
     
     @Override
