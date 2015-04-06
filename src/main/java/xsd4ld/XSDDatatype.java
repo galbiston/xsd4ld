@@ -30,13 +30,13 @@ public abstract class XSDDatatype {
     protected final String uri ;
     protected final Pattern regex ;
     protected final String derivedFrom ;
-    protected final ValueClass valueType ;
+    protected final ValueClass valueClass ;
     
-    protected XSDDatatype(String shortName, String derivedFrom, ValueClass valueType, Pattern regex) {
+    protected XSDDatatype(String shortName, String derivedFrom, ValueClass valueClass, Pattern regex) {
         this.shortName = shortName ;
         this.uri = XSDns+shortName ;
         this.derivedFrom = derivedFrom ;
-        this.valueType = valueType ;
+        this.valueClass = valueClass ;
         this.regex = regex ;
     }
     
@@ -51,6 +51,16 @@ public abstract class XSDDatatype {
         catch (Exception ex) { return null; }
     }
     
+    /** The ValueClass is a datatype helps with building XSD function and operator
+     * implementations. Operations, especially on numbers, fall into several groupings,
+     * so xsd:byte + xsd:byte is an xsd:integer.  
+     * This concept is different from derived types, and from value spaces; it is related to
+     * value spaces in that the value class indicates the value space (if there is one).  
+     */
+    public Object getValueClass() {
+        return valueClass ;
+    }
+
     /** Test the lexical form and the value it represents.
      * This involves calculating the value, so calling {@link #value}
      * and testign for {@code null}

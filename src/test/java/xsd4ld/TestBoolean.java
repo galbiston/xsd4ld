@@ -16,23 +16,18 @@
  * limitations under the License.
  */
 
-package xsd4ld.types;
+package xsd4ld;
 
-import static xsd4ld.XSDConst.* ;
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDDatatype ;
-import xsd4ld.XSDTypeRegistry ;
+import org.junit.Test ;
 
-public class XSD_AnyURI extends XSDDatatype {
-
-    public XSD_AnyURI() {
-        super(xsd_anyURI, xsd_atomic, ValueClass.ANY, XSDTypeRegistry.getRegex(xsd_anyURI)) ;
-    }
-
-    @Override
-    protected Object valueOrException(String lex) {
-        if ( getRegex().matcher(lex).matches() )
-            return lex ;
-        return null ;
-    }
+public class TestBoolean {
+    @Test public void boolean_01() { LibTestXSD.valid("true", XSD.xsdBoolean) ; }
+    @Test public void boolean_02() { LibTestXSD.valid("false", XSD.xsdBoolean) ; }
+    @Test public void boolean_03() { LibTestXSD.valid("1", XSD.xsdBoolean) ; }
+    @Test public void boolean_04() { LibTestXSD.valid("0", XSD.xsdBoolean) ; }
+    @Test public void boolean_05() { LibTestXSD.invalid("T", XSD.xsdBoolean) ; }
+    @Test public void boolean_06() { LibTestXSD.invalid("F", XSD.xsdBoolean) ; }
+    @Test public void boolean_07() { LibTestXSD.invalid("TRUE", XSD.xsdBoolean) ; }
+    @Test public void boolean_08() { LibTestXSD.invalid("FLASE", XSD.xsdBoolean) ; }
 }
+

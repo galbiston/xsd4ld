@@ -54,5 +54,12 @@ public class TestDatatype {
             assertEquals(dt, XSDTypeRegistry.getType(dt.getName())) ; 
         });
     }
+    
+    @Test public void datatype_06() {
+        XSDTypeRegistry.registeredTypes().stream().forEach( dt -> {
+            assertNotNull(dt.getValueClass()) ;  
+        });
+    }
+
 }
 
