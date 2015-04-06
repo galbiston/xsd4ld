@@ -1,10 +1,13 @@
+[![Build Status](https://api.travis-ci.org/afs/xsd4ld.png)](https://travis-ci.org/afs/xsd4ld)
+
 # XSD4LD
 
 XSD4LD is a package to handle the atomic XSD datatypes (except those
 specific to XML). It provides validation and production of values for valid
 lexical forms.
 
-License: Apache License v2
+License: Apache License
+See [LICENSE](LICENSE) and [NOTICE](NOTICE) for details.
 
 Notes:
 
