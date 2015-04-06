@@ -20,11 +20,12 @@ package xsd4ld.types;
 
 import java.util.regex.Pattern ;
 
+import xsd4ld.ValueClass ;
 import xsd4ld.XSDDatatype ;
 
 abstract class BaseDecimal extends XSDDatatype {
     protected BaseDecimal(String shortName, String baseType, Pattern regex) {
-        super(shortName, baseType, regex) ;
+        super(shortName, baseType, ValueClass.DECIMAL, regex) ;
     }
 }
 

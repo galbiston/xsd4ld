@@ -30,12 +30,14 @@ public abstract class XSDDatatype {
     protected final String uri ;
     protected final Pattern regex ;
     protected final String derivedFrom ;
+    protected final ValueClass valueType ;
     
-    protected XSDDatatype(String shortName, String derivedFrom, Pattern regex) {
+    protected XSDDatatype(String shortName, String derivedFrom, ValueClass valueType, Pattern regex) {
         this.shortName = shortName ;
         this.uri = XSDns+shortName ;
-        this.regex = regex ;
         this.derivedFrom = derivedFrom ;
+        this.valueType = valueType ;
+        this.regex = regex ;
     }
     
     /** Return a value object if the lexical form is valid

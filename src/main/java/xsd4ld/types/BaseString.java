@@ -18,12 +18,13 @@
 
 package xsd4ld.types;
 
+import xsd4ld.ValueClass ;
 import xsd4ld.XSDDatatype ;
 
 abstract class BaseString extends XSDDatatype {
 
     public BaseString(String shortName, String baseType) { 
-        super(shortName, baseType, null) ;
+        super(shortName, baseType, ValueClass.STRING, null) ;
     }
 
 

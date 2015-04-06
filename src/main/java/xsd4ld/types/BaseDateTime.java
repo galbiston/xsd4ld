@@ -20,6 +20,7 @@ package xsd4ld.types;
 
 import javax.xml.datatype.XMLGregorianCalendar ;
 
+import xsd4ld.ValueClass ;
 import xsd4ld.XSDConst ;
 import xsd4ld.XSDDatatype ;
 import xsd4ld.XSDTypeRegistry ;
@@ -37,7 +38,7 @@ abstract class BaseDateTime extends XSDDatatype  {
     }
     
     public BaseDateTime(String shortName, String derivedFrom, Parser parser) {
-        super(shortName, derivedFrom, XSDTypeRegistry.getRegex(shortName)) ;
+        super(shortName, derivedFrom, ValueClass.DATETIME, XSDTypeRegistry.getRegex(shortName)) ;
         this.parser = parser ;
     }
 

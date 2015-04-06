@@ -20,6 +20,7 @@ package xsd4ld.types;
 
 import java.math.BigInteger ;
 
+import xsd4ld.ValueClass ;
 import xsd4ld.XSDConst ;
 import xsd4ld.XSDTypeRegistry ;
 import xsd4ld.XSDDatatype ;
@@ -30,7 +31,7 @@ abstract class BaseInteger extends XSDDatatype {
 
     protected BaseInteger(String shortName, String baseType, 
                           BigInteger minValue, BigInteger maxValue) {
-        super(shortName, baseType, XSDTypeRegistry.getRegex(XSDConst.xsd_integer)) ;
+        super(shortName, baseType, ValueClass.INTEGER, XSDTypeRegistry.getRegex(XSDConst.xsd_integer)) ;
         this.minValue = minValue ;
         this.maxValue = maxValue ;
     }

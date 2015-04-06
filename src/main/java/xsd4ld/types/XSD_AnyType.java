@@ -18,13 +18,14 @@
 
 package xsd4ld.types;
 
+import xsd4ld.ValueClass ;
 import xsd4ld.XSDConst ;
 import xsd4ld.XSDDatatype ;
 
 public class XSD_AnyType extends XSDDatatype {
 
     public XSD_AnyType() {
-        super(XSDConst.xsd_anyType, null, null) ;
+        super(XSDConst.xsd_anyType, null, ValueClass.ANY, null) ;
     }
 
     @Override

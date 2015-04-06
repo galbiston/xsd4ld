@@ -22,6 +22,7 @@ import java.util.regex.Pattern ;
 
 import javax.xml.datatype.Duration ;
 
+import xsd4ld.ValueClass ;
 import xsd4ld.XSDConst ;
 import xsd4ld.XSDDatatype ;
 
@@ -29,7 +30,7 @@ import xsd4ld.XSDDatatype ;
 abstract class BaseDuration extends XSDDatatype {
 
     protected BaseDuration(String shortName, String derivedFrom, Pattern regex) {
-        super(shortName, derivedFrom, regex) ;
+        super(shortName, derivedFrom, ValueClass.DURATION, regex) ;
     }
 
     @Override
