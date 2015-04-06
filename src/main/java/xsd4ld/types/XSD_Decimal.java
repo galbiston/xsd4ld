@@ -23,11 +23,9 @@ import static xsd4ld.XSDConst.xsd_decimal ;
 
 import java.math.BigDecimal ;
 
-import xsd4ld.XSDDatatype ;
 import xsd4ld.XSDTypeRegistry ;
 
-public class XSD_Decimal extends XSDDatatype {
-
+public class XSD_Decimal extends BaseDecimal {
     public XSD_Decimal() {
         super(xsd_decimal, xsd_atomic, XSDTypeRegistry.getRegex(xsd_decimal)) ;
     }

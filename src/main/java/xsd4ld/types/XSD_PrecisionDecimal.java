@@ -23,18 +23,17 @@ import java.util.regex.Pattern ;
 
 import xsd4ld.XSDConst ;
 import xsd4ld.XSDTypeRegistry ;
-import xsd4ld.XSDDatatype ;
 
 /** Precision Decimal : 
  *  <a href="http://www.w3.org/TR/xsd-precisionDecimal/">http://www.w3.org/TR/xsd-precisionDecimal/</a>
  */
-public class XSD_PrecisionDecimal extends XSDDatatype {
+public class XSD_PrecisionDecimal extends BaseDecimal {
 
     public XSD_PrecisionDecimal() {
         super(XSDConst.xsd_precisionDecimal, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_precisionDecimal)) ;
     }
 
-    Pattern exceptions = Pattern.compile("(\\+|-)?INF|NaN") ;
+    static Pattern exceptions = Pattern.compile("(\\+|-)?INF|NaN") ;
     
     @Override
     protected Object valueOrException(String lex) {
