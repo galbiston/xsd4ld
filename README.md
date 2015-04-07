@@ -8,7 +8,7 @@ lexical forms.
 
 License: Apache License
 
-See [LICENSE](LICENSE) and [NOTICE](NOTICE) for details.
+See [LICENCE](LICENCE) and [NOTICE](NOTICE) for details.
 
 Notes:
 
