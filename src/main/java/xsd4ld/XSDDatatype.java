@@ -43,7 +43,7 @@ public abstract class XSDDatatype {
     /** Return a value object if the lexical form is valid
      * for the type else return null. 
      * @param lex   lexcial form
-     * @return Object ornull, if the lexcial form is not valid for this datatype.
+     * @return Object or null, if the lexcial form is not valid for this datatype.
      */
     
     public Object value(String lex) {
