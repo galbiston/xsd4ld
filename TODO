@@ -1,3 +1,4 @@
 use  java.time.Temporal, java.time.ZonedDateTime? 
 instead of  XMLGregorianCalendar for date/time values.
 
+xsd:anyURI - value type.
