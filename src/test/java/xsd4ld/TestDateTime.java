@@ -70,5 +70,12 @@ public class TestDateTime {
         invalid("2015-02-23", xsdGYearMonth) ;
     }
     
+    @Test public void gregorian_04() {
+        // invalid in XML Schema 1.0 
+        // valid in XML Schema 1.1
+        //   See https://www.w3.org/TR/xmlschema11-2/#vp-dt-year
+        // Java XMLGregorian calendar supports XML Schema 1.0
+        invalid("0000", xsdGYear) ;
+    }
 }
 
