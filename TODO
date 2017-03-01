@@ -1,4 +1,18 @@
 use  java.time.Temporal, java.time.ZonedDateTime? 
 instead of  XMLGregorianCalendar for date/time values.
+(no?)
 
 xsd:anyURI - value type.
+
+Operations for 
+   value+datatype to lex+datatype.
+   ?? value to lex+datatype.
+
+LangTags
+
+DatatypeConverter.parse* -- not value-validating.
+DatatypeConverter.print*
+
+Better integer handling - less BigInteger
+
+xsd:long and below : parse as Long, check value
