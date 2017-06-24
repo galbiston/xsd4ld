@@ -76,81 +76,78 @@
 
     <pluginManagement>
       <plugins>
-	<plugin>
-	  <groupId>org.apache.maven.plugins</groupId>
-	  <artifactId>maven-compiler-plugin</artifactId>
-	  <version>3.2</version>
-	</plugin>
-	<plugin>
-	  <groupId>org.apache.maven.plugins</groupId>
-	  <artifactId>maven-surefire-plugin</artifactId>
-	  <version>2.12</version>
-	</plugin>
-	<plugin>
-	  <groupId>org.apache.maven.plugins</groupId>
-	  <artifactId>maven-resources-plugin</artifactId>
-	  <version>2.5</version>
-	  <configuration>
-	    <encoding>UTF-8</encoding>
-	  </configuration>
-	</plugin>
-	<plugin>
-	  <groupId>org.apache.maven.plugins</groupId>
-	  <artifactId>maven-dependency-plugin</artifactId>
-	  <version>2.9</version>
-	  <configuration>
-	    <overWriteReleases>false</overWriteReleases>
-	    <overWriteIfNewer>true</overWriteIfNewer>
-	  </configuration>
-	</plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.12</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.5</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>2.9</version>
+          <configuration>
+            <overWriteReleases>false</overWriteReleases>
+            <overWriteIfNewer>true</overWriteIfNewer>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
 
     <plugins>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-compiler-plugin</artifactId>
-	<configuration>
-	  <encoding>UTF-8</encoding>
-	  <debug>true</debug>
-	  <debuglevel>source,lines,vars</debuglevel>
-	  <optimize>true</optimize>
-	  <source>1.8</source>
-	  <target>1.8</target>
-	</configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <debug>true</debug>
+          <debuglevel>source,lines,vars</debuglevel>
+          <optimize>true</optimize>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
       </plugin>
 
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-surefire-plugin</artifactId>
-	<configuration>
-	  <includes>
-	    <include>**/TS_*.java</include>
-	  </includes>
-	</configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>**/TS_*.java</include>
+          </includes>
+        </configuration>
       </plugin>
 
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-resources-plugin</artifactId>
-	<configuration>
-	  <encoding>UTF-8</encoding>
-	</configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
       </plugin>
       
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-dependency-plugin</artifactId>
-	<configuration>
-	  <overWriteReleases>false</overWriteReleases>
-	  <overWriteIfNewer>true</overWriteIfNewer>
-	</configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <overWriteReleases>false</overWriteReleases>
+          <overWriteIfNewer>true</overWriteIfNewer>
+        </configuration>
       </plugin>
-
     </plugins>
 
   </build>
-
-  
 
 </project>
