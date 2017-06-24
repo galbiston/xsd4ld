@@ -85,17 +85,21 @@ public class XSDConst {
         return BigInteger.valueOf(x) ;
     }
 
-    public static final BigInteger  ZERO       = BigInteger.ZERO ;
-    public static final BigInteger  ONE        = BigInteger.ONE ;
+    private static final BigInteger i(String x) {
+        return new BigInteger(x);
+    }
 
-    public static final BigInteger  MINUS_ONE  = XSDConst.i(-1) ;
+    public static final BigInteger  ZERO       = i(0) ;
+    public static final BigInteger  ONE        = i(1) ;
+    public static final BigInteger  MINUS_ONE  = i(-1) ;
+    
     public static final BigInteger  LONG_MIN   = i(Long.MIN_VALUE) ;
     public static final BigInteger  LONG_MAX   = i(Long.MAX_VALUE) ;
-    public static final BigInteger  LONG_UMAX  = new BigInteger("18446744073709551615") ;
+    public static final BigInteger  LONG_UMAX  = i("18446744073709551615") ;
 
     public static final BigInteger  INT_MIN    = i(Integer.MIN_VALUE) ;
     public static final BigInteger  INT_MAX    = i(Integer.MAX_VALUE) ;
-    public static final BigInteger  INT_UMAX   = new BigInteger("4294967295") ;
+    public static final BigInteger  INT_UMAX   = i("4294967295") ;
 
     public static final BigInteger  SHORT_MIN  = i(-32768) ;
     public static final BigInteger  SHORT_MAX  = i(32767) ;
