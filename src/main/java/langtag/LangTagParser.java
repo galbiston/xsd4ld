@@ -73,9 +73,4 @@ public class LangTagParser {
                            extension);
         
     }
-    
-    /** Convert "" to null (compatibility with LangTag2) */
-    private static String nullIfEmpty(String str) {
-        return str.isEmpty()?null:str;
-    }
 }
