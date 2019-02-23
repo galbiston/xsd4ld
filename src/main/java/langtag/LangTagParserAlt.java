@@ -23,9 +23,8 @@ import java.util.Locale ;
 
 /** LangTag parser - alternative version, which is captures all the rules of RFC4234,  
  * <p>
- * See also {@link LangTagParser} which uses the buyilt-in Java support, which is a better choice for application use.
+ * See also {@link LangTagParser} which uses the built-in Java support, which is a better choice for application use.
  * <p>
- * This 
  */
 public class LangTagParserAlt {
     private LangTagParserAlt() { }
