@@ -17,8 +17,7 @@
 
 package xsd4ld.types;
 
-import javax.xml.bind.DatatypeConverter ;
-
+import org.apache.commons.codec.binary.Base64;
 import xsd4ld.XSDConst ;
 import xsd4ld.XSDTypeRegistry ;
 
@@ -30,6 +29,6 @@ public class XSD_Base64Binary extends BaseBinary {
     
     @Override
     protected byte[] valueOrException(String lex) {
-        return DatatypeConverter.parseBase64Binary(lex) ;
+        return Base64.decodeBase64(lex) ;
     }
 }

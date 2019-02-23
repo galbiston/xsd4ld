@@ -17,8 +17,8 @@
 
 package xsd4ld.types;
 
-import javax.xml.bind.DatatypeConverter ;
-
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 import xsd4ld.XSDConst ;
 import xsd4ld.XSDTypeRegistry ;
 
@@ -29,8 +29,10 @@ public class XSD_HexBinary extends BaseBinary {
     
     @Override
     protected byte[] valueOrException(String lex) {
-        return DatatypeConverter.parseHexBinary(lex) ;
+        try {
+            return Hex.decodeHex(lex) ;
+        } catch (DecoderException e) {
+            throw new RuntimeException(e);
+        }
     }
-
-
 }
