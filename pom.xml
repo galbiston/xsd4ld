@@ -72,39 +72,48 @@
       <version>${ver.log4j}</version>
     </dependency>
 
+    <!-- Used for BinHex and Base64 -->
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.12</version>
+    </dependency>
+
   </dependencies>
 
   <build>
 
     <pluginManagement>
       <plugins>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.2</version>
+          <version>3.8.0</version>
         </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.12</version>
+          <version>2.22.1</version>
+          <!-- 
+               Bug: SUREFIRE-1588
+               https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911925
+          -->
+          <configuration>
+            <useSystemClassLoader>false</useSystemClassLoader>
+          </configuration>
         </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>2.5</version>
+          <version>3.1.0</version>
           <configuration>
             <encoding>UTF-8</encoding>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>2.9</version>
-          <configuration>
-            <overWriteReleases>false</overWriteReleases>
-            <overWriteIfNewer>true</overWriteIfNewer>
-          </configuration>
-        </plugin>
+
       </plugins>
     </pluginManagement>
 
@@ -113,12 +122,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <encoding>UTF-8</encoding>
-          <debug>true</debug>
-          <debuglevel>source,lines,vars</debuglevel>
-          <optimize>true</optimize>
-          <source>1.8</source>
-          <target>1.8</target>
+          <release>11</release>
         </configuration>
       </plugin>
 
@@ -135,19 +139,8 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
       </plugin>
-      
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <configuration>
-          <overWriteReleases>false</overWriteReleases>
-          <overWriteIfNewer>true</overWriteIfNewer>
-        </configuration>
-      </plugin>
+
     </plugins>
 
   </build>

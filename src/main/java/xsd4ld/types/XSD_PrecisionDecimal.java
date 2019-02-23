@@ -37,7 +37,7 @@ public class XSD_PrecisionDecimal extends BaseDecimal {
     @Override
     protected Object valueOrException(String lex) {
         if ( exceptions.matcher(lex).matches() ) 
-            return new Double(BaseDoubleFloat.fix(lex)) ;
+            return Double.parseDouble(BaseDoubleFloat.fix(lex)) ;
         return new BigDecimal(lex) ;
     }
 }
