@@ -10,7 +10,8 @@ target/
 .#*
 
 # Dev work file.
-generate
+src/main/java/dev
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
