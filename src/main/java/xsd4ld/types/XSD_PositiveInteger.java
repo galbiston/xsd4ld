@@ -17,10 +17,10 @@
 
 package xsd4ld.types;
 
-import static xsd4ld.XSDConst.* ;
+import static xsd4ld.XSDConst.*;
 
 public class XSD_PositiveInteger extends BaseInteger {
     public XSD_PositiveInteger() {
-        super(xsd_positiveInteger, xsd_nonNegativeInteger, ONE, null) ;
+        super(xsd_positiveInteger, xsd_nonNegativeInteger, ONE, null);
     }
 }

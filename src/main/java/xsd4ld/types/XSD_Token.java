@@ -17,7 +17,7 @@
 
 package xsd4ld.types;
 
-import xsd4ld.XSDConst ;
+import xsd4ld.XSDConst;
 
 public class XSD_Token extends BaseString {
     /*
@@ -31,20 +31,20 @@ public class XSD_Token extends BaseString {
      * type of token is normalizedString.
      */
     public XSD_Token() {
-        super(XSDConst.xsd_token, XSDConst.xsd_normalizedString) ;
+        super(XSDConst.xsd_token, XSDConst.xsd_normalizedString);
     }
     
     @Override
     public boolean valid_NL_LF_TAB(String lex) {
         if ( ! test_valid_NL_LF_TAB(lex) )
-            return false ;
+            return false;
         if ( lex.startsWith(" ") )
-            return false ;
+            return false;
         if ( lex.endsWith(" ") )
-            return false ;
+            return false;
         if ( lex.contains("  ") )   // 2 spaces
-            return false ;
-        return true ;
+            return false;
+        return true;
     }
 }
 

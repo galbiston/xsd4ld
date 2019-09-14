@@ -17,12 +17,12 @@
 
 package xsd4ld.types;
 
-import xsd4ld.XSDConst ;
+import xsd4ld.XSDConst;
 
 public class XSD_String extends BaseString {
 
     public XSD_String() {
-        super(XSDConst.xsd_string, XSDConst.xsd_atomic) ;
+        super(XSDConst.xsd_string, XSDConst.xsd_atomic);
     }
 
 }

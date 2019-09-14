@@ -17,10 +17,10 @@
 
 package xsd4ld.types;
 
-import xsd4ld.XSDConst ;
+import xsd4ld.XSDConst;
 
 public class XSD_Byte extends BaseInteger {
     public XSD_Byte() {
-        super(XSDConst.xsd_byte, XSDConst.xsd_short, XSDConst.BYTE_MIN, XSDConst.BYTE_MAX) ;
+        super(XSDConst.xsd_byte, XSDConst.xsd_short, XSDConst.BYTE_MIN, XSDConst.BYTE_MAX);
     }
 }

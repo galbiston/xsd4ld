@@ -17,27 +17,27 @@
 
 package xsd4ld.types;
 
-import java.util.regex.Pattern ;
+import java.util.regex.Pattern;
 
-import javax.xml.datatype.Duration ;
+import javax.xml.datatype.Duration;
 
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDDatatype ;
+import xsd4ld.ValueClass;
+import xsd4ld.XSDDatatype;
 
 /** Durations */
 abstract class BaseDuration extends XSDDatatype {
+    // java.time.Duration only supports day-time durations.
 
     protected BaseDuration(String shortName, String derivedFrom, Pattern regex) {
-        super(shortName, derivedFrom, ValueClass.DURATION, regex) ;
+        super(shortName, derivedFrom, ValueClass.DURATION, regex);
     }
 
     @Override
     protected Duration valueOrException(String lex) {
         try {
-            return XSDConst.factory.newDuration(lex) ;
+            return Base.xmlDatatypeFactory.newDuration(lex);
         } catch ( Exception ex) {
-            return null ; 
+            return null;
         }
     }
 }

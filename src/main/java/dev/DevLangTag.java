@@ -16,10 +16,14 @@
  * limitations under the License.
  */
 
-package langtag;
+package dev;
 
 import java.util.IllformedLocaleException;
 import java.util.Locale;
+
+import langtag.LangTag;
+import langtag.LangTagParser;
+import langtag.LangTagParserAlt;
 
 public class DevLangTag {
     
@@ -35,16 +39,13 @@ public class DevLangTag {
             System.out.println("V:"+lc.getVariant());
             System.out.println(lc.toLanguageTag());
             
-            LangTag lang3 = LangTagParser.parse("zh-cn-a-myext-x-private") ;
+            LangTag lang3 = LangTagParser.parse("zh-cn-a-myext-x-private");
             System.out.println();
             System.out.println(lang3.asString());
             
-            LangTag lang2 = LangTagParserAlt.parse("zh-cn-a-myext-x-private") ;
+            LangTag lang2 = LangTagParserAlt.parse("zh-cn-a-myext-x-private");
             System.out.println();
             System.out.println(lang2.asString());
-            
-            
-            
         } catch (IllformedLocaleException ex) {
             ex.printStackTrace();
         }

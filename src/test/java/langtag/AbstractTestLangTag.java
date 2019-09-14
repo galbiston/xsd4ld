@@ -21,47 +21,47 @@ import langtag.LangTag;
 import org.junit.Assert ;
 import org.junit.Test ;
 
-public abstract class AbstractTestLangTag extends Assert
-{
-    @Test public void parse_01() 
+public abstract class AbstractTestLangTag extends Assert {
+
+    @Test public void parse_01()
     { parseGood("en",                  "en",               "en", null, null, null, null) ; }
 
     @Test public void parse_02()
     { parseGood("en-uk",               "en-UK",            "en", null, "UK", null, null) ; }
-    
+
     @Test public void parse_03()
     { parseGood("es-419",              "es-419",           "es", null, "419", null, null) ; }
-    
+
     @Test public void parse_04()
     { parseGood("zh-Hant",             "zh-Hant",          "zh", "Hant", null, null, null) ; }
-    
+
     @Test public void parse_05()
     { parseGood("sr-Latn-CS",          "sr-Latn-CS",       "sr", "Latn", "CS", null, null) ; }
-    
+
     @Test public void parse_06()
     { parseGood("sl-nedis",            "sl-nedis",         "sl", null, null, "nedis", null) ; }
-    
+
     @Test public void parse_07()
     { parseGood("sl-IT-nedis",         "sl-IT-nedis",      "sl", null, "IT", "nedis", null) ; }
-    
+
     @Test public void parse_08()
     { parseGood("sl-Latn-IT-nedis",    "sl-Latn-IT-nedis", "sl", "Latn", "IT", "nedis", null) ; }
-    
+
     @Test public void parse_09()
     { parseGood("de-CH-x-Phonebk",     "de-CH-x-phonebk",  "de", null, "CH", null, "x-phonebk") ; }
-    
+
     @Test public void parse_10()
-    { parseGood("zh-cn-a-myExt-x-Private", "zh-CN-a-myext-x-private", 
+    { parseGood("zh-cn-a-myExt-x-Private", "zh-CN-a-myext-x-private",
                                            "zh", null, "CN", null, "a-myext-x-private") ; }
-    
+
     @Test public void parse_bad_01() { parseBad("i18n") ; }
     @Test public void parse_bad_02() { parseBad("i@n") ; }
     @Test public void parse_bad_03() { parseBad("123-abc") ; }
     @Test public void parse_bad_04() { parseBad("en-") ; }
-    
+
     protected void parseGood(String input, String ex_output, String... ex_parts ) {
         if ( ex_parts.length != 5 )
-            throw new IllegalArgumentException("Lost of expected parts must be length 5"); 
+            throw new IllegalArgumentException("Lost of expected parts must be length 5");
         LangTag langTagExpected =  new LangTag(ex_parts[0],
                                                ex_parts[1],
                                                ex_parts[2],
@@ -71,7 +71,7 @@ public abstract class AbstractTestLangTag extends Assert
         assertEquals("The LangTag", langTagExpected, langTagActual);
         String output = canonical(input) ;
         assertEquals("Canonical", ex_output, output) ;
-        assertTrue(LangTag.checkSyntax(input)) ;
+        assertTrue(LangTag.basicCheckSyntax(input)) ;
     }
 
     protected void parseBad(String input) {
@@ -79,9 +79,9 @@ public abstract class AbstractTestLangTag extends Assert
         assertNull(langTag) ;
         String output = canonical(input) ;
         assertEquals(input, output) ;
-        assertFalse(LangTag.checkSyntax(input)) ;
+        assertFalse(LangTag.basicCheckSyntax(input)) ;
     }
-    
+
     protected void testCanonical(String input, String ex_output) {
         String output = canonical(input) ;
         assertEquals(ex_output, output) ;
@@ -89,16 +89,16 @@ public abstract class AbstractTestLangTag extends Assert
 //        if ( output2 != null )
 //            assertEquals(ex_output, output2) ;
     }
-    
+
     protected abstract LangTag parseLangtag(String str);
     protected abstract String canonical(String str);
-    
+
     // Override and return null if the impl does not parse to canonical form.
     protected String canonicalByParsing(String str) {
         return parseLangtag(str).asString();
     }
-        
-    // "x" extensions and irregular forms are left alone, including "sgn-be-fr" 
+
+    // "x" extensions and irregular forms are left alone, including "sgn-be-fr"
 
     // Mentioned in BCP 47 tests
 //    @Test public void parseCanonical_01() { testCanonical("en-ca-x-ca","en-CA-x-ca"); }         // "x"
@@ -108,7 +108,7 @@ public abstract class AbstractTestLangTag extends Assert
 //    @Test public void parseCanonical_05() { testCanonical("sgn-be-fr","sgn-BE-FR"); }   // Irregular
 //    @Test public void parseCanonical_06() { testCanonical("AZ-latn-x-LATN","az-Latn-x-latn"); }
 //    @Test public void parseCanonical_07() { testCanonical("Az-latn-X-Latn","az-Latn-x-latn"); }
-    
+
     @Test public void parseCanonical_10() { testCanonical("zh-hant",            "zh-Hant"); }
     @Test public void parseCanonical_11() { testCanonical("zh-latn-wadegile",   "zh-Latn-wadegile"); }
     @Test public void parseCanonical_12() { testCanonical("zh-latn-pinyin",     "zh-Latn-pinyin"); }
@@ -117,7 +117,7 @@ public abstract class AbstractTestLangTag extends Assert
     @Test public void parseCanonical_15() { testCanonical("qqq-002",            "qqq-002"); }
     @Test public void parseCanonical_16() { testCanonical("ja-latn",            "ja-Latn"); }
     @Test public void parseCanonical_17() { testCanonical("x-local",            "x-local"); }
-    // 
+    //
     @Test public void parseCanonical_18() { testCanonical("he-latn",            "he-Latn"); }
     @Test public void parseCanonical_19() { testCanonical("und",                "und"); }
     @Test public void parseCanonical_20() { testCanonical("nn",                 "nn"); }

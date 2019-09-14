@@ -15,16 +15,17 @@
  *  information regarding copyright ownership.
  */
 
-package xsd4ld.types;
+package langtag;
 
-import java.util.regex.Pattern;
+public class TestLangTagParser extends AbstractTestLangTag {
 
-import xsd4ld.ValueClass;
-import xsd4ld.XSDDatatype;
+    @Override
+    protected LangTag parseLangtag(String str) {
+        return LangTagParser.parse(str);
+    }
 
-abstract class BaseDecimal extends XSDDatatype {
-    protected BaseDecimal(String shortName, String baseType, Pattern regex) {
-        super(shortName, baseType, ValueClass.DECIMAL, regex);
+    @Override
+    protected String canonical(String str) {
+        return LangTagParser.canonical(str);
     }
 }
-

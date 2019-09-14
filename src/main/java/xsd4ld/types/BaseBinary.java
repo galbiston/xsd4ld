@@ -17,15 +17,15 @@
 
 package xsd4ld.types;
 
-import java.util.regex.Pattern ;
+import java.util.regex.Pattern;
 
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDDatatype ;
+import xsd4ld.ValueClass;
+import xsd4ld.XSDDatatype;
 
 abstract class BaseBinary extends XSDDatatype {
 
     protected BaseBinary(String shortName, String derivedFrom, Pattern regex) {
-        super(shortName, derivedFrom, ValueClass.BINARY, regex) ;
+        super(shortName, derivedFrom, ValueClass.BINARY, regex);
     }
 }
 

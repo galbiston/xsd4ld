@@ -17,11 +17,11 @@
 
 package xsd4ld.types;
 
-import static java.math.BigInteger.ZERO ;
-import xsd4ld.XSDConst ;
+import static java.math.BigInteger.ZERO;
+import xsd4ld.XSDConst;
 
 public class XSD_UnsignedShort extends BaseInteger {
     public XSD_UnsignedShort() {
-        super(XSDConst.xsd_unsignedShort, XSDConst.xsd_unsignedInt, ZERO, XSDConst.SHORT_UMAX) ;
+        super(XSDConst.xsd_unsignedShort, XSDConst.xsd_unsignedInt, ZERO, XSDConst.SHORT_UMAX);
     }
 }

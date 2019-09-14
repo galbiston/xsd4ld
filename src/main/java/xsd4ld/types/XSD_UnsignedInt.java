@@ -17,10 +17,10 @@
 
 package xsd4ld.types;
 
-import static xsd4ld.XSDConst.* ;
+import static xsd4ld.XSDConst.*;
 
 public class XSD_UnsignedInt extends BaseInteger {
     public XSD_UnsignedInt() {
-        super(xsd_unsignedInt, xsd_unsignedLong, ZERO, INT_UMAX) ;
+        super(xsd_unsignedInt, xsd_unsignedLong, ZERO, INT_UMAX);
     }
 }

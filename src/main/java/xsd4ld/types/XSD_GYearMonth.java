@@ -17,11 +17,11 @@
 
 package xsd4ld.types;
 
-import xsd4ld.XSDConst ;
-import xsd4ld.lib.DateTimeStruct ;
+import xsd4ld.XSDConst;
+import xsd4ld.lib.DateTimeStruct;
 
-public class XSD_GYearMonth extends BaseDateTime {
+public class XSD_GYearMonth extends BaseGregorian {
     public XSD_GYearMonth() {
-        super(XSDConst.xsd_gYearMonth, DateTimeStruct::parseGYearMonth) ;
+        super(XSDConst.xsd_gYearMonth, DateTimeStruct::parseGYearMonth);
     }
 }

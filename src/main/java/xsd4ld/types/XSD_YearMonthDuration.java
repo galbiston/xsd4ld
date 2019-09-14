@@ -17,24 +17,25 @@
 
 package xsd4ld.types;
 
-import javax.xml.datatype.Duration ;
+import javax.xml.datatype.Duration;
 
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegistry ;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDTypeRegistry;
 
 public class XSD_YearMonthDuration extends BaseDuration {
     public XSD_YearMonthDuration() {
-        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegistry.getRegex(XSDConst.xsd_yearMonthDuration)) ;
+        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegistry.getRegex(XSDConst.xsd_yearMonthDuration));
     }
-    
+
     @Override
     protected Duration valueOrException(String lex) {
-        Duration obj = super.valueOrException(lex) ;
+        Duration obj = super.valueOrException(lex);
         if ( obj == null )
-            return null ;
+            return null;
+        // Must not have a D or T part.
         if ( lex.indexOf('D') != -1 || lex.indexOf('T') != -1 )
-            throw new IllegalArgumentException("Not valid as xsd:yearMonthDuration: "+lex) ;
-        return obj ;
+            throw new IllegalArgumentException("Not valid as xsd:yearMonthDuration: "+lex);
+        return obj;
     }
 }
 

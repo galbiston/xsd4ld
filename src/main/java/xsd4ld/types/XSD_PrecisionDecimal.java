@@ -17,11 +17,11 @@
 
 package xsd4ld.types;
 
-import java.math.BigDecimal ;
-import java.util.regex.Pattern ;
+import java.math.BigDecimal;
+import java.util.regex.Pattern;
 
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegistry ;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDTypeRegistry;
 
 /** Precision Decimal : 
  *  <a href="http://www.w3.org/TR/xsd-precisionDecimal/">http://www.w3.org/TR/xsd-precisionDecimal/</a>
@@ -29,16 +29,16 @@ import xsd4ld.XSDTypeRegistry ;
 public class XSD_PrecisionDecimal extends BaseDecimal {
 
     public XSD_PrecisionDecimal() {
-        super(XSDConst.xsd_precisionDecimal, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_precisionDecimal)) ;
+        super(XSDConst.xsd_precisionDecimal, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_precisionDecimal));
     }
 
-    static Pattern exceptions = Pattern.compile("(\\+|-)?INF|NaN") ;
+    static Pattern exceptions = Pattern.compile("(\\+|-)?INF|NaN");
     
     @Override
     protected Object valueOrException(String lex) {
         if ( exceptions.matcher(lex).matches() ) 
-            return Double.parseDouble(BaseDoubleFloat.fix(lex)) ;
-        return new BigDecimal(lex) ;
+            return Double.parseDouble(BaseDoubleFloat.fix(lex));
+        return new BigDecimal(lex);
     }
 }
 

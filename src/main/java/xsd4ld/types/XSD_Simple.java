@@ -17,19 +17,19 @@
 
 package xsd4ld.types;
 
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDDatatype ;
+import xsd4ld.ValueClass;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDDatatype;
 
 public class XSD_Simple extends XSDDatatype {
 
     public XSD_Simple() {
-        super(XSDConst.xsd_simple, XSDConst.xsd_anyType, ValueClass.ANY, null) ;
+        super(XSDConst.xsd_simple, XSDConst.xsd_anyType, ValueClass.ANY, null);
     }
 
     @Override
     protected Object valueOrException(String lex) {
-        return lex ;
+        return lex;
     }
 }
 

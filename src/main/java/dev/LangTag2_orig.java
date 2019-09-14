@@ -15,39 +15,35 @@
  *  information regarding copyright ownership.
  */
 
-package langtag;
-
-import static langtag.LangTagLib.isA2Z;
-import static langtag.LangTagLib.isA2ZN;
+package dev;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/** LangTag parser - alternative version, which is captures all the rules of RFC4234,  
- * <p>
- * See also {@link LangTagParser} which uses the built-in Java support, which is a better choice for application use.
- * <p>
- */
-public class LangTagParserAlt {
-    private LangTagParserAlt() { }
-    
+
+/** replace LangTag -- uses avoids using regexs */
+
+// Refactored and tidied up into "langtag.LangTagParserAlt"  
+
+public class LangTag2_orig {
+   
     static class LangTagException extends RuntimeException {
         LangTagException(String str) { super(str); }
     }
     
     /** Index of the language part */
-    private static final int idxLanguage     = 0;
+    public static final int idxLanguage     = 0;
     /** Index of the script part */ 
-    private static final int idxScript       = 1;
+    public static final int idxScript       = 1;
     /** Index of the region part */
-    private static final int idxRegion       = 2;
+    public static final int idxRegion       = 2;
     /** Index of the variant part */
-    private static final int idxVariant      = 3;
+    public static final int idxVariant      = 3;
     /** Index of all extensions */
-    private static final int idxExtension    = 4;
+    public static final int idxExtension    = 4;
     
-    private static final int partsLength     = 5;
+    private static final int partsLength    = 5;
 
     /*
      *     <li>ABNF definition: <a href="http://www.ietf.org/rfc/rfc4234.txt">RFC 4234</a></li>
@@ -93,34 +89,28 @@ public class LangTagParserAlt {
    alphanum      = (ALPHA / DIGIT)      ; letters and numbers
      */
 
-    public static LangTag parse(String x) { 
+    private static final char CH_DASH         = '-';
+    
+    static String[] template = new String[] {}; 
+    
+    public static String[] parse(String x) { 
         List<String> strings = parse1(x);
         if ( strings == null )
             return null;
         String[] parts = parse2(strings);
         if ( parts == null )
             return null;
-        /*
-         * Canonicalize with the rules of RFC 4646 "In this format, all non-initial
-         * two-letter subtags are uppercase, all non-initial four-letter subtags are
-         * titlecase, and all other subtags are lowercase." In addition, leave
-         * extensions unchanged.
-         * RFC 5646 is slightly different because it replaces one string with another. 
-         */
         parts[idxLanguage] = lowercase(parts[idxLanguage]);
         parts[idxScript] = strcase(parts[idxScript]);
         parts[idxRegion] = strcase(parts[idxRegion]);
         parts[idxVariant] = strcase(parts[idxVariant]);
-        parts[idxExtension] = lowercase(parts[idxExtension]); 
-        return new LangTag(parts[idxLanguage],
-                           parts[idxScript],
-                           parts[idxRegion],
-                           parts[idxVariant],
-                           parts[idxExtension]);
+        // Leave extensions alone.
+        // parts[idxExtension] = strcase(parts[idxExtension]); 
+        return parts;
     }
 
     private static List<String> parse1(String x) {
-        List<String> strings = new ArrayList<>(6);
+        List<String> strings = new ArrayList<>();
         // Split efficiently(?) based on [a-z][A-Z][0-9] units separated by "-"s
         StringBuilder sb = new StringBuilder();
         
@@ -162,7 +152,7 @@ public class LangTagParserAlt {
         String [] langTag = new String[partsLength];
         int idx = 0;
         // language - mandatory.
-        // language = (2*3ALPHA [ extlang ]) or 4ALPHA or 5*8ALPHA
+        //language = (2*3ALPHA [ extlang ]) or 4ALPHA or 5*8ALPHA
         
         String str = strings.get(idx);
         if ( str.length() == 1 ) {
@@ -250,16 +240,90 @@ public class LangTagParserAlt {
     public static String canonical(String str) {
         if ( str == null )
             return null;
-        LangTag langTag = parse(str);
-        if ( langTag == null ) {
-            // Could try to apply the rule case-setting rules
+        String[] parts = parse(str);
+        String x = canonical(parts);
+        if ( x == null ) {
+            // Could try to apply the rule case-seeting rules
             // even through it's not a conforming langtag.
             return str;
         }
-        return langTag.asString();
+        return x;
     }
     
-   private static String strcase(String string) {
+    /**
+     * Canonicalize with the rules of RFC 4646 "In this format, all non-initial
+     * two-letter subtags are uppercase, all non-initial four-letter subtags are
+     * titlecase, and all other subtags are lowercase." In addition, leave
+     * extensions unchanged.
+     */
+    public static String canonical(String[] parts) {
+        // We canonicalised parts on parsing.
+        // RFC 5646 is slightly different.
+        if ( parts == null )
+            return null;
+
+        if ( parts[0] == null ) {
+            // Grandfathered
+            return parts[idxExtension];
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(parts[0]);
+        for (int i = 1; i < parts.length; i++) {
+            if ( parts[i] != null ) {
+                sb.append("-");
+                sb.append(parts[i]);
+            }
+        }
+        return sb.toString();
+    }
+    
+    
+    /**
+     * Validate - basic syntax check for a language tags: [a-zA-Z]+ ('-'
+     * [a-zA-Z0-9]+)*
+     */
+    public static boolean check(String languageTag) {
+        int len = languageTag.length();
+        int idx = 0;
+        boolean first = true;
+        while (idx < languageTag.length()) {
+            int idx2 = checkPart(languageTag, idx, first);
+            first = false;
+            if ( idx2 == idx )
+                // zero length part.
+                return false;
+            idx = idx2;
+            if ( idx == len )
+                return true;
+            if ( languageTag.charAt(idx) != CH_DASH )
+                return false;
+            idx++;
+            if ( idx == len )
+                // trailing DASH
+                return false;
+        }
+        return true;
+    }
+
+    private static int checkPart(String languageTag, int idx, boolean alphaOnly) {
+        for (; idx < languageTag.length(); idx++) {
+            int ch = languageTag.charAt(idx);
+            if ( alphaOnly ) {
+                if ( isA2Z(ch) )
+                    continue;
+            } else {
+                if ( isA2ZN(ch) )
+                    continue;
+            }
+            // Not acceptable.
+            return idx;
+        }
+        // Off end.
+        return idx;
+    }
+    
+    private static String strcase(String string) {
         if ( string == null )
             return null;
         if ( string.length() == 2 )
@@ -281,12 +345,32 @@ public class LangTagParserAlt {
         return string.toUpperCase(Locale.ROOT);
     }
 
-    /*package*/ static String titlecase(String string) {
+    private static String titlecase(String string) {
         if ( string == null )
             return null;
         char ch1 = string.charAt(0);
         ch1 = Character.toUpperCase(ch1);
         string = lowercase(string.substring(1));
         return ch1 + string;
+    }
+    
+    /** ASCII A-Z */
+    private static boolean isA2Z(int ch) {
+        return range(ch, 'a', 'z') || range(ch, 'A', 'Z');
+    }
+
+    /** ASCII A-Z or 0-9 */
+    private static boolean isA2ZN(int ch) {
+        return range(ch, 'a', 'z') || range(ch, 'A', 'Z') || range(ch, '0', '9');
+    }
+
+    /** ASCII 0-9 */
+    private static boolean isDigit(int ch) {
+        return range(ch, '0', '9');
+    }
+    
+    private static boolean range(int ch, char a, char b)
+    {
+        return ( ch >= a && ch <= b );
     }
 }

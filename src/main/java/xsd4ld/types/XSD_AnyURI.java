@@ -17,21 +17,21 @@
 
 package xsd4ld.types;
 
-import static xsd4ld.XSDConst.* ;
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDDatatype ;
-import xsd4ld.XSDTypeRegistry ;
+import static xsd4ld.XSDConst.*;
+import xsd4ld.ValueClass;
+import xsd4ld.XSDDatatype;
+import xsd4ld.XSDTypeRegistry;
 
 public class XSD_AnyURI extends XSDDatatype {
 
     public XSD_AnyURI() {
-        super(xsd_anyURI, xsd_atomic, ValueClass.ANY, XSDTypeRegistry.getRegex(xsd_anyURI)) ;
+        super(xsd_anyURI, xsd_atomic, ValueClass.ANY, XSDTypeRegistry.getRegex(xsd_anyURI));
     }
 
     @Override
     protected Object valueOrException(String lex) {
         if ( getRegex().matcher(lex).matches() )
-            return lex ;
-        return null ;
+            return lex;
+        return null;
     }
 }

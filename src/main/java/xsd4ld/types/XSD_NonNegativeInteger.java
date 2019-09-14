@@ -17,10 +17,10 @@
 
 package xsd4ld.types;
 
-import static xsd4ld.XSDConst.* ;
+import static xsd4ld.XSDConst.*;
 
 public class XSD_NonNegativeInteger extends BaseInteger {
     public XSD_NonNegativeInteger() {
-        super(xsd_nonNegativeInteger, xsd_integer, ZERO, null) ;
+        super(xsd_nonNegativeInteger, xsd_integer, ZERO, null);
     }
 }

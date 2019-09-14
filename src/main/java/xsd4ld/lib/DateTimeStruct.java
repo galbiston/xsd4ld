@@ -17,247 +17,247 @@
 
 package xsd4ld.lib;
 
-/** XSD date/time 7-component model.
+/**
+ * XSD date/time 7-component model.
  * Includes parsing xsd:dateTime, xsd:date and xsd:g*
  */  
 
 public class DateTimeStruct
 {
-    //com.hp.hpl.jena.sparql.util.DateTimeStruct
-    public boolean xsdDateTime  ;
-    public String neg = null ;         // Null if none. 
-    public String year = null ;
-    public String month = null ;
-    public String day = null ;
-    public String hour = null ;
-    public String minute = null ;
-    public String second = null ;      // Inc. fractional parts
-    public String timezone = null ;    // Null if none.
+    public boolean xsdDateTime ;
+    public String neg = null;         // Null if none. 
+    public String year = null;
+    public String month = null;
+    public String day = null;
+    public String hour = null;
+    public String minute = null;
+    public String second = null;      // Inc. fractional parts
+    public String timezone = null;    // Null if none.
 
     public DateTimeStruct() {}
     
     public static class DateTimeParseException extends RuntimeException
     {
-        public DateTimeParseException(String msg) { super(msg) ; } 
+        public DateTimeParseException(String msg) { super(msg); } 
     }
     
     @Override
     public String toString()
     { 
-        String ySep = "-" ;
-        String tSep = ":" ;
-        String x = year+ySep+month+ySep+day ;
+        String ySep = "-";
+        String tSep = ":";
+        String x = year+ySep+month+ySep+day;
         if ( xsdDateTime )
-            x = x + "T"+hour+tSep+minute+tSep+second ;
+            x = x + "T"+hour+tSep+minute+tSep+second;
         if ( neg != null )
-            x = neg+x ;
+            x = neg+x;
         if ( timezone != null )
-            x = x+timezone ;
-        return x ; 
+            x = x+timezone;
+        return x; 
     }
     
     public static DateTimeStruct parseDateTime(String str)
-    { return _parseYMD(str, true, true, true) ; }
+    { return _parseYMD(str, true, true, true); }
 
     public static DateTimeStruct parseDateTimeStamp(String str)
     {
-        DateTimeStruct dts = _parseYMD(str, true, true, true) ; 
+        DateTimeStruct dts = _parseYMD(str, true, true, true); 
         if ( dts == null || dts.timezone == null )
-            return null ;
-        return dts ;
+            return null;
+        return dts;
     }
 
     public static DateTimeStruct parseTime(String str)
-    { return _parseTime(str) ; } 
+    { return _parseTime(str); } 
     
     public static DateTimeStruct parseDate(String str)
-    { return _parseYMD(str, true, true, false) ; } 
+    { return _parseYMD(str, true, true, false); } 
 
     public static DateTimeStruct parseGYear(String str)
-    { return _parseYMD(str, false, false, false) ; } 
+    { return _parseYMD(str, false, false, false); } 
 
     public static DateTimeStruct parseGYearMonth(String str)
-    { return _parseYMD(str, true, false, false) ; } 
+    { return _parseYMD(str, true, false, false); } 
     
     public static DateTimeStruct parseGMonth(String str)
-    { return _parseMD(str, true, false) ; }
+    { return _parseMD(str, true, false); }
     
     public static DateTimeStruct parseGMonthDay(String str)    
-    { return _parseMD(str, true, true) ; }
+    { return _parseMD(str, true, true); }
     
     public static DateTimeStruct parseGDay(String str)      
-    { return _parseMD(str, false, true) ; }
+    { return _parseMD(str, false, true); }
     
     // Date with year: date, dateTime, gYear, gYearMonth but not gMonth, gMonthDay, 
     private static DateTimeStruct _parseYMD(String str, boolean month, boolean day, boolean includeTime) 
     { 
-        DateTimeStruct struct = new DateTimeStruct() ;
-        int idx = 0 ; // if whitespace fact processing -- skipWhitespace(str, 0) ;
-        boolean negYear = false ;
+        DateTimeStruct struct = new DateTimeStruct();
+        int idx = 0; // if whitespace fact processing -- skipWhitespace(str, 0);
+        boolean negYear = false;
 
         if ( str.charAt(idx) == '-' )
         {
-            struct.neg = "-" ;
-            idx ++ ;
+            struct.neg = "-";
+            idx ++;
         }
         
-        struct.year = getDigits(str, idx) ;
+        struct.year = getDigits(str, idx);
         if ( struct.year.length() < 4 )
-            throw new DateTimeParseException("Year too short (must be 4 or more digits)") ;
+            throw new DateTimeParseException("Year too short (must be 4 or more digits)");
         
-        idx += struct.year.length() ;
+        idx += struct.year.length();
         
         if ( month )
         {
-            check(str, idx, '-') ;
-            idx += 1 ;
-            struct.month = getDigits(2, str, idx) ;
-            idx += 2 ;
+            check(str, idx, '-');
+            idx += 1;
+            struct.month = getDigits(2, str, idx);
+            idx += 2;
         }        
 
         if ( day )
         {
-            check(str, idx, '-') ;
-            idx += 1 ;
-            struct.day = getDigits(2, str, idx) ;
-            idx += 2 ;
+            check(str, idx, '-');
+            idx += 1;
+            struct.day = getDigits(2, str, idx);
+            idx += 2;
         }
 
         if ( includeTime )
         {        
-            struct.xsdDateTime = true ;
+            struct.xsdDateTime = true;
             // ---- 
-            check(str, idx, 'T') ;
-            idx += 1 ;
-            idx = _parseTime(struct, idx, str) ;
+            check(str, idx, 'T');
+            idx += 1;
+            idx = _parseTime(struct, idx, str);
         }
         
         // Timezone
-        idx = _parseTimezone(struct, str, idx) ;
+        idx = _parseTimezone(struct, str, idx);
         
-        idx = skipWhitespace(str, idx) ;
+        idx = skipWhitespace(str, idx);
         
         if ( idx != str.length() )
-            throw new DateTimeParseException("Trailing characters after date/time") ;
-        return struct ; 
+            throw new DateTimeParseException("Trailing characters after date/time");
+        return struct; 
     }
     
     // No year: gMonth, gMonthDay, gDay
     private static DateTimeStruct _parseMD(String str, boolean month, boolean day)
     {
-        DateTimeStruct struct = new DateTimeStruct() ;
-        int idx = 0 ;
+        DateTimeStruct struct = new DateTimeStruct();
+        int idx = 0;
 
-        check(str, idx, '-') ;
-        idx += 1 ;
+        check(str, idx, '-');
+        idx += 1;
 
-        check(str, idx, '-') ;
-        idx += 1 ;
+        check(str, idx, '-');
+        idx += 1;
         
         if ( month )
         {
-            struct.month = getDigits(2, str, idx) ;
-            idx += 2 ; 
+            struct.month = getDigits(2, str, idx);
+            idx += 2; 
         }
         
         if ( day )
         {
-            check(str, idx, '-') ;
-            idx += 1 ;
-            struct.day = getDigits(2, str, idx) ;
-            idx += 2 ; 
+            check(str, idx, '-');
+            idx += 1;
+            struct.day = getDigits(2, str, idx);
+            idx += 2; 
         }
         
         // Timezone
-        idx = _parseTimezone(struct, str, idx) ;
+        idx = _parseTimezone(struct, str, idx);
         
         if ( idx != str.length() )
-            throw new DateTimeParseException("Unexpected trailing characters in string") ;
-        return struct ; 
+            throw new DateTimeParseException("Unexpected trailing characters in string");
+        return struct; 
     }
     
     private static DateTimeStruct _parseTime(String str)
     {
-        DateTimeStruct struct = new DateTimeStruct() ;
-        int idx = 0 ;
-        idx = _parseTime(struct, 0, str) ;
-        idx = _parseTimezone(struct, str, idx) ;
-        idx = skipWhitespace(str, idx) ;
+        DateTimeStruct struct = new DateTimeStruct();
+        int idx = 0;
+        idx = _parseTime(struct, 0, str);
+        idx = _parseTimezone(struct, str, idx);
+        idx = skipWhitespace(str, idx);
         if ( idx != str.length() )
-            throw new DateTimeParseException("Trailing characters after date/time") ;
-        return struct ;
+            throw new DateTimeParseException("Trailing characters after date/time");
+        return struct;
     }        
     private static int _parseTime(DateTimeStruct struct, int idx, String str)
     {
         // Hour-minute-seconds
-        struct.hour = getDigits(2, str, idx) ;
-        idx += 2 ;
-        check(str, idx, ':') ;
-        idx += 1 ;
+        struct.hour = getDigits(2, str, idx);
+        idx += 2;
+        check(str, idx, ':');
+        idx += 1;
 
-        struct.minute = getDigits(2, str, idx) ;
-        idx += 2 ;
-        check(str, idx, ':') ;
-        idx += 1 ;
+        struct.minute = getDigits(2, str, idx);
+        idx += 2;
+        check(str, idx, ':');
+        idx += 1;
 
         // seconds
-        struct.second = getDigits(2, str, idx) ;
-        idx += 2 ;
+        struct.second = getDigits(2, str, idx);
+        idx += 2;
         if ( idx < str.length() && str.charAt(idx) == '.' )
         {
-            idx += 1 ;
-            int idx2 = idx ;
-            for ( ; idx2 < str.length() ; idx2++ )
+            idx += 1;
+            int idx2 = idx;
+            for (; idx2 < str.length(); idx2++ )
             {
-                char ch = str.charAt(idx2) ;
+                char ch = str.charAt(idx2);
                 if ( ! Character.isDigit(ch) )
-                    break ;
+                    break;
             }
             if ( idx == idx2 )
-                throw new DateTimeParseException("Bad time part") ;
-            struct.second = struct.second+'.'+str.substring(idx, idx2) ;
-            idx = idx2 ;
+                throw new DateTimeParseException("Bad time part");
+            struct.second = struct.second+'.'+str.substring(idx, idx2);
+            idx = idx2;
         }
-        return idx ;
+        return idx;
     }
     
     private static int _parseTimezone(DateTimeStruct struct, String str, int idx)
     {
         if ( idx >= str.length() )
         {
-            struct.timezone = null ;
-            return idx ;
+            struct.timezone = null;
+            return idx;
         }
         
         if ( str.charAt(idx) == 'Z' )
         {
-            struct.timezone = "Z" ;
-            idx += 1 ;
+            struct.timezone = "Z";
+            idx += 1;
         }
         else
         {
-            StringBuilder sb = new StringBuilder() ;
+            StringBuilder sb = new StringBuilder();
 
             if ( str.charAt(idx) == '+' )
-                sb.append('+') ;
+                sb.append('+');
             else if ( str.charAt(idx) == '-' )
-                sb.append('-') ;
+                sb.append('-');
             else
-                throw new DateTimeParseException("Bad timezone") ;
-            idx += 1 ;
+                throw new DateTimeParseException("Bad timezone");
+            idx += 1;
 
-            sb.append(getDigits(2, str, idx)) ;
-            idx += 2 ;
+            sb.append(getDigits(2, str, idx));
+            idx += 2;
 
-            check(str, idx, ':') ;
-            sb.append(':') ;
-            idx += 1 ;
+            check(str, idx, ':');
+            sb.append(':');
+            idx += 1;
 
-            sb.append(getDigits(2, str, idx)) ;
-            idx += 2 ;
-            struct.timezone = sb.toString() ;
+            sb.append(getDigits(2, str, idx));
+            idx += 2;
+            struct.timezone = sb.toString();
         }
-        return idx ;
+        return idx;
     }
 
 
@@ -266,74 +266,74 @@ public class DateTimeStruct
 //    private static DateTimeStruct _parse(String str, boolean includeTime)
 //    {
 //        // -? YYYY-MM-DD T hh:mm:ss.ss TZ
-//        DateTimeStruct struct = new DateTimeStruct() ;
-//        int idx = 0 ;
+//        DateTimeStruct struct = new DateTimeStruct();
+//        int idx = 0;
 //
 //        if ( str.startsWith("-") )
 //        {
-//            struct.neg = "-" ;
-//            idx = 1 ;
+//            struct.neg = "-";
+//            idx = 1;
 //        }
 //
 //        // ---- Year-Month-Day
-//        struct.year = getDigits(4, str, idx) ;
-//        idx += 4 ;
-//        check(str, idx, '-') ;
-//        idx += 1 ;
+//        struct.year = getDigits(4, str, idx);
+//        idx += 4;
+//        check(str, idx, '-');
+//        idx += 1;
 //
-//        struct.month = getDigits(2, str, idx) ;
-//        idx += 2 ;
-//        check(str, idx, '-') ;
-//        idx += 1 ;
+//        struct.month = getDigits(2, str, idx);
+//        idx += 2;
+//        check(str, idx, '-');
+//        idx += 1;
 //
-//        struct.day = getDigits(2, str, idx) ;
-//        idx += 2 ;
+//        struct.day = getDigits(2, str, idx);
+//        idx += 2;
 //
-//        struct.xsdDateTime = false ;
+//        struct.xsdDateTime = false;
 //
 //        if ( includeTime )
 //        {        
-//            struct.xsdDateTime = true ;
+//            struct.xsdDateTime = true;
 //            // ---- 
-//            check(str, idx, 'T') ;
-//            idx += 1 ;
+//            check(str, idx, 'T');
+//            idx += 1;
 //
 //            // ---- 
 //            // Hour-minute-seconds
-//            struct.hour = getDigits(2, str, idx) ;
-//            idx += 2 ;
-//            check(str, idx, ':') ;
-//            idx += 1 ;
+//            struct.hour = getDigits(2, str, idx);
+//            idx += 2;
+//            check(str, idx, ':');
+//            idx += 1;
 //
-//            struct.minute = getDigits(2, str, idx) ;
-//            idx += 2 ;
-//            check(str, idx, ':') ;
-//            idx += 1 ;
+//            struct.minute = getDigits(2, str, idx);
+//            idx += 2;
+//            check(str, idx, ':');
+//            idx += 1;
 //
 //            // seconds
-//            struct.second = getDigits(2, str, idx) ;
-//            idx += 2 ;
+//            struct.second = getDigits(2, str, idx);
+//            idx += 2;
 //            if ( idx < str.length() && str.charAt(idx) == '.' )
 //            {
-//                idx += 1 ;
-//                int idx2 = idx ;
-//                for ( ; idx2 < str.length() ; idx2++ )
+//                idx += 1;
+//                int idx2 = idx;
+//                for (; idx2 < str.length(); idx2++ )
 //                {
-//                    char ch = str.charAt(idx2) ;
+//                    char ch = str.charAt(idx2);
 //                    if ( ! Character.isDigit(ch) )
-//                        break ;
+//                        break;
 //                }
 //                if ( idx == idx2 )
-//                    throw new DateTimeParseException() ;
-//                struct.second = struct.second+'.'+str.substring(idx, idx2) ;
-//                idx = idx2 ;
+//                    throw new DateTimeParseException();
+//                struct.second = struct.second+'.'+str.substring(idx, idx2);
+//                idx = idx2;
 //            }
 //        }
 //        else
 //        {
-//            struct.hour =  null ;
-//            struct.minute = null ;
-//            struct.second = null ;
+//            struct.hour =  null;
+//            struct.minute = null;
+//            struct.second = null;
 //
 //        }
 //        // timezone. Z or +/- 00:00
@@ -342,85 +342,85 @@ public class DateTimeStruct
 //        {
 //            if ( str.charAt(idx) == 'Z' )
 //            {
-//                struct.timezone = "Z" ;
-//                idx += 1 ;
+//                struct.timezone = "Z";
+//                idx += 1;
 //            }
 //            else
 //            {
-//                StringBuilder sb = new StringBuilder() ;
+//                StringBuilder sb = new StringBuilder();
 //
 //                if ( str.charAt(idx) == '+' )
-//                    sb.append('+') ;
+//                    sb.append('+');
 //                else if ( str.charAt(idx) == '-' )
-//                    sb.append('-') ;
+//                    sb.append('-');
 //                else
-//                    throw new DateTimeParseException() ;
-//                idx += 1 ;
+//                    throw new DateTimeParseException();
+//                idx += 1;
 //
-//                sb.append(getDigits(2, str, idx)) ;
-//                idx += 2 ;
+//                sb.append(getDigits(2, str, idx));
+//                idx += 2;
 //
-//                check(str, idx, ':') ;
-//                sb.append(':') ;
-//                idx += 1 ;
+//                check(str, idx, ':');
+//                sb.append(':');
+//                idx += 1;
 //
 //
-//                sb.append(getDigits(2, str, idx)) ;
-//                idx += 2 ;
+//                sb.append(getDigits(2, str, idx));
+//                idx += 2;
 //
-//                struct.timezone = sb.toString() ;
+//                struct.timezone = sb.toString();
 //            }
 //        }
 //    
 //        if ( idx != str.length() )
-//            throw new DateTimeParseException() ;
-//        return struct ;
+//            throw new DateTimeParseException();
+//        return struct;
 //    }
 
     private static String getDigits(int num, String string, int start)
     {
-        for ( int i = start ; i < (start+num) ; i++ )
+        for ( int i = start; i < (start+num); i++ )
         {
-            char ch = string.charAt(i) ;
+            char ch = string.charAt(i);
             // Only ASCII digits
             if ( ch < '0' || ch > '9' )
-                throw new DateTimeParseException("Bad number (expected "+num+" digits)") ;
-            continue ;
+                throw new DateTimeParseException("Bad number (expected "+num+" digits)");
+            continue;
         }
-        return string.substring(start, start+num) ;
+        return string.substring(start, start+num);
     }
     
     private static String getDigits(String string, int start)
     {
-        int i = start ;
-        for ( ;; i++ )
+        int i = start;
+        for (;; i++ )
         {
             if ( i >= string.length() )
-                break ;
-            char ch = string.charAt(i) ;
+                break;
+            char ch = string.charAt(i);
             // Only ASCII digits
             if ( ch < '0' || ch > '9' )
-                break ;
-            continue ;
+                break;
+            continue;
         }
-        return string.substring(start, i) ;
+        return string.substring(start, i);
     }
     
     private static int skipWhitespace(String string, int idx)
     {
         while ( idx < string.length() )
         {
-            char ch = string.charAt(idx) ;
+            char ch = string.charAt(idx);
             if ( ! Character.isWhitespace(ch) )
-                return idx ;
-            idx++ ;
+                return idx;
+            idx++;
         }
-        return idx ;
+        return idx;
     }
     
     private static void check(String string, int idx, char x)
     {
         if ( string.length() <= idx || string.charAt(idx) != x ) 
-            throw new DateTimeParseException("Expected: "+x+" at index "+idx) ;
+            throw new DateTimeParseException("Expected: "+x+" at index "+idx);
     }
 }

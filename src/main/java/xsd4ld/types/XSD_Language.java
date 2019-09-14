@@ -17,35 +17,35 @@
 
 package xsd4ld.types;
 
-import java.util.regex.Pattern ;
+import java.util.regex.Pattern;
 
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegistry ;
-import xsd4ld.lib.LangTag2 ;
+import langtag.LangTag;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDTypeRegistry;
 
 public class XSD_Language extends BaseString {
-    private Pattern pattern = XSDTypeRegistry.getRegex(XSDConst.xsd_language) ;
+    private Pattern pattern = XSDTypeRegistry.getRegex(XSDConst.xsd_language);
     
     public XSD_Language() {
-        super(XSDConst.xsd_language, XSDConst.xsd_token) ;
+        super(XSDConst.xsd_language, XSDConst.xsd_token);
     }
     
     @Override
     protected String valueOrException(String lex) {
         if ( isValid(lex) )
-            return LangTag2.canonical(lex) ;
-        return null ;
+            return LangTag.canonical(lex);
+        return null;
     }
 
     @Override
     public boolean isValid(String lex) {
-        //return null != LangTag2.parse(lex) ;
-        return pattern.matcher(lex).matches() ;
+        //return null != LangTag2.parse(lex);
+        return pattern.matcher(lex).matches();
     }
     
     @Override
     public Pattern getRegex() {
-        return XSDTypeRegistry.getRegex(XSDConst.xsd_language) ;
+        return XSDTypeRegistry.getRegex(XSDConst.xsd_language);
     }
 }
 

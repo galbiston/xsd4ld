@@ -16,17 +16,11 @@
  * limitations under the License.
  */
 
-package langtag;
+package xsd4ld.types;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import javax.xml.datatype.DatatypeFactory;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses( {
-    TestLangTag.class
-    , TestLangTagParser.class
-    , TestLangTagParserAlt.class
-} )
-public class TS_LangTag {
-
+class Base {
+    // Make this xsd:anyAtomicType?
+    /*package*/ static DatatypeFactory xmlDatatypeFactory = DatatypeFactory.newDefaultInstance();
 }

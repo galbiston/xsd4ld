@@ -17,44 +17,67 @@
 
 package xsd4ld.types;
 
-import javax.xml.datatype.XMLGregorianCalendar ;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalAccessor;
 
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDDatatype ;
-import xsd4ld.XSDTypeRegistry ;
-import xsd4ld.lib.DateTimeStruct ;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import xsd4ld.ValueClass;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDDatatype;
+import xsd4ld.XSDTypeRegistry;
+import xsd4ld.lib.DateTimeStruct;
 
 /** The 7 component date/time model.
  *  year / month / day / hour / minute / second / timezone
+ *  for xsd:dateTime, xsd:date, xsd:dateTimeStamp.
+ *  but not the Gregorian xsd:g* which are not "temporal" (a point in time).
  */
 abstract class BaseDateTime extends XSDDatatype  {
-    @FunctionalInterface interface Parser { DateTimeStruct parse(String s) ; } 
-    protected final Parser parser ;
-    
+    @FunctionalInterface interface Parser { DateTimeStruct parse(String s); }
+    protected final Parser parser;
+
     public BaseDateTime(String shortName, Parser parser) {
-        this(shortName, XSDConst.xsd_atomic, parser) ;
+        this(shortName, XSDConst.xsd_atomic, parser);
     }
-    
+
     public BaseDateTime(String shortName, String derivedFrom, Parser parser) {
-        super(shortName, derivedFrom, ValueClass.DATETIME, XSDTypeRegistry.getRegex(shortName)) ;
-        this.parser = parser ;
+        super(shortName, derivedFrom, ValueClass.DATETIME, XSDTypeRegistry.getRegex(shortName));
+        this.parser = parser;
     }
 
     @Override
-    protected XMLGregorianCalendar valueOrException(String lex) {
-        // checks syntax.
-        if ( parse(lex) == null )
-            return null ;
-        // Checks values. 
-        return XSDConst.factory.newXMLGregorianCalendar(lex) ;
+    protected Temporal valueOrException(String lex) {
+        // Matches XML schema 1.1, not 1.0 (year 0 is not allowed)
+        // 1BC is 0000
+        // 2BC is -0001
+        TemporalAccessor temporalAccessor = DateTimeFormatter.ISO_DATE_TIME.parse(lex);
+        if ( temporalAccessor.isSupported(ChronoField.OFFSET_SECONDS) ) {
+            // XSD: Timezones are +/- 14 hours.
+            OffsetDateTime odt = OffsetDateTime.from(temporalAccessor);
+            int x = odt.get(ChronoField.OFFSET_SECONDS);
+            if ( x < -14*60*60 || x > 14*60*60 )
+                return null;
+            return odt;
+
+        } else {
+            return LocalDateTime.from(temporalAccessor);
+        }
+    }
+
+    protected static XMLGregorianCalendar asXMLGregorianCalendar(String lex) {
+        return Base.xmlDatatypeFactory.newXMLGregorianCalendar(lex);
     }
 
     protected DateTimeStruct parse(String lex) {
-        // We use a different parser setup for each derived type. 
+        // We use a different parser setup for each derived type. The parsers are strict.
         try {
-            return parser.parse(lex) ; 
-        } catch (Exception ex) { return null ; }
+            return parser.parse(lex);
+        } catch (Exception ex) { return null; }
     }
 }
 

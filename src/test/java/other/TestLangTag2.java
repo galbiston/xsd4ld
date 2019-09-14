@@ -15,75 +15,76 @@
  *  information regarding copyright ownership.
  */
 
-package xsd4ld.lib;
+package other;
 
+import dev.LangTag2_orig;
 import org.junit.Assert ;
 import org.junit.Test ;
 
 public class TestLangTag2 extends Assert // BaseTest
 {
-    @Test public void parse_01() 
+    @Test public void parse_01()
     { parseGood("en",                  "en",               "en", null, null, null, null) ; }
 
     @Test public void parse_02()
     { parseGood("en-uk",               "en-UK",            "en", null, "UK", null, null) ; }
-    
+
     @Test public void parse_03()
     { parseGood("es-419",              "es-419",           "es", null, "419", null, null) ; }
-    
+
     @Test public void parse_04()
     { parseGood("zh-Hant",             "zh-Hant",          "zh", "Hant", null, null, null) ; }
-    
+
     @Test public void parse_05()
     { parseGood("sr-Latn-CS",          "sr-Latn-CS",       "sr", "Latn", "CS", null, null) ; }
-    
+
     @Test public void parse_06()
     { parseGood("sl-nedis",            "sl-nedis",         "sl", null, null, "nedis", null) ; }
-    
+
     @Test public void parse_07()
     { parseGood("sl-IT-nedis",         "sl-IT-nedis",      "sl", null, "IT", "nedis", null) ; }
-    
+
     @Test public void parse_08()
     { parseGood("sl-Latn-IT-nedis",    "sl-Latn-IT-nedis", "sl", "Latn", "IT", "nedis", null) ; }
-    
+
     @Test public void parse_09()
     { parseGood("de-CH-x-Phonebk",     "de-CH-x-Phonebk",  "de", null, "CH", null, "x-Phonebk") ; }
-    
+
     @Test public void parse_10()
-    { parseGood("zh-cn-a-myExt-x-private", "zh-CN-a-myExt-x-private", 
+    { parseGood("zh-cn-a-myExt-x-private", "zh-CN-a-myExt-x-private",
                                       "zh", null, "CN", null, "a-myExt-x-private") ; }
-    
+
     @Test public void parse_bad_01() { parseBad("i18n") ; }
     @Test public void parse_bad_02() { parseBad("i@n") ; }
     @Test public void parse_bad_03() { parseBad("123-abc") ; }
     @Test public void parse_bad_04() { parseBad("en-") ; }
-    
+
     private static void parseGood(String input, String ex_output, String... ex_parts )
     {
-        String[] parts = LangTag2.parse(input) ;
+        String[] parts = LangTag2_orig.parse(input) ;
         assertArrayEquals(ex_parts, parts) ;
 
-        String output = LangTag2.canonical(input) ;
+        String output = LangTag2_orig.canonical(input) ;
         assertEquals(ex_output, output) ;
 
-        assertTrue(LangTag2.check(input)) ;
+        assertTrue(LangTag2_orig.check(input)) ;
     }
 
     private static void parseBad(String input)
     {
-        String[] parts = LangTag2.parse(input) ;
+        String[] parts = LangTag2_orig.parse(input) ;
         assertNull(parts) ;
-        String output = LangTag2.canonical(input) ;
+        String output = LangTag2_orig.canonical(input) ;
         assertEquals(input, output) ;
-        assertFalse(LangTag2.check(input)) ;
+        assertFalse(LangTag2_orig.check(input)) ;
     }
-    
+
     private void testCanonical(String input, String ex_output) {
-        String output = LangTag2.canonical(input) ;
+        String output = LangTag2_orig.canonical(input) ;
         assertEquals(ex_output, output) ;
     }
 
-    // "x" extensions and irregular forms are left alone, including "sgn-be-fr" 
+    // "x" extensions and irregular forms are left alone, including "sgn-be-fr"
 
     // Mentioned in BCP 47 tests
 //    @Test public void parseCanonical_01() { testCanonical("en-ca-x-ca","en-CA-x-ca"); }         // "x"
@@ -93,7 +94,7 @@ public class TestLangTag2 extends Assert // BaseTest
 //    @Test public void parseCanonical_05() { testCanonical("sgn-be-fr","sgn-BE-FR"); }   // Irregular
 //    @Test public void parseCanonical_06() { testCanonical("AZ-latn-x-LATN","az-Latn-x-latn"); }
 //    @Test public void parseCanonical_07() { testCanonical("Az-latn-X-Latn","az-Latn-x-latn"); }
-    
+
     @Test public void parseCanonical_10() { testCanonical("zh-hant",            "zh-Hant"); }
     @Test public void parseCanonical_11() { testCanonical("zh-latn-wadegile",   "zh-Latn-wadegile"); }
     @Test public void parseCanonical_12() { testCanonical("zh-latn-pinyin",     "zh-Latn-pinyin"); }

@@ -18,6 +18,9 @@
 
 package langtag;
 
+import static langtag.LangTagLib.isA2Z;
+import static langtag.LangTagLib.isA2ZN;
+
 import java.util.Locale;
 
 /**
@@ -46,80 +49,31 @@ import java.util.Locale;
  */
 
 public class LangTag {
-    private static char CH_DASH = '-' ; 
-    
-    /**
-     * Basic syntax check for a language tag, equivalent to what is in the Turtle and SPARQL specs 
-     * <pre>[a-zA-Z]+('-' [a-zA-Z0-9]+)*</pre>
-     * Oassing this check does <em>not</em> guarantee the language tage is correct.
-     */
-    public static boolean checkSyntax(String languageTag) {
-        int len = languageTag.length() ;
-        int idx = 0 ;
-        boolean first = true ;
-        while (idx < languageTag.length()) {
-            int idx2 = checkPart(languageTag, idx, first) ;
-            first = false ;
-            if ( idx2 == idx )
-                // zero length part.
-                return false ;
-            idx = idx2 ;
-            if ( idx == len )
-                return true ;
-            if ( languageTag.charAt(idx) != CH_DASH )
-                return false ;
-            idx++ ;
-            if ( idx == len )
-                // trailing DASH
-                return false ;
-        }
-        return true ;
-    }
-    
-    private static int checkPart(String languageTag, int idx, boolean alphaOnly) {
-        for (; idx < languageTag.length(); idx++) {
-            int ch = languageTag.charAt(idx) ;
-            if ( alphaOnly ) {
-                if ( isA2Z(ch) )
-                    continue ;
-            } else {
-                if ( isA2ZN(ch) )
-                    continue ;
-            }
-            // Not acceptable.
-            return idx ;
-        }
-        // Off end.
-        return idx ;
-    }
-    
-    // Java9 : Locale.IsoCountryCode
-    
-    /** ASCII A-Z */
-    /*package*/ static boolean isA2Z(int ch) {
-        return range(ch, 'a', 'z') || range(ch, 'A', 'Z') ;
-    }
-
-    /** ASCII A-Z or 0-9 */
-    /*package*/ static boolean isA2ZN(int ch) {
-        return range(ch, 'a', 'z') || range(ch, 'A', 'Z') || range(ch, '0', '9') ;
-    }
-
-    /*package*/ static boolean range(int ch, char a, char b) {
-        return (ch >= a && ch <= b) ;
-    }
-
     private final String lang;
     private final String script;
     private final String region;
     private final String variant;
     private final String extension;
 
-    /** Construct a LangTag.
+    /** Create a langtag.
+     *  Returns null if not valid syntax.
+     */
+    public static LangTag create(String string) {
+        return LangTagParser.parse(string);
+    }
+
+    /**
+     * Return a string that is the lang tag except in canonical form.
+     * Returns null if not valid syntax.
+     */
+    public static String canonical(String string) {
+        LangTag langTag = LangTagParser.parse(string);
+        return LangTagParser.canonical(string);
+    }
+
+    /** Construct a {@code LangTag} from component parts.
      * <p>
-     * This 
-     * <p> 
-     * null means "empty" 
+     * null means "empty"
      */
     public
     /*package*/ LangTag(String lang, String script, String region, String variant, String extension) {
@@ -134,34 +88,34 @@ public class LangTag {
         // Choice.
 //        if ( x == null )
 //            throw new NullPointerException(msg);
-        return x==null ? "" : x ; 
+        return x==null ? "" : x;
     }
-    
+
     @Override
-    public String toString() { return asString() ; }
-    
-    /** Return as a string - canonicalization is depend on whether the 
-     * the parser canonicalized on input. 
-     */ 
+    public String toString() { return asString(); }
+
+    /** Return as a string - canonicalization is depend on whether the
+     * the parser canonicalized on input.
+     */
     public String asString() {
-        
+
         if ( lang == null || lang.isEmpty() ) {
             // Grandfathered
             return extension;
         }
 
-        StringBuilder sb = new StringBuilder() ;
-        sb.append(lang) ;
+        StringBuilder sb = new StringBuilder();
+        sb.append(lang);
         appendIf(sb, script);
         appendIf(sb, region);
         appendIf(sb, variant);
         appendIf(sb, extension);
-        return sb.toString() ;
+        return sb.toString();
     }
 
     private void appendIf(StringBuilder sb, String str) {
         if ( str == null || str.isEmpty() )
-            return ;
+            return;
         sb.append("-");
         sb.append(str);
     }
@@ -219,5 +173,52 @@ public class LangTag {
         } else if ( !variant.equals(other.variant) )
             return false;
         return true;
+    }
+
+    private static char CH_DASH = '-';
+
+    /**
+     * Basic syntax check for a language tag, equivalent to what is in the Turtle and SPARQL specs
+     * <pre>[a-zA-Z]+('-' [a-zA-Z0-9]+)*</pre>
+     * Passing this check does <em>not</em> guarantee the language tag is correct.
+     */
+    public static boolean basicCheckSyntax(String languageTag) {
+        int len = languageTag.length();
+        int idx = 0;
+        boolean first = true;
+        while (idx < languageTag.length()) {
+            int idx2 = checkPart(languageTag, idx, first);
+            first = false;
+            if ( idx2 == idx )
+                // zero length part.
+                return false;
+            idx = idx2;
+            if ( idx == len )
+                return true;
+            if ( languageTag.charAt(idx) != CH_DASH )
+                return false;
+            idx++;
+            if ( idx == len )
+                // trailing DASH
+                return false;
+        }
+        return true;
+    }
+
+    private static int checkPart(String languageTag, int idx, boolean alphaOnly) {
+        for (; idx < languageTag.length(); idx++) {
+            int ch = languageTag.charAt(idx);
+            if ( alphaOnly ) {
+                if ( isA2Z(ch) )
+                    continue;
+            } else {
+                if ( isA2ZN(ch) )
+                    continue;
+            }
+            // Not acceptable.
+            return idx;
+        }
+        // Off end.
+        return idx;
     }
 }

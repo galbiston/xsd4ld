@@ -18,17 +18,17 @@
 package xsd4ld.types;
 
 import org.apache.commons.codec.binary.Base64;
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegistry ;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDTypeRegistry;
 
 public class XSD_Base64Binary extends BaseBinary {
 
     public XSD_Base64Binary() {
-        super(XSDConst.xsd_base64Binary, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_base64Binary)) ;
+        super(XSDConst.xsd_base64Binary, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_base64Binary));
     }
     
     @Override
     protected byte[] valueOrException(String lex) {
-        return Base64.decodeBase64(lex) ;
+        return Base64.decodeBase64(lex);
     }
 }

@@ -17,16 +17,16 @@
 
 package xsd4ld.types;
 
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDDatatype ;
-import xsd4ld.XSDTypeRegistry ;
+import xsd4ld.ValueClass;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDDatatype;
+import xsd4ld.XSDTypeRegistry;
 
 /** Commonality for XSD_Double and XSD_Float */
 abstract class BaseDoubleFloat extends XSDDatatype {
 
     public BaseDoubleFloat(String shortName, ValueClass valueClass) {
-        super(shortName, XSDConst.xsd_atomic, valueClass, XSDTypeRegistry.getRegex(shortName)) ;
+        super(shortName, XSDConst.xsd_atomic, valueClass, XSDTypeRegistry.getRegex(shortName));
     }
 
     // Used by the 2 subclasses.
@@ -34,12 +34,12 @@ abstract class BaseDoubleFloat extends XSDDatatype {
     // Java spells "INF" as "Infinity"
     static String fix(String lex) {
         if ( lex.equals("INF") )
-            return "Infinity" ;
+            return "Infinity";
         if ( lex.equals("+INF") )
-            return "+Infinity" ;
+            return "+Infinity";
         if ( lex.equals("-INF") )
-            return "-Infinity" ;
-        return lex ;
+            return "-Infinity";
+        return lex;
     }
     
 

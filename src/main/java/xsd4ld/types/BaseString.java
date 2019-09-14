@@ -17,13 +17,13 @@
 
 package xsd4ld.types;
 
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDDatatype ;
+import xsd4ld.ValueClass;
+import xsd4ld.XSDDatatype;
 
 abstract class BaseString extends XSDDatatype {
 
     public BaseString(String shortName, String baseType) { 
-        super(shortName, baseType, ValueClass.STRING, null) ;
+        super(shortName, baseType, ValueClass.STRING, null);
     }
 
 
@@ -33,36 +33,36 @@ abstract class BaseString extends XSDDatatype {
     @Override
     protected String valueOrException(String lex) {
         if ( isValid(lex) ) 
-            return lex ;
-        return null ;
+            return lex;
+        return null;
     }
 
     @Override
     public boolean isValid(String lex) {
-        return valid_NL_LF_TAB(lex) ;
+        return valid_NL_LF_TAB(lex);
     }
     
     protected boolean valid_NL_LF_TAB(String lex) {
-        return true ;
+        return true;
     }
 
-    protected static final char NL = '\n' ;    // #xD
-    protected static final char LF = '\r' ;    // #xA
-    protected static final char TAB = '\u0009' ;
+    protected static final char NL = '\n';    // #xD
+    protected static final char LF = '\r';    // #xA
+    protected static final char TAB = '\u0009';
     
     protected static boolean test_valid_NL_LF_TAB(String lex) {
-        for ( int i = 0 ; i < lex.length() ; i++ ) {
-            char ch = lex.charAt(i) ;
+        for ( int i = 0; i < lex.length(); i++ ) {
+            char ch = lex.charAt(i);
             if ( ch == NL || ch == LF || ch == TAB )
-                return false ;
+                return false;
         }
-        return true ;
+        return true;
     }
     
 //    @Override
 //  public abstract int hashCode( );
 //  @Override
-//  public abstract boolean equals(Object other) ;
+//  public abstract boolean equals(Object other);
 }
 
 

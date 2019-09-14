@@ -15,13 +15,13 @@
  *  information regarding copyright ownership.
  */
 
-package xsd4ld.types ;
+package xsd4ld.types;
 
-import static java.math.BigInteger.ZERO ;
-import static xsd4ld.XSDConst.* ;
+import static java.math.BigInteger.ZERO;
+import static xsd4ld.XSDConst.*;
 
 public class XSD_UnsignedLong extends BaseInteger {
     public XSD_UnsignedLong() {
-        super(xsd_unsignedLong, xsd_nonNegativeInteger, ZERO, LONG_UMAX) ;
+        super(xsd_unsignedLong, xsd_nonNegativeInteger, ZERO, LONG_UMAX);
     }
 }

@@ -17,12 +17,12 @@
 
 package xsd4ld.types;
 
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegistry ;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDTypeRegistry;
 
 public class XSD_Boolean extends BaseBoolean {
     public XSD_Boolean() {
-        super(XSDConst.xsd_boolean, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_boolean)) ;
+        super(XSDConst.xsd_boolean, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_boolean));
     }
 }
 

@@ -17,18 +17,15 @@
 
 package langtag;
 
-import langtag.LangTag;
-import langtag.LangTagParser;
+public class TestLangTag extends AbstractTestLangTag {
 
-public class TestLangTag extends AbstractTestLangTag
-{
     @Override
     protected LangTag parseLangtag(String str) {
-        return LangTagParser.parse(str);
+        return LangTag.create(str);
     }
 
     @Override
     protected String canonical(String str) {
-        return LangTagParser.canonical(str);
+        return LangTag.canonical(str);
     }
 }

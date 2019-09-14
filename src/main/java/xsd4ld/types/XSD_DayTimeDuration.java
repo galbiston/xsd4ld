@@ -17,45 +17,45 @@
 
 package xsd4ld.types;
 
-import javax.xml.datatype.Duration ;
+import javax.xml.datatype.Duration;
 
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegistry ;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDTypeRegistry;
 
 public class XSD_DayTimeDuration extends BaseDuration {
     public XSD_DayTimeDuration() {
-        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegistry.getRegex(XSDConst.xsd_dayTimeDuration)) ;
+        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegistry.getRegex(XSDConst.xsd_dayTimeDuration));
     }
-    
+
     @Override
     protected Duration valueOrException(String lex) {
-        Duration obj = super.valueOrException(lex) ;
+        Duration obj = super.valueOrException(lex);
         if ( obj == null )
-            return null ;
-        // Must not have Y
+            return null;
+        // Must not have Y, or M (month)
         if ( lex.indexOf('Y') != -1 )
             // has year.
-            throw new IllegalArgumentException("Not valid as xsd:dayTimeDuration: "+lex) ;
-        
-        int idx_T = lex.indexOf('T') ;
-        int idx_M = lex.indexOf('M') ;
-        
+            throw new IllegalArgumentException("Not valid as xsd:dayTimeDuration: "+lex);
+
+        int idx_T = lex.indexOf('T');
+        int idx_M = lex.indexOf('M');
+
         if ( idx_T == -1 ) {
-            // There is no T ; must have D and no M.
+            // There is no T; must have D and no M.
             if ( lex.indexOf('D') == -1 )
-                throw new IllegalArgumentException("Not valid as xsd:dayTimeDuration: "+lex) ;
+                throw new IllegalArgumentException("Not valid as xsd:dayTimeDuration: "+lex);
             if ( idx_M != -1 )
                 // M, no T -> month
-                throw new IllegalArgumentException("Not valid as xsd:dayTimeDuration: "+lex) ;
-            return obj ;
+                throw new IllegalArgumentException("Not valid as xsd:dayTimeDuration: "+lex);
+            return obj;
         }
 
         // Has T
         // Must not have a M before T
         if ( idx_M != -1 && idx_M < idx_T )
             // M before T => month.
-            throw new IllegalArgumentException("Not valid as xsd:dayTimeDuration: "+lex) ;
-        return obj ;
+            throw new IllegalArgumentException("Not valid as xsd:dayTimeDuration: "+lex);
+        return obj;
     }
 }
 

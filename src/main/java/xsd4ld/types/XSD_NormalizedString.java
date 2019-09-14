@@ -17,16 +17,16 @@
 
 package xsd4ld.types;
 
-import xsd4ld.XSDConst ;
+import xsd4ld.XSDConst;
 
 public class XSD_NormalizedString extends BaseString {
     // No newline (#xD), line feed (#xA) nor tab (#x9)
     public XSD_NormalizedString() {
-        super(XSDConst.xsd_normalizedString, XSDConst.xsd_string) ;
+        super(XSDConst.xsd_normalizedString, XSDConst.xsd_string);
     }
     @Override
     public boolean valid_NL_LF_TAB(String lex) {
-        return test_valid_NL_LF_TAB(lex) ;
+        return test_valid_NL_LF_TAB(lex);
     }
 }
 

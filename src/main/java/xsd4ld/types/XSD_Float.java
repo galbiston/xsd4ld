@@ -17,18 +17,18 @@
 
 package xsd4ld.types;
 
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDConst ;
+import xsd4ld.ValueClass;
+import xsd4ld.XSDConst;
 
 public class XSD_Float extends BaseDoubleFloat {
 
     public XSD_Float() {
-        super(XSDConst.xsd_float, ValueClass.FLOAT) ;
+        super(XSDConst.xsd_float, ValueClass.FLOAT);
     }
 
     @Override
     protected Double valueOrException(String lex) {
-        return Double.parseDouble(fix(lex)) ;
+        return Double.parseDouble(fix(lex));
     }
 }
 

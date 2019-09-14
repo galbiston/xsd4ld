@@ -17,33 +17,33 @@
 
 package xsd4ld.types;
 
-import javax.xml.datatype.XMLGregorianCalendar ;
+import java.time.temporal.Temporal;
 
-import xsd4ld.XSDConst ;
-import xsd4ld.lib.DateTimeStruct ;
+import xsd4ld.XSDConst;
+import xsd4ld.lib.DateTimeStruct;
 
 public class XSD_DateTimeStamp extends BaseDateTime {
     public XSD_DateTimeStamp() {
-        super(XSDConst.xsd_dateTimeStamp, XSDConst.xsd_dateTime, DateTimeStruct::parseDateTimeStamp) ;
+        super(XSDConst.xsd_dateTimeStamp, XSDConst.xsd_dateTime, DateTimeStruct::parseDateTimeStamp);
     }
-    
+
     @Override
-    protected XMLGregorianCalendar valueOrException(String lex) {
-        XMLGregorianCalendar obj = super.valueOrException(lex) ;
+    protected Temporal valueOrException(String lex) {
+        Temporal obj = super.valueOrException(lex);
         if ( obj == null )
-            return null ;
+            return null;
         // OK as an xsd:dateTime - check it has a timezone.
         //  timezoneFrag ::= 'Z' | ('+' | '-') (('0' digit | '1' [0-3]) ':' minuteFrag | '14:00')
-        if ( lex.indexOf('Z') != -1 ) 
-            return obj ;
+        if ( lex.indexOf('Z') != -1 )
+            return obj;
         // Check a legal xsd:dateTime ends with timezoneFrag
         // Z or a +/- at length-6
 
         // Avoid regex!
-        int n = lex.length() ;
-        char z = lex.charAt(n-6) ;
+        int n = lex.length();
+        char z = lex.charAt(n-6);
         if ( z != '+' && z != '-' )
-            throw new IllegalArgumentException("Not valid as xsd:dateTimeStamp: "+lex) ;
-        return obj ;
+            throw new IllegalArgumentException("Not valid as xsd:dateTimeStamp: "+lex);
+        return obj;
     }
 }

@@ -20,8 +20,8 @@ package langtag;
 import langtag.LangTag;
 import langtag.LangTagParserAlt;
 
-public class TestLangTagParserAlt extends AbstractTestLangTag
-{
+public class TestLangTagParserAlt extends AbstractTestLangTag {
+
     @Override
     protected LangTag parseLangtag(String str) {
         return LangTagParserAlt.parse(str);

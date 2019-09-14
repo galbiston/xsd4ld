@@ -19,18 +19,18 @@ package xsd4ld.types;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegistry ;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDTypeRegistry;
 
 public class XSD_HexBinary extends BaseBinary {
     public XSD_HexBinary() {
-        super(XSDConst.xsd_hexBinary, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_hexBinary) ) ;
+        super(XSDConst.xsd_hexBinary, XSDConst.xsd_atomic, XSDTypeRegistry.getRegex(XSDConst.xsd_hexBinary) );
     }
     
     @Override
     protected byte[] valueOrException(String lex) {
         try {
-            return Hex.decodeHex(lex) ;
+            return Hex.decodeHex(lex);
         } catch (DecoderException e) {
             throw new RuntimeException(e);
         }

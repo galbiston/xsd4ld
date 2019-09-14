@@ -15,7 +15,7 @@
  *  information regarding copyright ownership.
  */
 
-package xsd4ld.lib ;
+package xsd4ld.lib;
 /* This is a copy of the source code from Xerces 2.11.0.
  * Apache License v2. 
  */

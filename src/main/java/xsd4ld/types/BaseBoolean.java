@@ -17,22 +17,22 @@
 
 package xsd4ld.types;
 
-import java.util.regex.Pattern ;
+import java.util.regex.Pattern;
 
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDDatatype ;
+import xsd4ld.ValueClass;
+import xsd4ld.XSDDatatype;
 
 public class BaseBoolean extends XSDDatatype {
     protected BaseBoolean(String shortName, String derivedFrom, Pattern regex) {
-        super(shortName, derivedFrom, ValueClass.BOOLEAN, regex) ;
+        super(shortName, derivedFrom, ValueClass.BOOLEAN, regex);
     }
 
     @Override
     protected Object valueOrException(String lex) {
         switch(lex) {
-            case "true":  case "1":  return Boolean.TRUE ;
-            case "false": case "0":  return Boolean.FALSE ;
-            default: return null ; 
+            case "true":  case "1":  return Boolean.TRUE;
+            case "false": case "0":  return Boolean.FALSE;
+            default: return null; 
         }
     }
 

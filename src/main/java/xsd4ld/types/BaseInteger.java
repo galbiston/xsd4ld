@@ -17,36 +17,36 @@
 
 package xsd4ld.types;
 
-import java.math.BigInteger ;
+import java.math.BigInteger;
 
-import xsd4ld.ValueClass ;
-import xsd4ld.XSDConst ;
-import xsd4ld.XSDTypeRegistry ;
-import xsd4ld.XSDDatatype ;
+import xsd4ld.ValueClass;
+import xsd4ld.XSDConst;
+import xsd4ld.XSDTypeRegistry;
+import xsd4ld.XSDDatatype;
 
 abstract class BaseInteger extends XSDDatatype {
-    private final BigInteger minValue ;
-    private final BigInteger maxValue ;
+    private final BigInteger minValue;
+    private final BigInteger maxValue;
 
     protected BaseInteger(String shortName, String baseType, 
                           BigInteger minValue, BigInteger maxValue) {
-        super(shortName, baseType, ValueClass.INTEGER, XSDTypeRegistry.getRegex(XSDConst.xsd_integer)) ;
-        this.minValue = minValue ;
-        this.maxValue = maxValue ;
+        super(shortName, baseType, ValueClass.INTEGER, XSDTypeRegistry.getRegex(XSDConst.xsd_integer));
+        this.minValue = minValue;
+        this.maxValue = maxValue;
     }
 
     @Override
     protected BigInteger valueOrException(String lex) {
         try {
-            BigInteger integer = new BigInteger(lex) ;
+            BigInteger integer = new BigInteger(lex);
             if ( minValue != null && minValue.compareTo(integer) > 0 )
-                return null ;
+                return null;
             if ( maxValue != null && maxValue.compareTo(integer) < 0 )
-                return null ;
-            return integer ; 
+                return null;
+            return integer; 
         }
         catch (NumberFormatException ex) {
-            return null ;
+            return null;
         }
     }
 }
