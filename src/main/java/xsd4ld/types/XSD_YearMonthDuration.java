@@ -17,19 +17,21 @@
 
 package xsd4ld.types;
 
-import javax.xml.datatype.Duration;
+import java.time.Period;
+import xsd4ld.ValueClass;
 
 import xsd4ld.XSDConst;
+import xsd4ld.XSDDatatype;
 import xsd4ld.XSDTypeRegistry;
 
-public class XSD_YearMonthDuration extends BaseDuration {
+public class XSD_YearMonthDuration extends XSDDatatype {
     public XSD_YearMonthDuration() {
-        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegistry.getRegex(XSDConst.xsd_yearMonthDuration));
+        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration,ValueClass.DURATION, XSDTypeRegistry.getRegex(XSDConst.xsd_yearMonthDuration));
     }
 
     @Override
-    protected Duration valueOrException(String lex) {
-        Duration obj = super.valueOrException(lex);
+    protected Period valueOrException(String lex) {
+        Period obj = Period.parse(lex);
         if ( obj == null )
             return null;
         // Must not have a D or T part.

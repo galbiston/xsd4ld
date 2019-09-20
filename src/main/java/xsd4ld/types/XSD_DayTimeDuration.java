@@ -17,19 +17,21 @@
 
 package xsd4ld.types;
 
-import javax.xml.datatype.Duration;
+import java.time.Duration;
+import xsd4ld.ValueClass;
 
 import xsd4ld.XSDConst;
+import xsd4ld.XSDDatatype;
 import xsd4ld.XSDTypeRegistry;
 
-public class XSD_DayTimeDuration extends BaseDuration {
+public class XSD_DayTimeDuration extends XSDDatatype {
     public XSD_DayTimeDuration() {
-        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, XSDTypeRegistry.getRegex(XSDConst.xsd_dayTimeDuration));
+        super(XSDConst.xsd_yearMonthDuration, XSDConst.xsd_duration, ValueClass.DURATION, XSDTypeRegistry.getRegex(XSDConst.xsd_dayTimeDuration));
     }
 
     @Override
     protected Duration valueOrException(String lex) {
-        Duration obj = super.valueOrException(lex);
+        Duration obj = Duration.parse(lex);
         if ( obj == null )
             return null;
         // Must not have Y, or M (month)
